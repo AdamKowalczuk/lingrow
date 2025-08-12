@@ -9,6 +9,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        locked:
+          'bg-neutral-200 text-primary-foreground hover:bg-neutral-200/90 border-neutral-400 border-b-4 active:border-b-0',
         default:
           'bg-white text-black border-slate-200 border-2 border-b-[4px] active:border-b-2 hover:bg-slate-100 text-slate-500',
         primary:
@@ -35,7 +37,7 @@ const buttonVariants = cva(
         sm: 'h-9 gap-1.5 px-3 has-[>svg]:px-2.5',
         lg: 'h-12 px-6 has-[>svg]:px-4',
         icon: 'size-10',
-        rouded: 'rounded-full',
+        rounded: 'rounded-full',
       },
     },
     defaultVariants: {
