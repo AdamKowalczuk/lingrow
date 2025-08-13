@@ -149,7 +149,7 @@ const main = async () => {
         challengeId: 2,
         text: 'el robot',
         correct: false,
-        audioSrc: '/robot.mp3',
+        audioSrc: '/es_robot.mp3',
       },
     ]);
 
@@ -170,7 +170,31 @@ const main = async () => {
         challengeId: 3,
         text: 'el robot',
         correct: true,
-        audioSrc: '/robot.mp3',
+        audioSrc: '/es_robot.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challenges).values([
+      {
+        id: 4,
+        lessonId: 2,
+        type: 'SELECT',
+        question: 'Which one of these is the "the man"?',
+        order: 1,
+      },
+      {
+        id: 5,
+        lessonId: 2,
+        type: 'ASSIST',
+        question: '"the man"',
+        order: 2,
+      },
+      {
+        id: 6,
+        lessonId: 2,
+        type: 'SELECT',
+        question: 'Which one of these is the "the robot"?',
+        order: 3,
       },
     ]);
 

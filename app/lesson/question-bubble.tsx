@@ -13,7 +13,7 @@ const QuestionBubble = ({ question }: Props) => {
         alt="mascot"
         width={40}
         height={40}
-        className="block lg:hidden"
+        className="block"
       />
       <div className="relative py-2 px-4 border-2 rounded-xl text-sm lg:text-base">
         {question}
