@@ -92,31 +92,84 @@ const main = async () => {
         question: 'Which one of these is the "the man"?',
         order: 1,
       },
+      {
+        id: 2,
+        lessonId: 1,
+        type: 'ASSIST',
+        question: '"the man"',
+        order: 2,
+      },
+      {
+        id: 3,
+        lessonId: 1,
+        type: 'SELECT',
+        question: 'Which one of these is the "the robot"?',
+        order: 3,
+      },
     ]);
 
     await db.insert(schema.challengeOptions).values([
       {
-        id: 1,
         challengeId: 1,
-        imageSrc: '/man.svg',
+        imageSrc: '/boy.svg',
         text: 'el hombre',
         correct: true,
         audioSrc: '/es_man.mp3',
       },
       {
-        id: 2,
         challengeId: 1,
-        imageSrc: '/woman.svg',
+        imageSrc: '/girl.svg',
         text: 'la mujer',
         correct: false,
         audioSrc: '/es_woman.mp3',
       },
       {
-        id: 3,
         challengeId: 1,
-        imageSrc: '/robot.svg',
+        imageSrc: '/zombie.svg',
         text: 'el robot',
         correct: false,
+        audioSrc: '/es_robot.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 2,
+        text: 'el hombre',
+        correct: true,
+        audioSrc: '/es_man.mp3',
+      },
+      {
+        challengeId: 2,
+        text: 'la mujer',
+        correct: false,
+        audioSrc: '/es_woman.mp3',
+      },
+      {
+        challengeId: 2,
+        text: 'el robot',
+        correct: false,
+        audioSrc: '/robot.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 3,
+        text: 'el hombre',
+        correct: false,
+        audioSrc: '/es_man.mp3',
+      },
+      {
+        challengeId: 3,
+        text: 'la mujer',
+        correct: false,
+        audioSrc: '/es_woman.mp3',
+      },
+      {
+        challengeId: 3,
+        text: 'el robot',
+        correct: true,
         audioSrc: '/robot.mp3',
       },
     ]);

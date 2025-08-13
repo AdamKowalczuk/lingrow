@@ -48,7 +48,6 @@ const LearnPage = async () => {
         <Header title={userProgress.activeCourse.title} />
         {units.map(unit => (
           <div key={unit.id} className="mb-10">
-            <h2>{unit.title}</h2>
             <Unit
               id={unit.id}
               order={unit.order}
