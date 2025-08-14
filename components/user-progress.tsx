@@ -40,6 +40,7 @@ export const UserProgress = ({
             width={28}
             height={28}
           />
+          {points}
         </Button>
       </Link>
       <Link href="/shop">
