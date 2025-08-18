@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎯 Lingrow - Platforma do Nauki Języków
 
-## Getting Started
+**Lingrow** to nowoczesna aplikacja webowa do nauki języków obcych, zbudowana z wykorzystaniem najnowszych technologii webowych. Aplikacja oferuje interaktywne lekcje, system postępów oraz atrakcyjny interfejs użytkownika.
 
-First, run the development server:
+## ✨ Funkcjonalności
+
+- 🎓 **Interaktywne lekcje** - Nauka poprzez pytania wielokrotnego wyboru
+- 🎨 **Atrakcyjny design** - Nowoczesny interfejs z Tailwind CSS
+- 🔐 **Autoryzacja użytkowników** - Bezpieczne logowanie przez Clerk
+- 📊 **Śledzenie postępów** - Monitorowanie ukończonych lekcji
+- 🎵 **Dźwięki i multimedia** - Wsparcie dla plików audio i obrazów
+- 📱 **Responsywny design** - Działanie na wszystkich urządzeniach
+- 🗄️ **Baza danych** - Przechowywanie danych użytkowników i postępów
+
+## 🛠️ Technologie
+
+### Frontend
+
+- **Next.js 14** - Framework React z App Router
+- **TypeScript** - Typowanie statyczne
+- **Tailwind CSS v4** - Framework CSS z custom colors
+- **Lucide React** - Ikony
+
+### Backend & Baza Danych
+
+- **Drizzle ORM** - Type-safe ORM
+- **PostgreSQL** - Baza danych (Neon)
+- **Next.js API Routes** - Backend API
+
+### Autoryzacja & Płatności
+
+- **Clerk** - System autoryzacji użytkowników
+- **Stripe** - Obsługa płatności i subskrypcji
+
+### Narzędzia deweloperskie
+
+- **Prettier** - Formatowanie kodu
+- **ESLint** - Linting kodu
+- **Drizzle Kit** - Migracje bazy danych
+
+## 🚀 Instalacja i uruchomienie
+
+### Wymagania
+
+- Node.js 18+
+- npm lub yarn
+- Konto Neon (PostgreSQL)
+- Konto Clerk
+- Konto Stripe
+
+### Kroki instalacji
+
+1. **Klonowanie repozytorium**
+
+```bash
+git clone https://github.com/AdamKowalczuk/lingrow.git
+cd lingrow
+```
+
+2. **Instalacja zależności**
+
+```bash
+npm install
+```
+
+3. **Konfiguracja zmiennych środowiskowych**
+
+```bash
+cp .env.example .env.local
+```
+
+Wypełnij plik `.env.local`:
+
+```env
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+
+# Database (Neon)
+DATABASE_URL=postgresql://user:password@host:port/database
+
+# Stripe
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+```
+
+4. **Uruchomienie bazy danych**
+
+```bash
+npm run db:push
+```
+
+5. **Seedowanie bazy danych (opcjonalne)**
+
+```bash
+npm run db:seed
+```
+
+6. **Uruchomienie aplikacji**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Aplikacja będzie dostępna pod adresem: `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Migracje
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run db:push      # Push schematu do bazy
+npm run db:studio    # Otwórz Drizzle Studio
+```
 
-## Learn More
+## 🔧 Skrypty npm
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev          # Uruchom w trybie deweloperskim
+npm run build        # Build produkcyjny
+npm run start        # Uruchom produkcyjnie
+npm run lint         # Sprawdź kod ESLint
+npm run format       # Formatuj kod Prettier
+npm run db:push      # Synchronizuj bazę danych
+npm run db:seed      # Wypełnij bazę danymi testowymi
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 Licencja
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Ten projekt jest dostępny na licencji MIT. Zobacz plik `LICENSE` dla szczegółów.
 
-## Deploy on Vercel
+## 📞 Kontakt
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Autor**: Adam Kowalczuk
+- **Email**: adamkowalczuk99@gmail.com
+- **GitHub**: [@AdamKowalczuk](https://github.com/AdamKowalczuk)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🙏 Podziękowania
+
+---
+
+⭐ **Jeśli projekt Ci się podoba, daj gwiazdkę na GitHub!**
