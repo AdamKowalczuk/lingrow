@@ -22,23 +22,8 @@ const main = async () => {
     await db.insert(schema.courses).values([
       {
         id: 1,
-        title: 'Spanish',
-        imageSrc: '/es.svg',
-      },
-      {
-        id: 2,
-        title: 'French',
-        imageSrc: '/fr.svg',
-      },
-      {
-        id: 3,
-        title: 'Croatian',
-        imageSrc: '/hr.svg',
-      },
-      {
-        id: 4,
-        title: 'Italian',
-        imageSrc: '/it.svg',
+        title: 'Polish',
+        imageSrc: '/pl.svg',
       },
     ]);
 
@@ -55,32 +40,20 @@ const main = async () => {
       {
         id: 1,
         unitId: 1,
-        title: 'Nouns',
+        title: 'Klasy postaci',
         order: 1,
       },
       {
         id: 2,
         unitId: 1,
-        title: 'Verbs',
+        title: 'Broń i walka',
         order: 2,
       },
       {
         id: 3,
         unitId: 1,
-        title: 'Verbs',
+        title: 'Magia i uzdrowienie',
         order: 3,
-      },
-      {
-        id: 4,
-        unitId: 1,
-        title: 'Verbs',
-        order: 4,
-      },
-      {
-        id: 5,
-        unitId: 1,
-        title: 'Verbs',
-        order: 5,
       },
     ]);
 
@@ -89,112 +62,280 @@ const main = async () => {
         id: 1,
         lessonId: 1,
         type: 'SELECT',
-        question: 'Which one of these is the "the man"?',
+        question: 'Which class uses a traditional bow and arrow?',
         order: 1,
       },
       {
         id: 2,
         lessonId: 1,
-        type: 'ASSIST',
-        question: '"the man"',
+        type: 'SELECT',
+        question: 'Which class has the highest intelligence stat?',
         order: 2,
       },
       {
         id: 3,
         lessonId: 1,
         type: 'SELECT',
-        question: 'Which one of these is the "the robot"?',
+        question: 'Which class wears heavy armor and uses a shield?',
         order: 3,
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
-      {
-        challengeId: 1,
-        imageSrc: '/boy.svg',
-        text: 'el hombre',
-        correct: true,
-        audioSrc: '/es_man.mp3',
-      },
-      {
-        challengeId: 1,
-        imageSrc: '/girl.svg',
-        text: 'la mujer',
-        correct: false,
-        audioSrc: '/es_woman.mp3',
-      },
-      {
-        challengeId: 1,
-        imageSrc: '/zombie.svg',
-        text: 'el robot',
-        correct: false,
-        audioSrc: '/es_robot.mp3',
-      },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
-      {
-        challengeId: 2,
-        text: 'el hombre',
-        correct: true,
-        audioSrc: '/es_man.mp3',
-      },
-      {
-        challengeId: 2,
-        text: 'la mujer',
-        correct: false,
-        audioSrc: '/es_woman.mp3',
-      },
-      {
-        challengeId: 2,
-        text: 'el robot',
-        correct: false,
-        audioSrc: '/es_robot.mp3',
-      },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
-      {
-        challengeId: 3,
-        text: 'el hombre',
-        correct: false,
-        audioSrc: '/es_man.mp3',
-      },
-      {
-        challengeId: 3,
-        text: 'la mujer',
-        correct: false,
-        audioSrc: '/es_woman.mp3',
-      },
-      {
-        challengeId: 3,
-        text: 'el robot',
-        correct: true,
-        audioSrc: '/es_robot.mp3',
-      },
-    ]);
-
-    await db.insert(schema.challenges).values([
       {
         id: 4,
         lessonId: 2,
         type: 'SELECT',
-        question: 'Which one of these is the "the man"?',
+        question: 'Which class can turn invisible?',
         order: 1,
       },
       {
         id: 5,
         lessonId: 2,
-        type: 'ASSIST',
-        question: '"the man"',
+        type: 'SELECT',
+        question: 'Which class has the highest dexterity?',
         order: 2,
       },
       {
         id: 6,
         lessonId: 2,
         type: 'SELECT',
-        question: 'Which one of these is the "the robot"?',
+        question: 'Which class has the highest strength?',
         order: 3,
+      },
+      {
+        id: 7,
+        lessonId: 3,
+        type: 'SELECT',
+        question: 'Which class can resurrect dead allies?',
+        order: 1,
+      },
+      {
+        id: 8,
+        lessonId: 3,
+        type: 'SELECT',
+        question: 'Which class specializes in alchemy?',
+        order: 2,
+      },
+      {
+        id: 9,
+        lessonId: 3,
+        type: 'SELECT',
+        question: 'Which class has the best critical skills?',
+        order: 3,
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 1,
+        imageSrc: '/avatars/bow.png',
+        text: 'Łucznik',
+        correct: true,
+        audioSrc: '/mp3/lucznik.mp3',
+      },
+      {
+        challengeId: 1,
+        imageSrc: '/avatars/crossbow.png',
+        text: 'Kusznik',
+        correct: false,
+        audioSrc: '/mp3/kusznik.mp3',
+      },
+      {
+        challengeId: 1,
+        imageSrc: '/avatars/gunnery.png',
+        text: 'Strzelec',
+        correct: false,
+        audioSrc: '/mp3/strzelec.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 2,
+        imageSrc: '/avatars/wizard.png',
+        text: 'Czarodziej',
+        correct: true,
+        audioSrc: '/mp3/czarodziej.mp3',
+      },
+      {
+        challengeId: 2,
+        imageSrc: '/avatars/magician.png',
+        text: 'Mag',
+        correct: false,
+        audioSrc: '/mp3/mag.mp3',
+      },
+      {
+        challengeId: 2,
+        imageSrc: '/avatars/alchemy.png',
+        text: 'Alchemik',
+        correct: false,
+        audioSrc: '/mp3/alchemik.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 3,
+        imageSrc: '/avatars/knight.png',
+        text: 'Rycerz',
+        correct: true,
+        audioSrc: '/mp3/rycerz.mp3',
+      },
+      {
+        challengeId: 3,
+        imageSrc: '/avatars/barbarian.png',
+        text: 'Barbarzyńca',
+        correct: false,
+        audioSrc: '/mp3/barbarzynca.mp3',
+      },
+      {
+        challengeId: 3,
+        imageSrc: '/avatars/swordsman.png',
+        text: 'Miecznik',
+        correct: false,
+        audioSrc: '/mp3/miecznik.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 4,
+        imageSrc: '/avatars/ninja.png',
+        text: 'Ninja',
+        correct: true,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 4,
+        imageSrc: '/avatars/thief.png',
+        text: 'Złodziej',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 4,
+        imageSrc: '/avatars/assasin.png',
+        text: 'Zabójca',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 5,
+        imageSrc: '/avatars/adventurer.png',
+        text: 'Poszukiwacz przygód',
+        correct: true,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 5,
+        imageSrc: '/avatars/martial.png',
+        text: 'Artysta walki',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 5,
+        imageSrc: '/avatars/samurai.png',
+        text: 'Samuraj',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 6,
+        imageSrc: '/avatars/barbarian.png',
+        text: 'Barbarzyńca',
+        correct: true,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 6,
+        imageSrc: '/avatars/knight.png',
+        text: 'Rycerz',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 6,
+        imageSrc: '/avatars/swordsman.png',
+        text: 'Miecznik',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 7,
+        imageSrc: '/avatars/priest.png',
+        text: 'Kapłan',
+        correct: true,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 7,
+        imageSrc: '/avatars/druid.png',
+        text: 'Druid',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 7,
+        imageSrc: '/avatars/monk.png',
+        text: 'Mnich',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 8,
+        imageSrc: '/avatars/alchemy.png',
+        text: 'Alchemik',
+        correct: true,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 8,
+        imageSrc: '/avatars/wizard.png',
+        text: 'Czarodziej',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 8,
+        imageSrc: '/avatars/magician.png',
+        text: 'Mag',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 9,
+        imageSrc: '/avatars/assasin.png',
+        text: 'Zabójca',
+        correct: true,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 9,
+        imageSrc: '/avatars/thief.png',
+        text: 'Złodziej',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
+      },
+      {
+        challengeId: 9,
+        imageSrc: '/avatars/ninja.png',
+        text: 'Ninja',
+        correct: false,
+        audioSrc: '/barbarzynca.mp3',
       },
     ]);
 
