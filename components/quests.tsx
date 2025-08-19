@@ -1,10 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
-import { Button } from './ui/button';
 import Link from 'next/link';
+import React from 'react';
+
 import { quests } from '@/constants';
+
+import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 
 type Props = {

@@ -1,6 +1,13 @@
 'use client';
 
+import { DialogDescription } from '@radix-ui/react-dialog';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+
+import { useHeartsModal } from '@/store/use-hearts-modal';
+
+import { Button } from '../ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,12 +15,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../ui/dialog';
-import { Button } from '../ui/button';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-
-import { DialogDescription } from '@radix-ui/react-dialog';
-import { useHeartsModal } from '@/store/use-hearts-modal';
 
 const HeartsModal = () => {
   const router = useRouter();

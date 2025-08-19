@@ -1,6 +1,8 @@
+import React from 'react';
+
 import { challengeOptions, challenges } from '@/db/schema';
 import { cn } from '@/lib/utils';
-import React from 'react';
+
 import Card from './card';
 
 type Props = {
@@ -25,7 +27,7 @@ const Challenge = ({
         'grid gap-2',
         type === 'ASSIST' && 'grid-cols-1',
         type === 'SELECT' &&
-          'grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]'
+          'grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]',
       )}
     >
       {options.map((option, i) => {

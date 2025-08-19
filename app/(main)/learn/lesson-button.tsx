@@ -1,10 +1,11 @@
 'use client';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import { Check, Crown, Star } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
+
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 type Props = {
   id: number;
@@ -84,7 +85,7 @@ const LessonButton = ({
                     locked
                       ? 'fill-neutral-400 text-neutral-400 stroke-neutral-400'
                       : 'fill-neutral-foreground text-primary-foreground',
-                    isCompleted && 'fill-none stroke-[4]'
+                    isCompleted && 'fill-none stroke-[4]',
                   )}
                 />
               </Button>
@@ -102,7 +103,7 @@ const LessonButton = ({
                 locked
                   ? 'fill-neutral-400 text-neutral-400 stroke-neutral-400'
                   : 'fill-neutral-foreground text-primary-foreground',
-                isCompleted && 'fill-none stroke-[4]'
+                isCompleted && 'fill-none stroke-[4]',
               )}
             />
           </Button>

@@ -1,5 +1,12 @@
 'use server';
 
+import { error } from 'console';
+
+import { auth, currentUser } from '@clerk/nextjs/server';
+import { and, eq } from 'drizzle-orm';
+import { revalidatePath } from 'next/cache';
+
+import { POINTS_TO_REFILL } from '@/constants';
 import db from '@/db/drizzle';
 import {
   getCourseById,
@@ -7,11 +14,6 @@ import {
   getUserSubscription,
 } from '@/db/queries';
 import { challengeProgress, challenges, userProgress } from '@/db/schema';
-import { auth, currentUser } from '@clerk/nextjs/server';
-import { error } from 'console';
-import { and, eq } from 'drizzle-orm';
-import { revalidatePath } from 'next/cache';
-import { POINTS_TO_REFILL } from '@/constants';
 
 export const upsertUserProgress = async (courseId: number) => {
   const { userId } = await auth();
@@ -76,7 +78,7 @@ export const reduceHearts = async (challengeId: number) => {
   const existingChallengeProgress = await db.query.challengeProgress.findFirst({
     where: and(
       eq(challengeProgress.userId, userId),
-      eq(challengeProgress.challengeId, challengeId)
+      eq(challengeProgress.challengeId, challengeId),
     ),
   });
 

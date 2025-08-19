@@ -1,10 +1,12 @@
-import { cn } from '@/lib/utils';
+import { ClerkLoaded, ClerkLoading, UserButton } from '@clerk/nextjs';
+import { Loader } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+
+import { cn } from '@/lib/utils';
+
 import SidebarItem from './sidebar-item';
-import { ClerkLoaded, ClerkLoading, UserButton } from '@clerk/nextjs';
-import { Loader } from 'lucide-react';
 
 type Props = {
   className?: string;
@@ -15,7 +17,7 @@ export const Sidebar = ({ className }: Props) => {
     <div
       className={cn(
         'flex h-full lg:w-[256px] lg:fixed left-0 top-0 px-4 border-r-2 flex-col',
-        className
+        className,
       )}
     >
       <Link href="/learn">

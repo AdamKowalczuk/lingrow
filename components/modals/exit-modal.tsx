@@ -1,6 +1,13 @@
 'use client';
 
+import { DialogDescription } from '@radix-ui/react-dialog';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+
+import { useExitModal } from '@/store/use-exit-modal';
+
+import { Button } from '../ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,11 +15,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../ui/dialog';
-import { Button } from '../ui/button';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useExitModal } from '@/store/use-exit-modal';
-import { DialogDescription } from '@radix-ui/react-dialog';
 
 const ExitModal = () => {
   const router = useRouter();

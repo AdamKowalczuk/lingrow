@@ -1,6 +1,12 @@
 'use client';
 
+import { DialogDescription } from '@radix-ui/react-dialog';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+
+import { usePracticeModal } from '@/store/use-practice-modal';
+
+import { Button } from '../ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,11 +14,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../ui/dialog';
-import { Button } from '../ui/button';
-import Image from 'next/image';
-
-import { DialogDescription } from '@radix-ui/react-dialog';
-import { usePracticeModal } from '@/store/use-practice-modal';
 
 const PracticeModal = () => {
   const [isClient, setIsClient] = useState(false);

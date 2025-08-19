@@ -1,6 +1,8 @@
-import React from 'react';
-import { isAdmin } from '@/lib/admin';
 import { redirect } from 'next/navigation';
+import React from 'react';
+
+import { isAdmin } from '@/lib/admin';
+
 import App from './app';
 
 const AdminPage = async () => {

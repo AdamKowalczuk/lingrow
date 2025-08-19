@@ -1,10 +1,11 @@
-import db from '@/db/drizzle';
-import { userSubscription } from '@/db/schema';
-import { stripe } from '@/lib/stripe';
 import { eq } from 'drizzle-orm';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
+
+import db from '@/db/drizzle';
+import { userSubscription } from '@/db/schema';
+import { stripe } from '@/lib/stripe';
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -16,7 +17,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET!,
     );
   } catch (error: any) {
     return new NextResponse(`Webhook error: ${error.message}`, {
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
 
   if (event.type === 'checkout.session.completed') {
     const subscription = await stripe.subscriptions.retrieve(
-      session.subscription as string
+      session.subscription as string,
     );
 
     if (!session.metadata?.userId) {
@@ -41,14 +42,14 @@ export async function POST(req: Request) {
       stripeCustomerId: subscription.customer as string,
       stripePriceId: subscription.items.data[0].price.id,
       stripeCurrentPeriodEnd: new Date(
-        subscription.billing_cycle_anchor * 1000
+        subscription.billing_cycle_anchor * 1000,
       ),
     });
   }
 
   if (event.type === 'invoice.payment_succeeded') {
     const subscription = await stripe.subscriptions.retrieve(
-      session.subscription as string
+      session.subscription as string,
     );
 
     await db
@@ -56,7 +57,7 @@ export async function POST(req: Request) {
       .set({
         stripePriceId: subscription.items.data[0].price.id,
         stripeCurrentPeriodEnd: new Date(
-          subscription.billing_cycle_anchor * 1000
+          subscription.billing_cycle_anchor * 1000,
         ),
       })
       .where(eq(userSubscription.stripeSubscriptionId, subscription.id));

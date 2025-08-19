@@ -1,20 +1,22 @@
 'use client';
-import { challengeOptions, challenges, userSubscription } from '@/db/schema';
-import React, { useState, useTransition } from 'react';
-import Header from './header';
-import QuestionBubble from './question-bubble';
-import Challenge from './challenge';
-import Footer from './footer';
-import { upsertChallengeProgress } from '@/actions/challenge-progress';
-import { toast } from 'sonner';
-import { reduceHearts } from '@/actions/user-progress';
-import { useAudio, useWindowSize, useMount } from 'react-use';
 import Image from 'next/image';
 import ResultCard from './result-card';
 import { useRouter } from 'next/navigation';
+import React, { useState, useTransition } from 'react';
 import Confetti from 'react-confetti';
+import { useAudio, useWindowSize, useMount } from 'react-use';
+import { toast } from 'sonner';
+
+import { upsertChallengeProgress } from '@/actions/challenge-progress';
+import { reduceHearts } from '@/actions/user-progress';
+import { challengeOptions, challenges, userSubscription } from '@/db/schema';
 import { useHeartsModal } from '@/store/use-hearts-modal';
 import { usePracticeModal } from '@/store/use-practice-modal';
+
+import Challenge from './challenge';
+import Footer from './footer';
+import Header from './header';
+import QuestionBubble from './question-bubble';
 
 type Props = {
   initialLessonId: number;
@@ -67,7 +69,7 @@ const Quiz = ({
 
   const [activeIndex, setActiveIndex] = useState(() => {
     const uncompletedIndex = challenges.findIndex(
-      challenge => !challenge.completed
+      challenge => !challenge.completed,
     );
     return uncompletedIndex === -1 ? 0 : uncompletedIndex;
   });
