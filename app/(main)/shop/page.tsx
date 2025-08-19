@@ -7,16 +7,22 @@ import Promo from '@/components/promo';
 import Quests from '@/components/quests';
 import { StickyWrapper } from '@/components/sticky-wrapper';
 import { UserProgress } from '@/components/user-progress';
-import { getUserProgress, getUserSubscription } from '@/db/queries';
+import {
+  getUserProgress,
+  getUserSubscription,
+  getQuestProgress,
+} from '@/db/queries';
 
 import Items from './items';
 
 const ShopPage = async () => {
   const userProgressData = getUserProgress();
   const userSubscriptionData = getUserSubscription();
-  const [userProgress, userSubscription] = await Promise.all([
+  const questProgressData = getQuestProgress();
+  const [userProgress, userSubscription, questProgress] = await Promise.all([
     userProgressData,
     userSubscriptionData,
+    questProgressData,
   ]);
 
   if (!userProgress || !userProgress.activeCourse) {
@@ -35,7 +41,7 @@ const ShopPage = async () => {
           hasActiveSubscription={isPro}
         />
         {!isPro && <Promo />}
-        <Quests points={userProgress.points} />
+        <Quests points={userProgress.points} questProgress={questProgress} />
       </StickyWrapper>
       <FeedWrapper>
         <div className="w-full flex flex-col items-center">
@@ -44,7 +50,8 @@ const ShopPage = async () => {
             Shop
           </h1>
           <p className="text-muted-foreground text-center text-lg">
-            Spend your points on cool stuff.
+            Use your points to refill hearts or unlock unlimited hearts with
+            Pro.
           </p>
           <Items
             hearts={userProgress.hearts}

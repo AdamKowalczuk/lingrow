@@ -9,6 +9,7 @@ import {
   lessons,
   units,
   userSubscription,
+  questProgress,
 } from './schema';
 import { userProgress } from './schema';
 
@@ -218,6 +219,20 @@ export const getLessonPercentage = cache(async () => {
   );
 
   return percentage;
+});
+
+export const getQuestProgress = cache(async () => {
+  const { userId } = await auth();
+  if (!userId) {
+    return null;
+  }
+
+  const data = await db.query.questProgress.findMany({
+    where: eq(questProgress.userId, userId),
+    orderBy: (questProgress, { asc }) => [asc(questProgress.createdAt)],
+  });
+
+  return data;
 });
 
 const DAY_IN_MS = 86_400_000;

@@ -13,17 +13,21 @@ import {
   getTopTenUsers,
   getUserProgress,
   getUserSubscription,
+  getQuestProgress,
 } from '@/db/queries';
 
 const LeaderboardPage = async () => {
   const userProgressData = getUserProgress();
   const userSubscriptionData = getUserSubscription();
   const leaderboardData = getTopTenUsers();
-  const [userProgress, userSubscription, leaderboard] = await Promise.all([
-    userProgressData,
-    userSubscriptionData,
-    leaderboardData,
-  ]);
+  const questProgressData = getQuestProgress();
+  const [userProgress, userSubscription, leaderboard, questProgress] =
+    await Promise.all([
+      userProgressData,
+      userSubscriptionData,
+      leaderboardData,
+      questProgressData,
+    ]);
 
   if (!userProgress || !userProgress.activeCourse) {
     redirect('/courses');
@@ -41,7 +45,7 @@ const LeaderboardPage = async () => {
           hasActiveSubscription={isPro}
         />
         {!isPro && <Promo />}
-        <Quests points={userProgress.points} />
+        <Quests points={userProgress.points} questProgress={questProgress} />
       </StickyWrapper>
       <FeedWrapper>
         <div className="w-full flex flex-col items-center">
@@ -64,7 +68,7 @@ const LeaderboardPage = async () => {
               className="flex items-center w-full p-2 px-4 rounded-xl hover:bg-gray-200/50"
             >
               <p className="font-bold text-lime-700 mr-4">{index + 1}</p>
-              <Avatar className="border bg-green-500 h-12 w-12 ml-3 mr-6">
+              <Avatar className="border bg-indigo-500 h-12 w-12 ml-3 mr-6">
                 <AvatarImage
                   className="object-cover"
                   src={userProgress.userImageSrc}

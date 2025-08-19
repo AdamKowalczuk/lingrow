@@ -152,3 +152,21 @@ export const userSubscription = pgTable('user_subscription', {
   stripePriceId: text('stripe_price_id').notNull(),
   stripeCurrentPeriodEnd: timestamp('stripe_current_period_end').notNull(),
 });
+
+export const questProgress = pgTable('quest_progress', {
+  id: serial('id').primaryKey(),
+  userId: text('user_id').notNull(),
+  questTitle: text('quest_title').notNull(),
+  questValue: integer('quest_value').notNull(),
+  currentProgress: integer('current_progress').notNull().default(0),
+  completed: boolean('completed').notNull().default(false),
+  rewardClaimed: boolean('reward_claimed').notNull().default(false),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+});
+
+export const questProgressRelations = relations(questProgress, ({ one }) => ({
+  user: one(userProgress, {
+    fields: [questProgress.userId],
+    references: [userProgress.userId],
+  }),
+}));

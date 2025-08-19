@@ -5,18 +5,25 @@ import React from 'react';
 import { FeedWrapper } from '@/components/feed-wrapper';
 import Promo from '@/components/promo';
 import { StickyWrapper } from '@/components/sticky-wrapper';
-import { Progress } from '@/components/ui/progress';
 import { UserProgress } from '@/components/user-progress';
 import { quests } from '@/constants';
-import { getUserProgress, getUserSubscription } from '@/db/queries';
+import {
+  getUserProgress,
+  getUserSubscription,
+  getQuestProgress,
+} from '@/db/queries';
+
+import QuestsList from './quests-list';
 
 const QuestsPage = async () => {
   const userProgressData = getUserProgress();
   const userSubscriptionData = getUserSubscription();
+  const questProgressData = getQuestProgress();
 
-  const [userProgress, userSubscription] = await Promise.all([
+  const [userProgress, userSubscription, questProgress] = await Promise.all([
     userProgressData,
     userSubscriptionData,
+    questProgressData,
   ]);
 
   if (!userProgress || !userProgress.activeCourse) {
@@ -43,32 +50,13 @@ const QuestsPage = async () => {
             Quests
           </h1>
           <p className="text-muted-foreground text-center text-lg">
-            Complete quest by earning points
+            Complete quests to earn hearts and rewards
           </p>
-          <ul className="w-full">
-            {quests.map(quest => {
-              const progress = (userProgress.points / quest.value) * 100;
-              return (
-                <div
-                  key={quest.title}
-                  className="flex items-center w-full p-4 gap-x-4 border-t-2"
-                >
-                  <Image
-                    src="/points.svg"
-                    alt="points"
-                    width={60}
-                    height={60}
-                  />
-                  <div className="flex flex-col gap-y-2 w-full">
-                    <p className="text-neutral-700 text-xl font-bold">
-                      {quest.title}
-                    </p>
-                    <Progress value={progress} className="h-3" />
-                  </div>
-                </div>
-              );
-            })}
-          </ul>
+          <QuestsList
+            quests={quests}
+            userProgress={userProgress}
+            questProgress={questProgress}
+          />
         </div>
       </FeedWrapper>
     </div>

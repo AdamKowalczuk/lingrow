@@ -6,14 +6,19 @@ import { auth, currentUser } from '@clerk/nextjs/server';
 import { and, eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 
-import { POINTS_TO_REFILL } from '@/constants';
+import { POINTS_TO_REFILL, quests, type Quest } from '@/constants';
 import db from '@/db/drizzle';
 import {
   getCourseById,
   getUserProgress,
   getUserSubscription,
 } from '@/db/queries';
-import { challengeProgress, challenges, userProgress } from '@/db/schema';
+import {
+  challengeProgress,
+  challenges,
+  userProgress,
+  questProgress,
+} from '@/db/schema';
 
 export const upsertUserProgress = async (courseId: number) => {
   const { userId } = await auth();
@@ -53,6 +58,8 @@ export const upsertUserProgress = async (courseId: number) => {
 
   revalidatePath('/courses');
   revalidatePath('/learn');
+
+  await updateQuestProgress('lessons', 1);
 };
 
 export const reduceHearts = async (challengeId: number) => {
@@ -114,6 +121,8 @@ export const reduceHearts = async (challengeId: number) => {
   revalidatePath('/quests');
   revalidatePath('/leaderboard');
   revalidatePath(`/lesson/${lessonId}`);
+
+  await updateQuestProgress('xp', 1);
 };
 
 export const refillHearts = async () => {
@@ -140,4 +149,118 @@ export const refillHearts = async () => {
   revalidatePath('/learn');
   revalidatePath('/quests');
   revalidatePath('/leaderboard');
+};
+
+export const claimQuestReward = async (questTitle: string) => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error('Unauthorized');
+  }
+
+  const currentUserProgress = await getUserProgress();
+
+  if (!currentUserProgress) {
+    throw new Error('User progress not found');
+  }
+
+  const questProgressData = await db.query.questProgress.findFirst({
+    where: and(
+      eq(questProgress.userId, userId),
+      eq(questProgress.questTitle, questTitle),
+    ),
+  });
+
+  if (!questProgressData) {
+    throw new Error('Quest not found');
+  }
+
+  if (questProgressData.rewardClaimed) {
+    throw new Error('Reward already claimed');
+  }
+
+  const quest: Quest | undefined = quests.find(
+    (q: Quest) => q.title === questTitle,
+  );
+  if (!quest || quest.reward.type !== 'hearts') {
+    throw new Error('Invalid quest or reward type');
+  }
+
+  const newHearts = Math.min(
+    currentUserProgress.hearts + quest.reward.amount,
+    5,
+  );
+
+  await Promise.all([
+    db
+      .update(userProgress)
+      .set({ hearts: newHearts })
+      .where(eq(userProgress.userId, userId)),
+
+    db
+      .update(questProgress)
+      .set({ rewardClaimed: true })
+      .where(eq(questProgress.id, questProgressData.id)),
+  ]);
+
+  revalidatePath('/shop');
+  revalidatePath('/learn');
+  revalidatePath('/quests');
+  revalidatePath('/leaderboard');
+
+  return { success: true, newHearts };
+};
+
+export const updateQuestProgress = async (
+  questType: 'xp' | 'lessons',
+  amount: number,
+) => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error('Unauthorized');
+  }
+
+  const allQuests = quests;
+
+  for (const quest of allQuests) {
+    let currentProgress = 0;
+
+    if (questType === 'xp' && quest.title.includes('XP')) {
+      const questProgressData = await db.query.questProgress.findFirst({
+        where: and(
+          eq(questProgress.userId, userId),
+          eq(questProgress.questTitle, quest.title),
+        ),
+      });
+
+      if (questProgressData) {
+        currentProgress = questProgressData.currentProgress + amount;
+      } else {
+        currentProgress = amount;
+      }
+
+      const completed = currentProgress >= quest.value;
+
+      if (questProgressData) {
+        await db
+          .update(questProgress)
+          .set({
+            currentProgress,
+            completed,
+          })
+          .where(eq(questProgress.id, questProgressData.id));
+      } else {
+        await db.insert(questProgress).values({
+          userId,
+          questTitle: quest.title,
+          questValue: quest.value,
+          currentProgress,
+          completed,
+        });
+      }
+    }
+  }
+
+  revalidatePath('/quests');
 };
