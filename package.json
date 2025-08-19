@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "db:studio": "npx drizzle-kit studio",
     "db:push": "npx drizzle-kit push",
-    "db:seed": "tsx ./scripts/seed.ts"
+    "db:seed": "tsx ./scripts/seed.ts",
+    "db:reset": "tsx ./scripts/reset.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.30.0",
@@ -27,7 +28,9 @@
     "lucide-react": "^0.539.0",
     "next": "15.4.6",
     "next-themes": "^0.4.6",
+    "ra-data-simple-rest": "^5.10.1",
     "react": "19.1.0",
+    "react-admin": "^5.10.1",
     "react-circular-progressbar": "^2.2.0",
     "react-confetti": "^6.4.0",
     "react-dom": "19.1.0",
@@ -47,6 +50,7 @@
     "drizzle-kit": "^0.31.4",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
+    "eslint-config-prettier": "^10.1.8",
     "pg": "^8.16.3",
     "prettier": "^3.6.2",
     "tailwindcss": "^4",

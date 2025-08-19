@@ -1,13 +1,15 @@
-import { FeedWrapper } from '@/components/feed-wrapper';
-import { StickyWrapper } from '@/components/sticky-wrapper';
-import { UserProgress } from '@/components/user-progress';
-import { getUserProgress, getUserSubscription } from '@/db/queries';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import React from 'react';
-import Items from './items';
+
+import { FeedWrapper } from '@/components/feed-wrapper';
 import Promo from '@/components/promo';
 import Quests from '@/components/quests';
+import { StickyWrapper } from '@/components/sticky-wrapper';
+import { UserProgress } from '@/components/user-progress';
+import { getUserProgress, getUserSubscription } from '@/db/queries';
+
+import Items from './items';
 
 const ShopPage = async () => {
   const userProgressData = getUserProgress();
