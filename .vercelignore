@@ -1,0 +1,4 @@
+# Ignoruj problematyczne pliki lightningcss
+node_modules/lightningcss/**/*.node
+node_modules/lightningcss/**/*.so
+node_modules/lightningcss/**/*.dylib
