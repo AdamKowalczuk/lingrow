@@ -7,15 +7,15 @@ import { isAdmin } from '@/lib/admin';
 
 export const GET = async (
   req: Request,
-
-  { params }: { params: { courseId: number } },
+  { params }: { params: Promise<{ courseId: string }> },
 ) => {
+  const { courseId } = await params;
   if (!isAdmin()) {
     return NextResponse.json('Unauthorized', { status: 401 });
   }
 
   const data = await db.query.courses.findFirst({
-    where: eq(courses.id, params.courseId),
+    where: eq(courses.id, parseInt(courseId)),
   });
 
   return NextResponse.json(data);
@@ -23,9 +23,9 @@ export const GET = async (
 
 export const PUT = async (
   req: Request,
-
-  { params }: { params: { courseId: number } },
+  { params }: { params: Promise<{ courseId: string }> },
 ) => {
+  const { courseId } = await params;
   if (!isAdmin()) {
     return NextResponse.json('Unauthorized', { status: 401 });
   }
@@ -35,7 +35,7 @@ export const PUT = async (
   const data = await db
     .update(courses)
     .set({ ...body })
-    .where(eq(courses.id, params.courseId))
+    .where(eq(courses.id, parseInt(courseId)))
     .returning();
 
   return NextResponse.json(data[0]);
@@ -43,16 +43,16 @@ export const PUT = async (
 
 export const DELETE = async (
   req: Request,
-
-  { params }: { params: { courseId: number } },
+  { params }: { params: Promise<{ courseId: string }> },
 ) => {
+  const { courseId } = await params;
   if (!isAdmin()) {
     return NextResponse.json('Unauthorized', { status: 401 });
   }
 
   const data = await db
     .delete(courses)
-    .where(eq(courses.id, params.courseId))
+    .where(eq(courses.id, parseInt(courseId)))
     .returning();
 
   return NextResponse.json(data[0]);

@@ -22,7 +22,7 @@ import UnitList from './unit/list';
 
 const dataProvider = simpleRestProvider('/api');
 
-const App = () => {
+const AdminApp = () => {
   return (
     <Admin dataProvider={dataProvider}>
       <Resource
@@ -65,4 +65,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AdminApp;

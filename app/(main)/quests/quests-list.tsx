@@ -12,8 +12,17 @@ import { Progress } from '../../../components/ui/progress';
 
 type Props = {
   quests: Quest[];
-  userProgress: any;
-  questProgress: any;
+  userProgress: {
+    points: number;
+  };
+  questProgress: Array<{
+    id: number;
+    questTitle: string;
+    questValue: number;
+    currentProgress: number;
+    completed: boolean;
+    rewardClaimed: boolean;
+  }> | null;
   onDataUpdate?: () => void;
 };
 
@@ -35,7 +44,7 @@ const QuestsList = ({
             onDataUpdate();
           }
         }
-      } catch (error) {
+      } catch {
         toast.error('Nie udało się odebrać nagrody');
       }
     });
@@ -44,9 +53,7 @@ const QuestsList = ({
   const calculateQuestProgress = (quest: Quest): number => {
     if (!questProgress) return 0;
 
-    const progress = questProgress.find(
-      (qp: any) => qp.questTitle === quest.title,
-    );
+    const progress = questProgress.find(qp => qp.questTitle === quest.title);
     if (!progress) return 0;
 
     if (quest.title.includes('XP')) {
@@ -64,9 +71,7 @@ const QuestsList = ({
   const isRewardClaimed = (quest: Quest): boolean => {
     if (!questProgress) return false;
 
-    const progress = questProgress.find(
-      (qp: any) => qp.questTitle === quest.title,
-    );
+    const progress = questProgress.find(qp => qp.questTitle === quest.title);
     if (!progress) return false;
 
     return progress.rewardClaimed;

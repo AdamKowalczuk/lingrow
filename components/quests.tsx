@@ -36,7 +36,7 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
             onDataUpdate();
           }
         }
-      } catch (error) {
+      } catch {
         toast.error('Nie udało się odebrać nagrody');
       }
     });

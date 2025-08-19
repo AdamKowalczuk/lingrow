@@ -1,11 +1,13 @@
+import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
+
 import './globals.css';
-import { ClerkProvider } from '@clerk/nextjs';
-import { Toaster } from '@/components/ui/sonner';
+
 import ExitModal from '@/components/modals/exit-modal';
 import HeartsModal from '@/components/modals/hearts-modal';
 import PracticeModal from '@/components/modals/practice-modal';
+import { Toaster } from '@/components/ui/sonner';
 const font = Nunito({
   subsets: ['latin'],
 });

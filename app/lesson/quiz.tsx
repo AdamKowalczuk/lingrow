@@ -1,6 +1,6 @@
 'use client';
+
 import Image from 'next/image';
-import ResultCard from './result-card';
 import { useRouter } from 'next/navigation';
 import React, { useState, useTransition } from 'react';
 import Confetti from 'react-confetti';
@@ -17,6 +17,7 @@ import Challenge from './challenge';
 import Footer from './footer';
 import Header from './header';
 import QuestionBubble from './question-bubble';
+import ResultCard from './result-card';
 
 type Props = {
   initialLessonId: number;
@@ -53,8 +54,8 @@ const Quiz = ({
   const router = useRouter();
 
   const [finishAudio] = useAudio({ src: '/finish.mp3', autoPlay: true });
-  const [correctAudio, _c, correctControls] = useAudio({ src: '/correct.wav' });
-  const [incorrectAudio, _i, incorrectControls] = useAudio({
+  const [correctAudio, , correctControls] = useAudio({ src: '/correct.wav' });
+  const [incorrectAudio, , incorrectControls] = useAudio({
     src: '/incorrect.wav',
   });
   const [pending, startTransition] = useTransition();
