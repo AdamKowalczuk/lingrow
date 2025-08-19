@@ -26,6 +26,8 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  telemetry: false,
+  swcMinify: true,
 };
 
 export default nextConfig;
