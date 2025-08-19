@@ -1,8 +1,20 @@
 'use client';
 
+import {
+  BookOpen,
+  Layers,
+  GraduationCap,
+  Target,
+  Settings,
+} from 'lucide-react';
 import simpleRestProvider from 'ra-data-simple-rest';
 import React from 'react';
-import { Admin, Resource } from 'react-admin';
+import {
+  Admin,
+  Resource,
+  radiantLightTheme,
+  radiantDarkTheme,
+} from 'react-admin';
 
 import ChallengeCreate from './challenge/create';
 import ChallengeEdit from './challenge/edit';
@@ -24,13 +36,18 @@ const dataProvider = simpleRestProvider('/api');
 
 const AdminApp = () => {
   return (
-    <Admin dataProvider={dataProvider}>
+    <Admin
+      dataProvider={dataProvider}
+      theme={radiantLightTheme}
+      darkTheme={radiantDarkTheme}
+    >
       <Resource
         name="courses"
         list={CourseList}
         create={CourseCreate}
         edit={CourseEdit}
         recordRepresentation="title"
+        icon={BookOpen}
       />
       <Resource
         name="units"
@@ -38,6 +55,7 @@ const AdminApp = () => {
         create={UnitCreate}
         edit={UnitEdit}
         recordRepresentation="title"
+        icon={Layers}
       />
       <Resource
         name="lessons"
@@ -45,6 +63,7 @@ const AdminApp = () => {
         create={LessonCreate}
         edit={LessonEdit}
         recordRepresentation="title"
+        icon={GraduationCap}
       />
       <Resource
         name="challenges"
@@ -52,6 +71,7 @@ const AdminApp = () => {
         create={ChallengeCreate}
         edit={ChallengeEdit}
         recordRepresentation="question"
+        icon={Target}
       />
       <Resource
         name="challengeOptions"
@@ -60,6 +80,7 @@ const AdminApp = () => {
         create={ChallengeOptionCreate}
         edit={ChallengeOptionEdit}
         recordRepresentation="text"
+        icon={Settings}
       />
     </Admin>
   );
