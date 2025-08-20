@@ -9,53 +9,33 @@ const Footer = () => {
       <div className="max-w-screen-lg mx-auto flex items-center justify-evenly h-full">
         <Button size="lg" variant="ghost" className="flex-shrink-0">
           <Image
-            src="hr.svg"
-            alt="Croatian"
+            src="en.svg"
+            alt="English"
             width={32}
             height={40}
             className="mr-4 rounded-md"
           />
-          Croatian
-        </Button>
-        <Button size="lg" variant="ghost" className="flex-shrink-0">
-          <Image
-            src="es.svg"
-            alt="Spanish"
-            width={32}
-            height={40}
-            className="mr-4 rounded-md"
-          />
-          Spanish
-        </Button>
-        <Button size="lg" variant="ghost" className="flex-shrink-0">
-          <Image
-            src="fr.svg"
-            alt="French"
-            width={32}
-            height={40}
-            className="mr-4 rounded-md"
-          />
-          French
-        </Button>
-        <Button size="lg" variant="ghost" className="flex-shrink-0">
-          <Image
-            src="it.svg"
-            alt="Italian"
-            width={32}
-            height={40}
-            className="mr-4 rounded-md"
-          />
-          Italian
+          English
         </Button>
         <Button size="lg" variant="ghost" className="flex-shrink-0">
           <Image
             src="jp.svg"
-            alt="Italian"
+            alt="Japanese"
             width={32}
             height={40}
             className="mr-4 rounded-md"
           />
           Japanese
+        </Button>
+        <Button size="lg" variant="ghost" className="flex-shrink-0">
+          <Image
+            src="pl.svg"
+            alt="Polish"
+            width={32}
+            height={40}
+            className="mr-4 rounded-md"
+          />
+          Polish
         </Button>
       </div>
     </footer>

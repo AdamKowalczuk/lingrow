@@ -88,7 +88,11 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
           return (
             <div
               key={quest.title}
-              className="flex items-center w-full pb-4 gap-x-3"
+              className={`flex items-center w-full gap-x-3 p-3 ${
+                completed && rewardClaimed
+                  ? 'bg-indigo-500/15 p-3 rounded-lg border-indigo-300 border-2'
+                  : ''
+              }`}
             >
               <Image src="/points.svg" alt="points" width={40} height={40} />
               <div className="flex flex-col gap-y-2 w-full">
@@ -109,8 +113,8 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
                     </div>
                   )}
                   {completed && rewardClaimed && (
-                    <span className="text-xs text-green-600 font-medium">
-                      ✅ Odebrano
+                    <span className="text-xs text-gray-500 font-medium">
+                      Ukończono
                     </span>
                   )}
                 </div>

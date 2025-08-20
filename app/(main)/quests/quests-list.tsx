@@ -87,7 +87,11 @@ const QuestsList = ({
         return (
           <div
             key={quest.title}
-            className="flex items-center w-full p-6 gap-x-4 border-2 rounded-xl hover:bg-gray-50/50 transition-colors"
+            className={`flex items-center w-full p-6 gap-x-4 border-2 rounded-xl hover:bg-gray-50/50 transition-colors ${
+              completed && rewardClaimed
+                ? 'bg-indigo-500/15 border-indigo-300'
+                : ''
+            }`}
           >
             <Image src="/points.svg" alt="points" width={60} height={60} />
             <div className="flex flex-col gap-y-3 w-full">
@@ -107,8 +111,8 @@ const QuestsList = ({
                   </div>
                 )}
                 {completed && rewardClaimed && (
-                  <span className="text-sm text-green-600 font-medium">
-                    ✅ Odebrano
+                  <span className="text-sm text-gray-500 font-medium">
+                    Ukończono
                   </span>
                 )}
               </div>

@@ -44,7 +44,7 @@ const Card = ({
       onClick={handleClick}
       className={cn(
         'h-full border-2 rounded-xl border-b-4 hover:bg-black/5 p-4 lg:p-6  cursor-pointer active:border-b-2',
-        selected && 'border-sky-300 bg-sky-100 hover:bg-sky-100',
+        selected && 'border-indigo-300 bg-indigo-100 hover:bg-indigo-100',
         selected &&
           status === 'correct' &&
           'border-indigo-300 bg-indigo-100 hover:bg-indigo-100',

@@ -161,11 +161,11 @@ const Quiz = ({
         />
         <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
           <Image
-            src="/finish.svg"
+            src="/donkey/winner.png"
             alt="finish"
-            className="hidden lg:block"
-            height={50}
-            width={50}
+            className="block"
+            height={200}
+            width={200}
           />
           <h1 className="tex-xl lg:text-3xl font-bold text-neutral-700">
             Great job! <br /> You&apos;ve completed the lesson.
@@ -200,7 +200,7 @@ const Quiz = ({
       <div className="flex-1">
         <div className="h-full flex items-center justify-center">
           <div className="lg:min-h-[350px] lg:w-[600px] w-full px-6 lg:px-0 flex flex-col gap-y-12">
-            <h1 className="text-lg lg:text-3xl text-center lg:text-start font-bold text-neutral-700">
+            <h1 className="text-lg lg:text-3xl text-center font-bold text-neutral-700">
               {title}
             </h1>
             <div>
