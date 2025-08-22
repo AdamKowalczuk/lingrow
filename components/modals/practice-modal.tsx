@@ -2,6 +2,7 @@
 
 import { DialogDescription } from '@radix-ui/react-dialog';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 
 import { usePracticeModal } from '@/store/use-practice-modal';
@@ -16,6 +17,7 @@ import {
 } from '../ui/dialog';
 
 const PracticeModal = () => {
+  const t = useTranslations('modals.practiceModal');
   const [isClient, setIsClient] = useState(false);
   const { isOpen, close } = usePracticeModal();
 
@@ -36,11 +38,10 @@ const PracticeModal = () => {
               <Image src="/heart.svg" alt="heart" height={100} width={100} />
             </div>
             <DialogTitle className="text-center font-bold text-2xl">
-              Practice lesson
+              {t('title')}
             </DialogTitle>
             <DialogDescription className="text-center text-base">
-              Use practice lessons to regain hearts and points. You cannot loose
-              hearts or points in practice lessons.
+              {t('description')}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="mb-4">
@@ -51,7 +52,7 @@ const PracticeModal = () => {
                 size="lg"
                 onClick={close}
               >
-                I understand
+                {t('iUnderstand')}
               </Button>
             </div>
           </DialogFooter>

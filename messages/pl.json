@@ -1,0 +1,99 @@
+{
+  "marketing": {
+    "title": "Odkryj, ćwicz i opanuj nowe języki z Lingrow.",
+    "button": "Kontynuuj naukę",
+    "getStarted": "Rozpocznij",
+    "alreadyHaveAccount": "Mam już konto"
+  },
+  "header": {
+    "login": "Zaloguj się",
+    "signUp": "Zarejestruj się"
+  },
+  "footer": {
+    "english": "Angielski",
+    "japanese": "Japoński",
+    "polish": "Polski"
+  },
+  "coursesPage": {
+    "title": "Strona kursów"
+  },
+  "questsPage": {
+    "title": "Zadania",
+    "description": "Wykonuj zadania, aby zdobyć serca i nagrody",
+    "quests": "Zadania"
+  },
+  "leaderboardPage": {
+    "title": "Ranking",
+    "description": "Zobacz, jak wypadasz w porównaniu z innymi uczniami w społeczności.",
+    "leaderboard": "Ranking",
+    "xp": "PD"
+  },
+  "shopPage": {
+    "title": "Sklep",
+    "description": "Użyj swoich punktów, aby uzupełnić serca lub odblokuj nieograniczone serca z Pro.",
+    "shop": "Sklep"
+  },
+  "shopItems": {
+    "refillHearts": "Uzupełnij serca",
+    "unlimitedHearts": "Nieograniczone serca",
+    "full": "pełne",
+    "upgrade": "ulepsz",
+    "settings": "ustawienia",
+    "heart": "serce",
+    "unlimited": "nieograniczone"
+  },
+  "sidebar": {
+    "learn": "Nauka",
+    "leaderboard": "Ranking",
+    "quests": "Zadania",
+    "shop": "Sklep"
+  },
+  "promo": {
+    "title": "Przejdź na Pro",
+    "description": "Zdobądź nieograniczone serca i więcej!",
+    "upgradeToday": "Ulepsz dzisiaj"
+  },
+  "common": {
+    "somethingWentWrong": "Coś poszło nie tak"
+  },
+  "modals": {
+    "exitModal": {
+      "title": "Czekaj! Nie odchodź!",
+      "description": "Masz zamiar opuścić lekcję. Czy na pewno?",
+      "keepLearning": "Kontynuuj naukę",
+      "endSession": "Zakończ sesję"
+    },
+    "heartsModal": {
+      "title": "Skończyły Ci się serca!",
+      "description": "Przejdź na Pro, aby uzyskać nieograniczone serca, lub kup je w sklepie.",
+      "getUnlimitedHearts": "Uzyskaj nieograniczone serca",
+      "noThanks": "Nie, dziękuję"
+    },
+    "practiceModal": {
+      "title": "Lekcja praktyczna",
+      "description": "Używaj lekcji praktycznych, aby odzyskać serca i punkty. W lekcjach praktycznych nie możesz stracić serc ani punktów.",
+      "iUnderstand": "Rozumiem"
+    }
+  },
+  "lesson": {
+    "quiz": {
+      "selectCorrectMeaning": "Wybierz poprawne znaczenie",
+      "greatJob": "Świetna robota!",
+      "completedLesson": "Ukończyłeś lekcję.",
+      "somethingWentWrong": "Coś poszło nie tak. Spróbuj ponownie."
+    },
+    "footer": {
+      "nicelyDone": "Świetnie!",
+      "tryAgain": "Spróbuj ponownie.",
+      "practiceAgain": "Ćwicz ponownie",
+      "check": "Sprawdź",
+      "next": "Dalej",
+      "retry": "Ponów",
+      "continue": "Kontynuuj"
+    },
+    "resultCard": {
+      "heartsLeft": "Pozostałe serca",
+      "totalXp": "Całkowite XP"
+    }
+  }
+}

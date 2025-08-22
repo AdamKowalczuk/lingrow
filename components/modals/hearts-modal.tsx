@@ -3,8 +3,10 @@
 import { DialogDescription } from '@radix-ui/react-dialog';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 
+import { useLocale } from '@/hooks/use-locale';
 import { useHeartsModal } from '@/store/use-hearts-modal';
 
 import { Button } from '../ui/button';
@@ -18,6 +20,8 @@ import {
 
 const HeartsModal = () => {
   const router = useRouter();
+  const locale = useLocale();
+  const t = useTranslations('modals.heartsModal');
   const [isClient, setIsClient] = useState(false);
   const { isOpen, close } = useHeartsModal();
 
@@ -27,7 +31,7 @@ const HeartsModal = () => {
 
   const onClick = () => {
     close();
-    router.push('/shop');
+    router.push(`/${locale}/shop`);
   };
 
   if (!isClient) {
@@ -48,10 +52,10 @@ const HeartsModal = () => {
               />
             </div>
             <DialogTitle className="text-center font-bold text-2xl">
-              You ran out of hearts!
+              {t('title')}
             </DialogTitle>
             <DialogDescription className="text-center text-base">
-              Get Pro for unlimited hearts, or purchase them in the store.
+              {t('description')}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="mb-4">
@@ -62,7 +66,7 @@ const HeartsModal = () => {
                 size="lg"
                 onClick={onClick}
               >
-                Get unlimited hearts
+                {t('getUnlimitedHearts')}
               </Button>
               <Button
                 variant="primaryOutline"
@@ -70,7 +74,7 @@ const HeartsModal = () => {
                 size="lg"
                 onClick={close}
               >
-                No thanks
+                {t('noThanks')}
               </Button>
             </div>
           </DialogFooter>

@@ -1,0 +1,99 @@
+{
+  "marketing": {
+    "title": "Discover, practice, and conquer new languages with Lingrow.",
+    "button": "Continue Learning",
+    "getStarted": "Get started",
+    "alreadyHaveAccount": "I already have an account"
+  },
+  "header": {
+    "login": "Login",
+    "signUp": "Sign Up"
+  },
+  "footer": {
+    "english": "English",
+    "japanese": "Japanese",
+    "polish": "Polish"
+  },
+  "coursesPage": {
+    "title": "Courses Page"
+  },
+  "questsPage": {
+    "title": "Quests",
+    "description": "Complete quests to earn hearts and rewards",
+    "quests": "Quests"
+  },
+  "leaderboardPage": {
+    "title": "Leaderboard",
+    "description": "See where you stand among other learners in the community.",
+    "leaderboard": "Leaderboard",
+    "xp": "XP"
+  },
+  "shopPage": {
+    "title": "Shop",
+    "description": "Use your points to refill hearts or unlock unlimited hearts with Pro.",
+    "shop": "Shop"
+  },
+  "shopItems": {
+    "refillHearts": "Refill hearts",
+    "unlimitedHearts": "Unlimited hearts",
+    "full": "full",
+    "upgrade": "upgrade",
+    "settings": "settings",
+    "heart": "heart",
+    "unlimited": "unlimited"
+  },
+  "sidebar": {
+    "learn": "Learn",
+    "leaderboard": "Leaderboard",
+    "quests": "Quests",
+    "shop": "Shop"
+  },
+  "promo": {
+    "title": "Upgrade to Pro",
+    "description": "Get unlimited hearts and more!",
+    "upgradeToday": "Upgrade today"
+  },
+  "common": {
+    "somethingWentWrong": "Something went wrong"
+  },
+  "modals": {
+    "exitModal": {
+      "title": "Wait! Don't go!",
+      "description": "You're about to leave the lesson. Are you sure?",
+      "keepLearning": "Keep learning",
+      "endSession": "End session"
+    },
+    "heartsModal": {
+      "title": "You ran out of hearts!",
+      "description": "Get Pro for unlimited hearts, or purchase them in the store.",
+      "getUnlimitedHearts": "Get unlimited hearts",
+      "noThanks": "No thanks"
+    },
+    "practiceModal": {
+      "title": "Practice lesson",
+      "description": "Use practice lessons to regain hearts and points. You cannot lose hearts or points in practice lessons.",
+      "iUnderstand": "I understand"
+    }
+  },
+  "lesson": {
+    "quiz": {
+      "selectCorrectMeaning": "Select the correct meaning",
+      "greatJob": "Great job!",
+      "completedLesson": "You've completed the lesson.",
+      "somethingWentWrong": "Something went wrong. Please try again."
+    },
+    "footer": {
+      "nicelyDone": "Nicely done!",
+      "tryAgain": "Try again.",
+      "practiceAgain": "Practice again",
+      "check": "Check",
+      "next": "Next",
+      "retry": "Retry",
+      "continue": "Continue"
+    },
+    "resultCard": {
+      "heartsLeft": "Hearts left",
+      "totalXp": "Total XP"
+    }
+  }
+}

@@ -1,9 +1,12 @@
+'use client';
+
 import { ClerkLoaded, ClerkLoading, UserButton } from '@clerk/nextjs';
 import { Loader } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
+import { useLocale } from '@/hooks/use-locale';
 import { cn } from '@/lib/utils';
 
 import SidebarItem from './sidebar-item';
@@ -13,6 +16,8 @@ type Props = {
 };
 
 export const Sidebar = ({ className }: Props) => {
+  const t = useTranslations('sidebar');
+  const locale = useLocale();
   return (
     <div
       className={cn(
@@ -20,7 +25,7 @@ export const Sidebar = ({ className }: Props) => {
         className,
       )}
     >
-      <Link href="/learn">
+      <Link href={`/${locale}/learn`}>
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
           {/* <Image src="mascot.svg" alt="mascot" width={40} height={40} /> */}
           <h1 className="text-2xl font-extrabold text-indigo-500 tracking-wide">
@@ -29,14 +34,26 @@ export const Sidebar = ({ className }: Props) => {
         </div>
       </Link>
       <div className="flex flex-col gap-y-2 flex-1">
-        <SidebarItem label="Learn" href="/learn" iconSrc="/learn.svg" />
         <SidebarItem
-          label="Leaderboard"
-          href="/leaderboard"
+          label={t('learn')}
+          href={`/${locale}/learn`}
+          iconSrc="/learn.svg"
+        />
+        <SidebarItem
+          label={t('leaderboard')}
+          href={`/${locale}/leaderboard`}
           iconSrc="/leaderboard.svg"
         />
-        <SidebarItem label="Quests" href="/quests" iconSrc="/quests.svg" />
-        <SidebarItem label="Shop" href="/shop" iconSrc="/shop.svg" />
+        <SidebarItem
+          label={t('quests')}
+          href={`/${locale}/quests`}
+          iconSrc="/quests.svg"
+        />
+        <SidebarItem
+          label={t('shop')}
+          href={`/${locale}/shop`}
+          iconSrc="/shop.svg"
+        />
       </div>
       <div className="p-4">
         <ClerkLoading>

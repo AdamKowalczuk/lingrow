@@ -3,8 +3,10 @@
 import { DialogDescription } from '@radix-ui/react-dialog';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 
+import { useLocale } from '@/hooks/use-locale';
 import { useExitModal } from '@/store/use-exit-modal';
 
 import { Button } from '../ui/button';
@@ -18,6 +20,8 @@ import {
 
 const ExitModal = () => {
   const router = useRouter();
+  const locale = useLocale();
+  const t = useTranslations('modals.exitModal');
   const [isClient, setIsClient] = useState(false);
   const { isOpen, close } = useExitModal();
 
@@ -43,10 +47,10 @@ const ExitModal = () => {
               />
             </div>
             <DialogTitle className="text-center font-bold text-2xl">
-              Wait! Don&apos;t go!
+              {t('title')}
             </DialogTitle>
             <DialogDescription className="text-center text-base">
-              You&apos;re about to leave the lesson. Are you sure?
+              {t('description')}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="mb-4">
@@ -57,7 +61,7 @@ const ExitModal = () => {
                 size="lg"
                 onClick={close}
               >
-                Keep learning
+                {t('keepLearning')}
               </Button>
               <Button
                 variant="dangerOutline"
@@ -65,10 +69,10 @@ const ExitModal = () => {
                 size="lg"
                 onClick={() => {
                   close();
-                  router.push('/learn');
+                  router.push(`/${locale}/learn`);
                 }}
               >
-                End session
+                {t('endSession')}
               </Button>
             </div>
           </DialogFooter>

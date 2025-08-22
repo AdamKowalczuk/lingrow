@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 
 import { claimQuestReward } from '@/actions/user-progress';
 import { quests, type Quest } from '@/constants';
+import { useLocale } from '@/hooks/use-locale';
 
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
@@ -26,6 +27,7 @@ type Props = {
 
 const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
   const [pending, startTransition] = useTransition();
+  const locale = useLocale();
 
   const handleClaimReward = (questTitle: string) => {
     startTransition(async () => {
@@ -73,7 +75,7 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
     <div className="border-2 rounded-xl p-4 space-y-4">
       <div className="flex items-center justify-between w-full space-y-2">
         <h3 className="font-bold text-lg">Quests</h3>
-        <Link href="/quests">
+        <Link href={`/${locale}/quests`}>
           <Button size="sm" variant="primaryOutline">
             View all
           </Button>
