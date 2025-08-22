@@ -3,6 +3,7 @@
 import { InfinityIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 import { courses } from '@/db/schema';
@@ -24,6 +25,7 @@ export const UserProgress = ({
   hasActiveSubscription,
 }: Props) => {
   const locale = useLocale();
+  const t = useTranslations('userProgress');
   return (
     <div className="flex items-center justify-between gap-x-2 w-full">
       <Link href={`/${locale}/courses`}>
@@ -41,7 +43,7 @@ export const UserProgress = ({
         <Button variant="ghost" className="text-orange-500">
           <Image
             src="/points.svg"
-            alt="Points"
+            alt={t('points')}
             className="mr-2"
             width={28}
             height={28}
@@ -53,7 +55,7 @@ export const UserProgress = ({
         <Button variant="ghost" className="text-rose-500">
           <Image
             src="/heart.svg"
-            alt="Hearts"
+            alt={t('hearts')}
             className="mr-2"
             width={22}
             height={22}

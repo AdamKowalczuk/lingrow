@@ -58,7 +58,12 @@ const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
             t('full')
           ) : (
             <div className="flex items-center">
-              <Image src="/points.svg" alt="points" width={20} height={20} />
+              <Image
+                src="/points.svg"
+                alt={t('points')}
+                width={20}
+                height={20}
+              />
               <p>{POINTS_TO_REFILL}</p>
             </div>
           )}

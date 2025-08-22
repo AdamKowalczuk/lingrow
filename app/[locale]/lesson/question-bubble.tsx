@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 type Props = {
@@ -6,11 +7,12 @@ type Props = {
 };
 
 const QuestionBubble = ({ question }: Props) => {
+  const t = useTranslations('images');
   return (
     <div className="flex items-center gap-x-4 mb-6">
       <Image
         src="/mascot.svg"
-        alt="mascot"
+        alt={t('mascot')}
         width={40}
         height={40}
         className="block"

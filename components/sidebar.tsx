@@ -3,9 +3,17 @@
 import { ClerkLoaded, ClerkLoading, UserButton } from '@clerk/nextjs';
 import { Loader } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { useLocale } from '@/hooks/use-locale';
 import { cn } from '@/lib/utils';
 
@@ -18,6 +26,8 @@ type Props = {
 export const Sidebar = ({ className }: Props) => {
   const t = useTranslations('sidebar');
   const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
   return (
     <div
       className={cn(
@@ -55,6 +65,31 @@ export const Sidebar = ({ className }: Props) => {
           iconSrc="/shop.svg"
         />
       </div>
+
+      {/* Language Switcher */}
+      <div className="px-4 pb-4">
+        <div className="flex flex-col gap-y-2">
+          <div className="text-xs font-semibold text-neutral-500 uppercase tracking-wide">
+            {t('language')}
+          </div>
+          <Select
+            value={locale}
+            onValueChange={value => {
+              const newPath = pathname.replace(/^\/[a-z]{2}/, `/${value}`);
+              router.push(newPath);
+            }}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="pl">🇵🇱 Polski</SelectItem>
+              <SelectItem value="en">🇺🇸 English</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
       <div className="p-4">
         <ClerkLoading>
           <Loader className="h-5 w-5 text-muted-foreground animate-spin" />

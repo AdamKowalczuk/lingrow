@@ -46,7 +46,8 @@
     "learn": "Nauka",
     "leaderboard": "Ranking",
     "quests": "Zadania",
-    "shop": "Sklep"
+    "shop": "Sklep",
+    "language": "Język"
   },
   "promo": {
     "title": "Przejdź na Pro",
@@ -95,5 +96,32 @@
       "heartsLeft": "Pozostałe serca",
       "totalXp": "Całkowite XP"
     }
+  },
+  "userProgress": {
+    "points": "Punkty",
+    "hearts": "Serca"
+  },
+  "quests": {
+    "title": "Zadania",
+    "viewAll": "Zobacz wszystkie",
+    "claim": "Odbierz",
+    "completed": "Ukończono",
+    "reward": "Nagroda:",
+    "claimError": "Nie udało się odebrać nagrody"
+  },
+  "questTitles": {
+    "earn20Xp": "Zdobądź 20 XP",
+    "earn50Xp": "Zdobądź 50 XP",
+    "earn100Xp": "Zdobądź 100 XP",
+    "earn200Xp": "Zdobądź 200 XP"
+  },
+  "images": {
+    "points": "Punkty",
+    "hearts": "Serca",
+    "mascot": "Maskotka",
+    "icon": "Ikona"
+  },
+  "learn": {
+    "continue": "Kontynuuj"
   }
 }

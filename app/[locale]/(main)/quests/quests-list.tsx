@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import React, { useTransition } from 'react';
 import { toast } from 'sonner';
 
@@ -33,6 +34,9 @@ const QuestsList = ({
   onDataUpdate,
 }: Props) => {
   const [pending, startTransition] = useTransition();
+  const t = useTranslations('quests');
+  const tImages = useTranslations('images');
+  const tQuestTitles = useTranslations('questTitles');
 
   const handleClaimReward = (questTitle: string) => {
     startTransition(async () => {
@@ -45,7 +49,7 @@ const QuestsList = ({
           }
         }
       } catch {
-        toast.error('Nie udało się odebrać nagrody');
+        toast.error(t('claimError'));
       }
     });
   };
@@ -93,11 +97,16 @@ const QuestsList = ({
                 : ''
             }`}
           >
-            <Image src="/points.svg" alt="points" width={60} height={60} />
+            <Image
+              src="/points.svg"
+              alt={tImages('points')}
+              width={60}
+              height={60}
+            />
             <div className="flex flex-col gap-y-3 w-full">
               <div className="flex items-center justify-between">
                 <p className="text-neutral-700 text-xl font-bold">
-                  {quest.title}
+                  {tQuestTitles(quest.title)}
                 </p>
                 {completed && !rewardClaimed && (
                   <div className="flex items-center gap-x-3">
@@ -106,13 +115,13 @@ const QuestsList = ({
                       onClick={() => handleClaimReward(quest.title)}
                       disabled={pending}
                     >
-                      Odbierz
+                      {t('claim')}
                     </Button>
                   </div>
                 )}
                 {completed && rewardClaimed && (
                   <span className="text-sm text-gray-500 font-medium">
-                    Ukończono
+                    {t('completed')}
                   </span>
                 )}
               </div>
@@ -121,10 +130,10 @@ const QuestsList = ({
                 <span></span>
                 {quest.reward.type === 'hearts' && (
                   <span className="flex items-center gap-1">
-                    Nagroda: {quest.reward.amount}
+                    {t('reward')} {quest.reward.amount}
                     <Image
                       src="/heart.svg"
-                      alt="heart"
+                      alt={tImages('hearts')}
                       width={16}
                       height={16}
                     />

@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import React, { useTransition } from 'react';
 import { toast } from 'sonner';
 
@@ -28,6 +29,9 @@ type Props = {
 const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
   const [pending, startTransition] = useTransition();
   const locale = useLocale();
+  const t = useTranslations('quests');
+  const tQuestTitles = useTranslations('questTitles');
+  const tImages = useTranslations('images');
 
   const handleClaimReward = (questTitle: string) => {
     startTransition(async () => {
@@ -39,7 +43,7 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
           }
         }
       } catch {
-        toast.error('Nie udało się odebrać nagrody');
+        toast.error(t('claimError'));
       }
     });
   };
@@ -74,10 +78,10 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
   return (
     <div className="border-2 rounded-xl p-4 space-y-4">
       <div className="flex items-center justify-between w-full space-y-2">
-        <h3 className="font-bold text-lg">Quests</h3>
+        <h3 className="font-bold text-lg">{t('title')}</h3>
         <Link href={`/${locale}/quests`}>
           <Button size="sm" variant="primaryOutline">
-            View all
+            {t('viewAll')}
           </Button>
         </Link>
       </div>
@@ -96,11 +100,16 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
                   : ''
               }`}
             >
-              <Image src="/points.svg" alt="points" width={40} height={40} />
+              <Image
+                src="/points.svg"
+                alt={tImages('points')}
+                width={40}
+                height={40}
+              />
               <div className="flex flex-col gap-y-2 w-full">
                 <div className="flex items-center justify-between">
                   <p className="text-neutral-700 text-sm font-bold">
-                    {quest.title}
+                    {tQuestTitles(quest.title)}
                   </p>
                   {completed && !rewardClaimed && (
                     <div className="flex items-center gap-x-2">
@@ -110,13 +119,13 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
                         onClick={() => handleClaimReward(quest.title)}
                         disabled={pending}
                       >
-                        Odbierz
+                        {t('claim')}
                       </Button>
                     </div>
                   )}
                   {completed && rewardClaimed && (
                     <span className="text-xs text-gray-500 font-medium">
-                      Ukończono
+                      {t('completed')}
                     </span>
                   )}
                 </div>
@@ -125,10 +134,10 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
                   <span></span>
                   {quest.reward.type === 'hearts' && (
                     <span className="flex items-center gap-1">
-                      Nagroda: {quest.reward.amount}
+                      {t('reward')} {quest.reward.amount}
                       <Image
                         src="/heart.svg"
-                        alt="heart"
+                        alt={tImages('hearts')}
                         width={16}
                         height={16}
                       />

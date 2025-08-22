@@ -46,7 +46,8 @@
     "learn": "Learn",
     "leaderboard": "Leaderboard",
     "quests": "Quests",
-    "shop": "Shop"
+    "shop": "Shop",
+    "language": "Language"
   },
   "promo": {
     "title": "Upgrade to Pro",
@@ -95,5 +96,32 @@
       "heartsLeft": "Hearts left",
       "totalXp": "Total XP"
     }
+  },
+  "userProgress": {
+    "points": "Points",
+    "hearts": "Hearts"
+  },
+  "quests": {
+    "title": "Quests",
+    "viewAll": "View all",
+    "claim": "Claim",
+    "completed": "Completed",
+    "reward": "Reward:",
+    "claimError": "Failed to claim reward"
+  },
+  "questTitles": {
+    "earn20Xp": "Earn 20 XP",
+    "earn50Xp": "Earn 50 XP",
+    "earn100Xp": "Earn 100 XP",
+    "earn200Xp": "Earn 200 XP"
+  },
+  "images": {
+    "points": "Points",
+    "hearts": "Hearts",
+    "mascot": "Mascot",
+    "icon": "Icon"
+  },
+  "learn": {
+    "continue": "Continue"
   }
 }

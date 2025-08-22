@@ -12,6 +12,7 @@ type Props = {
 const ResultCard = ({ variant, value }: Props) => {
   const imageSrc = variant === 'hearts' ? '/heart.svg' : '/points.svg';
   const t = useTranslations('lesson.resultCard');
+  const tImages = useTranslations('images');
   return (
     <div
       className={cn(
@@ -38,7 +39,7 @@ const ResultCard = ({ variant, value }: Props) => {
       >
         <Image
           src={imageSrc}
-          alt="Icon"
+          alt={tImages('icon')}
           width={30}
           height={30}
           className="mr-1.5"

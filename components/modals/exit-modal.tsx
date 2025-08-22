@@ -41,7 +41,7 @@ const ExitModal = () => {
             <div className="flex items-center w-full justify-center mb-5">
               <Image
                 src="/donkey/broken-heart.png"
-                alt="Mascot"
+                alt={t('mascot')}
                 height={160}
                 width={160}
               />

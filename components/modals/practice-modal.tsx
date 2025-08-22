@@ -18,6 +18,7 @@ import {
 
 const PracticeModal = () => {
   const t = useTranslations('modals.practiceModal');
+  const tImages = useTranslations('images');
   const [isClient, setIsClient] = useState(false);
   const { isOpen, close } = usePracticeModal();
 
@@ -35,7 +36,12 @@ const PracticeModal = () => {
         <DialogContent className="max-w-md">
           <DialogHeader>
             <div className="flex items-center w-full justify-center mb-5">
-              <Image src="/heart.svg" alt="heart" height={100} width={100} />
+              <Image
+                src="/heart.svg"
+                alt={tImages('hearts')}
+                height={100}
+                width={100}
+              />
             </div>
             <DialogTitle className="text-center font-bold text-2xl">
               {t('title')}

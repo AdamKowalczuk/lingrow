@@ -2,6 +2,7 @@
 
 import { InfinityIcon, X } from 'lucide-react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 import { Progress } from '@/components/ui/progress';
@@ -15,6 +16,7 @@ type Props = {
 
 const Header = ({ hearts, percentage, hasActiveSubscription }: Props) => {
   const { open } = useExitModal();
+  const t = useTranslations('images');
   return (
     <header className="lg:pt-[50px] pt-[20px] px-10 flex gap-x-7 items-center justify-between max-w-[1140px] mx-auto w-full">
       <X
@@ -30,7 +32,7 @@ const Header = ({ hearts, percentage, hasActiveSubscription }: Props) => {
           src="/heart.svg"
           height={28}
           width={28}
-          alt="heart"
+          alt={t('hearts')}
           className="mr-2"
         />
         {hasActiveSubscription ? (

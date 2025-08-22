@@ -2,7 +2,7 @@ export const POINTS_TO_REFILL = 10;
 
 export const quests = [
   {
-    title: 'Earn 20 XP',
+    title: 'earn20Xp',
     value: 20,
     reward: {
       type: 'hearts' as const,
@@ -10,7 +10,7 @@ export const quests = [
     },
   },
   {
-    title: 'Earn 50 XP',
+    title: 'earn50Xp',
     value: 50,
     reward: {
       type: 'hearts' as const,
@@ -18,7 +18,7 @@ export const quests = [
     },
   },
   {
-    title: 'Earn 100 XP',
+    title: 'earn100Xp',
     value: 100,
     reward: {
       type: 'hearts' as const,
@@ -26,7 +26,7 @@ export const quests = [
     },
   },
   {
-    title: 'Earn 200 XP',
+    title: 'earn200Xp',
     value: 200,
     reward: {
       type: 'hearts' as const,
