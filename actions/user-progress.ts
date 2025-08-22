@@ -20,7 +20,10 @@ import {
   questProgress,
 } from '@/db/schema';
 
-export const upsertUserProgress = async (courseId: number) => {
+export const upsertUserProgress = async (
+  courseId: number,
+  locale: string = 'en',
+) => {
   const { userId } = await auth();
   const user = await currentUser();
   if (!userId || !user) {
@@ -36,7 +39,7 @@ export const upsertUserProgress = async (courseId: number) => {
     throw new Error('Course is empty');
   }
 
-  const existingUserProgress = await getUserProgress();
+  const existingUserProgress = await getUserProgress(locale);
 
   if (existingUserProgress) {
     await db.update(userProgress).set({
@@ -62,14 +65,17 @@ export const upsertUserProgress = async (courseId: number) => {
   await updateQuestProgress('lessons', 1);
 };
 
-export const reduceHearts = async (challengeId: number) => {
+export const reduceHearts = async (
+  challengeId: number,
+  locale: string = 'en',
+) => {
   const { userId } = await auth();
 
   if (!userId) {
     throw new Error('Unauthorized');
   }
 
-  const currentUserProgress = await getUserProgress();
+  const currentUserProgress = await getUserProgress(locale);
   const userSubscription = await getUserSubscription();
 
   const challenge = await db.query.challenges.findFirst({
@@ -125,8 +131,8 @@ export const reduceHearts = async (challengeId: number) => {
   await updateQuestProgress('xp', 1);
 };
 
-export const refillHearts = async () => {
-  const currentUserProgress = await getUserProgress();
+export const refillHearts = async (locale: string = 'en') => {
+  const currentUserProgress = await getUserProgress(locale);
 
   if (!currentUserProgress) {
     throw new Error('User progress not found');
@@ -151,32 +157,20 @@ export const refillHearts = async () => {
   revalidatePath('/leaderboard');
 };
 
-export const claimQuestReward = async (questTitle: string) => {
+export const claimQuestReward = async (
+  questTitle: string,
+  locale: string = 'en',
+) => {
   const { userId } = await auth();
 
   if (!userId) {
     throw new Error('Unauthorized');
   }
 
-  const currentUserProgress = await getUserProgress();
+  const currentUserProgress = await getUserProgress(locale);
 
   if (!currentUserProgress) {
     throw new Error('User progress not found');
-  }
-
-  const questProgressData = await db.query.questProgress.findFirst({
-    where: and(
-      eq(questProgress.userId, userId),
-      eq(questProgress.questTitle, questTitle),
-    ),
-  });
-
-  if (!questProgressData) {
-    throw new Error('Quest not found');
-  }
-
-  if (questProgressData.rewardClaimed) {
-    throw new Error('Reward already claimed');
   }
 
   const quest: Quest | undefined = quests.find(
@@ -186,22 +180,46 @@ export const claimQuestReward = async (questTitle: string) => {
     throw new Error('Invalid quest or reward type');
   }
 
+  if (currentUserProgress.points < quest.value) {
+    throw new Error('Quest not completed yet');
+  }
+
+  const questProgressData = await db.query.questProgress.findFirst({
+    where: and(
+      eq(questProgress.userId, userId),
+      eq(questProgress.questTitle, questTitle),
+    ),
+  });
+
+  if (questProgressData?.rewardClaimed) {
+    throw new Error('Reward already claimed');
+  }
+
   const newHearts = Math.min(
     currentUserProgress.hearts + quest.reward.amount,
     5,
   );
 
-  await Promise.all([
-    db
-      .update(userProgress)
-      .set({ hearts: newHearts })
-      .where(eq(userProgress.userId, userId)),
+  await db
+    .update(userProgress)
+    .set({ hearts: newHearts })
+    .where(eq(userProgress.userId, userId));
 
-    db
+  if (!questProgressData) {
+    await db.insert(questProgress).values({
+      userId,
+      questTitle: quest.title,
+      questValue: quest.value,
+      currentProgress: quest.value,
+      completed: true,
+      rewardClaimed: true,
+    });
+  } else {
+    await db
       .update(questProgress)
       .set({ rewardClaimed: true })
-      .where(eq(questProgress.id, questProgressData.id)),
-  ]);
+      .where(eq(questProgress.id, questProgressData.id));
+  }
 
   revalidatePath('/shop');
   revalidatePath('/learn');
@@ -224,9 +242,7 @@ export const updateQuestProgress = async (
   const allQuests = quests;
 
   for (const quest of allQuests) {
-    let currentProgress = 0;
-
-    if (questType === 'xp' && quest.title.includes('XP')) {
+    if (questType === 'xp') {
       const questProgressData = await db.query.questProgress.findFirst({
         where: and(
           eq(questProgress.userId, userId),
@@ -235,14 +251,9 @@ export const updateQuestProgress = async (
       });
 
       if (questProgressData) {
-        currentProgress = questProgressData.currentProgress + amount;
-      } else {
-        currentProgress = amount;
-      }
+        const currentProgress = questProgressData.currentProgress + amount;
+        const completed = currentProgress >= quest.value;
 
-      const completed = currentProgress >= quest.value;
-
-      if (questProgressData) {
         await db
           .update(questProgress)
           .set({
@@ -251,12 +262,16 @@ export const updateQuestProgress = async (
           })
           .where(eq(questProgress.id, questProgressData.id));
       } else {
+        const currentProgress = amount;
+        const completed = currentProgress >= quest.value;
+
         await db.insert(questProgress).values({
           userId,
           questTitle: quest.title,
           questValue: quest.value,
           currentProgress,
           completed,
+          rewardClaimed: false,
         });
       }
     }

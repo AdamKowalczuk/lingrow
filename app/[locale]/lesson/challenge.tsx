@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { challengeOptions, challenges } from '@/db/schema';
+import { useLocale } from '@/hooks/use-locale';
 import { cn } from '@/lib/utils';
 
 import Card from './card';
@@ -21,6 +22,8 @@ const Challenge = ({
   disabled,
   type,
 }: Props) => {
+  const locale = useLocale();
+
   return (
     <div
       className={cn(
@@ -35,13 +38,13 @@ const Challenge = ({
           <Card
             key={option.id}
             id={option.id}
-            text={option.text}
+            text={locale === 'pl' ? option.textPl : option.textEn}
             imageSrc={option.imageSrc}
             shortcut={`${i + 1}`}
             selected={selectedOption === option.id}
             onClick={() => onSelect(option.id)}
             status={status}
-            audioSrc={option.audioSrc}
+            audioSrc={locale === 'pl' ? option.audioSrcPl : option.audioSrcEn}
             disabled={disabled}
             type={type}
           />

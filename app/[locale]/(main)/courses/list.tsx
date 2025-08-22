@@ -31,7 +31,7 @@ const List = ({ courses, activeCourseId }: Props) => {
 
     startTransition(async () => {
       try {
-        await upsertUserProgress(id);
+        await upsertUserProgress(id, locale);
         router.push(`/${locale}/learn`);
       } catch {
         toast.error(tCommon('somethingWentWrong'));
@@ -45,7 +45,7 @@ const List = ({ courses, activeCourseId }: Props) => {
         <Card
           key={course.id}
           id={course.id}
-          title={course.title}
+          title={locale === 'pl' ? course.titlePl : course.titleEn}
           imageSrc={course.imageSrc}
           onClick={onClick}
           disabled={pending}

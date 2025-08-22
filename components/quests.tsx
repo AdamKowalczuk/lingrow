@@ -49,21 +49,12 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
   };
 
   const getQuestProgress = (quest: Quest) => {
-    if (!questProgress) return 0;
-
-    const progress = questProgress.find(qp => qp.questTitle === quest.title);
-    if (!progress) return 0;
-
-    if (quest.title.includes('XP')) {
-      return Math.min((points / quest.value) * 100, 100);
-    }
-
-    return 0;
+    const currentProgress = Math.min(points, quest.value);
+    return Math.round((currentProgress / quest.value) * 100);
   };
 
   const isQuestCompleted = (quest: Quest) => {
-    const progress = getQuestProgress(quest);
-    return progress >= 100;
+    return points >= quest.value;
   };
 
   const isRewardClaimed = (quest: Quest) => {

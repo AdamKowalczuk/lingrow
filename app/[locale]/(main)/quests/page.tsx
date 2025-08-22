@@ -31,7 +31,7 @@ const QuestsPage = async ({
   setRequestLocale(locale);
 
   const t = await getTranslations('questsPage');
-  const userProgressData = getUserProgress();
+  const userProgressData = getUserProgress(locale);
   const userSubscriptionData = getUserSubscription();
   const questProgressData = getQuestProgress();
 

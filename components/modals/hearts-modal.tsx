@@ -22,6 +22,7 @@ const HeartsModal = () => {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations('modals.heartsModal');
+  const tImages = useTranslations('images');
   const [isClient, setIsClient] = useState(false);
   const { isOpen, close } = useHeartsModal();
 
@@ -46,7 +47,7 @@ const HeartsModal = () => {
             <div className="flex items-center w-full justify-center mb-5">
               <Image
                 src="/donkey/broken-heart.png"
-                alt={t('mascot')}
+                alt={tImages('mascot')}
                 height={160}
                 width={160}
               />

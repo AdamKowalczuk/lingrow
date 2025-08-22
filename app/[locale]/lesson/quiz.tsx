@@ -129,7 +129,7 @@ const Quiz = ({
       });
     } else {
       startTransition(() => {
-        reduceHearts(challenge.id)
+        reduceHearts(challenge.id, locale)
           .then(response => {
             if (response?.error === 'hearts') {
               openHeartsModal();
@@ -191,7 +191,9 @@ const Quiz = ({
   const title =
     challenge.type === 'ASSIST'
       ? t('selectCorrectMeaning')
-      : challenge.question;
+      : locale === 'pl'
+        ? challenge.questionPl
+        : challenge.questionEn;
   return (
     <>
       {incorrectAudio}
@@ -209,7 +211,13 @@ const Quiz = ({
             </h1>
             <div>
               {challenge.type === 'ASSIST' && (
-                <QuestionBubble question={challenge.question} />
+                <QuestionBubble
+                  question={
+                    locale === 'pl'
+                      ? challenge.questionPl
+                      : challenge.questionEn
+                  }
+                />
               )}
               <Challenge
                 options={options}

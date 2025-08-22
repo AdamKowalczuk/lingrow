@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 
 import { claimQuestReward } from '@/actions/user-progress';
 import { type Quest } from '@/constants';
+import { useLocale } from '@/hooks/use-locale';
 
 import { Button } from '../../../../components/ui/button';
 import { Progress } from '../../../../components/ui/progress';
@@ -37,11 +38,12 @@ const QuestsList = ({
   const t = useTranslations('quests');
   const tImages = useTranslations('images');
   const tQuestTitles = useTranslations('questTitles');
+  const locale = useLocale();
 
   const handleClaimReward = (questTitle: string) => {
     startTransition(async () => {
       try {
-        const result = await claimQuestReward(questTitle);
+        const result = await claimQuestReward(questTitle, locale);
 
         if (result.success) {
           if (onDataUpdate) {
@@ -55,21 +57,12 @@ const QuestsList = ({
   };
 
   const calculateQuestProgress = (quest: Quest): number => {
-    if (!questProgress) return 0;
-
-    const progress = questProgress.find(qp => qp.questTitle === quest.title);
-    if (!progress) return 0;
-
-    if (quest.title.includes('XP')) {
-      return Math.min((userProgress.points / quest.value) * 100, 100);
-    }
-
-    return 0;
+    const currentProgress = Math.min(userProgress.points, quest.value);
+    return Math.round((currentProgress / quest.value) * 100);
   };
 
   const isQuestCompleted = (quest: Quest): boolean => {
-    const progress = calculateQuestProgress(quest);
-    return progress >= 100;
+    return userProgress.points >= quest.value;
   };
 
   const isRewardClaimed = (quest: Quest): boolean => {

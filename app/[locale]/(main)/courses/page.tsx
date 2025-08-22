@@ -20,8 +20,8 @@ const CoursesPage = async ({
   setRequestLocale(locale);
 
   const t = await getTranslations('coursesPage');
-  const coursesData = await getCourses();
-  const userProgressData = await getUserProgress();
+  const coursesData = await getCourses(locale);
+  const userProgressData = await getUserProgress(locale);
 
   const [courses, userProgress] = await Promise.all([
     coursesData,

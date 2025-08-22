@@ -32,10 +32,10 @@ const LearnPage = async ({
   const { locale } = await params;
 
   setRequestLocale(locale);
-  const userProgressData = getUserProgress();
-  const courseProgressData = getCourseProgress();
-  const lessonPercentageData = getLessonPercentage();
-  const unitsData = getUnits();
+  const userProgressData = getUserProgress(locale);
+  const courseProgressData = getCourseProgress(locale);
+  const lessonPercentageData = getLessonPercentage(locale);
+  const unitsData = getUnits(locale);
   const questProgressData = getQuestProgress();
 
   const userSubscriptionData = getUserSubscription();
@@ -79,7 +79,13 @@ const LearnPage = async ({
         <Quests points={userProgress.points} questProgress={questProgress} />
       </StickyWrapper>
       <FeedWrapper>
-        <Header title={userProgress.activeCourse.title} />
+        <Header
+          title={
+            locale === 'pl'
+              ? userProgress.activeCourse.titlePl
+              : userProgress.activeCourse.titleEn
+          }
+        />
         {units.map(unit => (
           <div key={unit.id} className="mb-10">
             <Unit

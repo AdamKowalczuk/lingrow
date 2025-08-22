@@ -22,6 +22,7 @@ const ExitModal = () => {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations('modals.exitModal');
+  const tImages = useTranslations('images');
   const [isClient, setIsClient] = useState(false);
   const { isOpen, close } = useExitModal();
 
@@ -41,7 +42,7 @@ const ExitModal = () => {
             <div className="flex items-center w-full justify-center mb-5">
               <Image
                 src="/donkey/broken-heart.png"
-                alt={t('mascot')}
+                alt={tImages('mascot')}
                 height={160}
                 width={160}
               />

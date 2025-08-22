@@ -2,6 +2,14 @@ import { auth } from '@clerk/nextjs/server';
 import { eq } from 'drizzle-orm';
 import { cache } from 'react';
 
+const getLocalizedField = (
+  locale: string,
+  enField: string,
+  plField: string,
+) => {
+  return locale === 'pl' ? plField : enField;
+};
+
 import db from './drizzle';
 import {
   challengeProgress,
@@ -13,11 +21,14 @@ import {
 } from './schema';
 import { userProgress } from './schema';
 
-export const getUserProgress = cache(async () => {
+export const getUserProgress = cache(async (locale: string = 'en') => {
   const { userId } = await auth();
   if (!userId) {
     return null;
   }
+
+  const titleField = getLocalizedField(locale, 'titleEn', 'titlePl');
+
   const data = await db.query.userProgress.findFirst({
     where: eq(userProgress.userId, userId),
     with: {
@@ -25,12 +36,18 @@ export const getUserProgress = cache(async () => {
     },
   });
 
+  if (data?.activeCourse) {
+    (data.activeCourse as any).title = data.activeCourse[
+      titleField as keyof typeof data.activeCourse
+    ] as string;
+  }
+
   return data;
 });
 
-export const getUnits = cache(async () => {
+export const getUnits = cache(async (locale: string = 'en') => {
   const { userId } = await auth();
-  const userProgress = await getUserProgress();
+  const userProgress = await getUserProgress(locale);
   if (!userId || !userProgress?.activeCourseId) {
     return [];
   }
@@ -55,37 +72,113 @@ export const getUnits = cache(async () => {
     },
   });
 
-  const normalizedData = data.map(unit => {
-    const lessonsWithCompletedStatus = unit.lessons.map(lesson => {
+  const titleField = getLocalizedField(locale, 'titleEn', 'titlePl');
+  const descriptionField = getLocalizedField(
+    locale,
+    'descriptionEn',
+    'descriptionPl',
+  );
+
+  const normalizedData = data.map((unit: any) => {
+    const lessonsWithCompletedStatus = unit.lessons.map((lesson: any) => {
       if (lesson.challenges.length === 0) {
         return {
           ...lesson,
           completed: false,
+          title: lesson[
+            getLocalizedField(
+              locale,
+              'titleEn',
+              'titlePl',
+            ) as keyof typeof lesson
+          ] as string,
         };
       }
-      const allCompletedChallenges = lesson.challenges.every(challenge => {
-        return (
-          challenge.challengeProgress &&
-          challenge.challengeProgress.length > 0 &&
-          challenge.challengeProgress.every(progress => progress.completed)
+
+      const normalizedChallenges = lesson.challenges.map((challenge: any) => {
+        const questionField = getLocalizedField(
+          locale,
+          'questionEn',
+          'questionPl',
         );
+
+        const normalizedOptions =
+          challenge.challengeOptions?.map((option: any) => {
+            const textField = getLocalizedField(locale, 'textEn', 'textPl');
+            const audioSrcField = getLocalizedField(
+              locale,
+              'audioSrcEn',
+              'audioSrcPl',
+            );
+
+            return {
+              ...option,
+              text: option[textField as keyof typeof option] as string,
+              audioSrc: option[audioSrcField as keyof typeof option] as string,
+            };
+          }) || [];
+
+        return {
+          ...challenge,
+          question: challenge[
+            questionField as keyof typeof challenge
+          ] as string,
+          challengeOptions: normalizedOptions,
+        };
       });
+
+      const allCompletedChallenges = normalizedChallenges.every(
+        (challenge: any) => {
+          return (
+            challenge.challengeProgress &&
+            challenge.challengeProgress.length > 0 &&
+            challenge.challengeProgress.every(
+              (progress: any) => progress.completed,
+            )
+          );
+        },
+      );
 
       return {
         ...lesson,
         completed: allCompletedChallenges,
+        title: lesson[
+          getLocalizedField(locale, 'titleEn', 'titlePl') as keyof typeof lesson
+        ] as string,
+        challenges: normalizedChallenges,
       };
     });
-    return { ...unit, lessons: lessonsWithCompletedStatus };
+
+    const normalizedUnit = {
+      ...unit,
+      lessons: lessonsWithCompletedStatus,
+    } as any;
+
+    normalizedUnit.title = unit[titleField as keyof typeof unit] as string;
+    normalizedUnit.description = unit[
+      descriptionField as keyof typeof unit
+    ] as string;
+
+    return normalizedUnit;
   });
 
   return normalizedData;
 });
 
-export const getCourses = cache(async () => {
+export const getCourses = cache(async (locale: string = 'en') => {
   const data = await db.query.courses.findMany();
 
-  return data;
+  const titleField = getLocalizedField(locale, 'titleEn', 'titlePl');
+
+  const normalizedData = data.map((course: any) => {
+    const normalizedCourse = { ...course } as any;
+    normalizedCourse.title = course[
+      titleField as keyof typeof course
+    ] as string;
+    return normalizedCourse;
+  });
+
+  return normalizedData;
 });
 
 export const getCourseById = cache(async (courseId: number) => {
@@ -106,10 +199,10 @@ export const getCourseById = cache(async (courseId: number) => {
   return data;
 });
 
-export const getCourseProgress = cache(async () => {
+export const getCourseProgress = cache(async (locale: string = 'en') => {
   const { userId } = await auth();
 
-  const userProgress = await getUserProgress();
+  const userProgress = await getUserProgress(locale);
   if (!userId || !userProgress?.activeCourseId) {
     return null;
   }
@@ -134,15 +227,33 @@ export const getCourseProgress = cache(async () => {
     },
   });
 
-  const firstUncompletedLesson = unitsInActiveCourse
+  const titleField = getLocalizedField(locale, 'titleEn', 'titlePl');
+  const descriptionField = getLocalizedField(
+    locale,
+    'descriptionEn',
+    'descriptionPl',
+  );
+
+  const localizedUnits = unitsInActiveCourse.map((unit: any) => ({
+    ...unit,
+    title: unit[titleField as keyof typeof unit] as string,
+    description: unit[descriptionField as keyof typeof unit] as string,
+    lessons: unit.lessons.map((lesson: any) => ({
+      ...lesson,
+      title: lesson[titleField as keyof typeof lesson] as string,
+      description: lesson[descriptionField as keyof typeof lesson] as string,
+    })),
+  }));
+
+  const firstUncompletedLesson = localizedUnits
     .flatMap(unit => unit.lessons)
     .find(lesson => {
-      return lesson.challenges.some(challenge => {
+      return lesson.challenges.some((challenge: any) => {
         return (
           !challenge.challengeProgress ||
           challenge.challengeProgress.length === 0 ||
           challenge.challengeProgress.some(
-            progress => progress.completed === false,
+            (progress: any) => progress.completed === false,
           )
         );
       });
@@ -154,12 +265,12 @@ export const getCourseProgress = cache(async () => {
   };
 });
 
-export const getLesson = cache(async (id?: number) => {
+export const getLesson = cache(async (id?: number, locale: string = 'en') => {
   const { userId } = await auth();
   if (!userId) {
     return null;
   }
-  const courseProgress = await getCourseProgress();
+  const courseProgress = await getCourseProgress(locale);
   const lessonId = id || courseProgress?.activeLessonId;
   if (!lessonId) {
     return null;
@@ -184,34 +295,62 @@ export const getLesson = cache(async (id?: number) => {
     return null;
   }
 
-  const normalizedChallenges = data.challenges.map(challenge => {
+  const titleField = getLocalizedField(locale, 'titleEn', 'titlePl');
+  const questionField = getLocalizedField(locale, 'questionEn', 'questionPl');
+
+  const normalizedChallenges = data.challenges.map((challenge: any) => {
     const completed =
       challenge.challengeProgress &&
       challenge.challengeProgress.length > 0 &&
-      challenge.challengeProgress.every(progress => progress.completed);
+      challenge.challengeProgress.every((progress: any) => progress.completed);
+
+    const normalizedOptions =
+      challenge.challengeOptions?.map((option: any) => {
+        const textField = getLocalizedField(locale, 'textEn', 'textPl');
+        const audioSrcField = getLocalizedField(
+          locale,
+          'audioSrcEn',
+          'audioSrcPl',
+        );
+
+        return {
+          ...option,
+          text: option[textField as keyof typeof option] as string,
+          audioSrc: option[audioSrcField as keyof typeof option] as string,
+        };
+      }) || [];
 
     return {
       ...challenge,
       completed: completed,
+      question: challenge[questionField as keyof typeof challenge] as string,
+      challengeOptions: normalizedOptions,
     };
   });
 
-  return { ...data, challenges: normalizedChallenges };
+  const normalizedLesson = {
+    ...data,
+    challenges: normalizedChallenges,
+  } as any;
+
+  normalizedLesson.title = data[titleField as keyof typeof data] as string;
+
+  return normalizedLesson;
 });
 
-export const getLessonPercentage = cache(async () => {
-  const courseProgress = await getCourseProgress();
+export const getLessonPercentage = cache(async (locale: string = 'en') => {
+  const courseProgress = await getCourseProgress(locale);
   if (!courseProgress?.activeLessonId) {
     return 0;
   }
 
-  const lesson = await getLesson(courseProgress.activeLessonId);
+  const lesson = await getLesson(courseProgress.activeLessonId, locale);
   if (!lesson) {
     return 0;
   }
 
   const completedChallenges = lesson.challenges.filter(
-    challenge => challenge.completed,
+    (challenge: any) => challenge.completed,
   );
 
   const percentage = Math.round(

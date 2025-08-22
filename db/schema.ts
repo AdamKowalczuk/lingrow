@@ -11,7 +11,8 @@ import {
 
 export const courses = pgTable('courses', {
   id: serial('id').primaryKey(),
-  title: text('title').notNull(),
+  titleEn: text('title_en').notNull(),
+  titlePl: text('title_pl').notNull(),
   imageSrc: text('image_src').notNull(),
 });
 
@@ -22,8 +23,10 @@ export const coursesRelations = relations(courses, ({ many }) => ({
 
 export const units = pgTable('units', {
   id: serial('id').primaryKey(),
-  title: text('title').notNull(),
-  description: text('description').notNull(),
+  titleEn: text('title_en').notNull(),
+  titlePl: text('title_pl').notNull(),
+  descriptionEn: text('description_en').notNull(),
+  descriptionPl: text('description_pl').notNull(),
   courseId: integer('course_id')
     .references(() => courses.id, {
       onDelete: 'cascade',
@@ -42,7 +45,8 @@ export const unitsRelations = relations(units, ({ many, one }) => ({
 
 export const lessons = pgTable('lessons', {
   id: serial('id').primaryKey(),
-  title: text('title').notNull(),
+  titleEn: text('title_en').notNull(),
+  titlePl: text('title_pl').notNull(),
   unitId: integer('unit_id')
     .references(() => units.id, {
       onDelete: 'cascade',
@@ -69,7 +73,8 @@ export const challenges = pgTable('challenges', {
     })
     .notNull(),
   type: challengesEnum('type').notNull(),
-  question: text('question').notNull(),
+  questionEn: text('question_en').notNull(),
+  questionPl: text('question_pl').notNull(),
   order: integer('order').notNull(),
 });
 
@@ -89,10 +94,13 @@ export const challengeOptions = pgTable('challenge_options', {
       onDelete: 'cascade',
     })
     .notNull(),
-  text: text('text').notNull(),
+  textEn: text('text_en').notNull(),
+  textPl: text('text_pl').notNull(),
   correct: boolean('correct').notNull(),
+
+  audioSrcEn: text('audio_src_en'),
+  audioSrcPl: text('audio_src_pl'),
   imageSrc: text('image_src'),
-  audioSrc: text('audio_src'),
 });
 
 export const challengeOptionsRelations = relations(
