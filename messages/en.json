@@ -15,7 +15,8 @@
     "polish": "Polish"
   },
   "coursesPage": {
-    "title": "Courses Page"
+    "title": "Courses Page",
+    "description": "Choose the language you want to learn"
   },
   "questsPage": {
     "title": "Quests",
@@ -40,7 +41,11 @@
     "upgrade": "upgrade",
     "settings": "settings",
     "heart": "heart",
-    "unlimited": "unlimited"
+    "unlimited": "unlimited",
+    "points": "points",
+    "refill": "Refill",
+    "refillDescription": "Get back to full health",
+    "unlimitedDescription": "Never run out of hearts"
   },
   "sidebar": {
     "learn": "Learn",
@@ -77,6 +82,7 @@
     }
   },
   "lesson": {
+    "start": "Start",
     "quiz": {
       "selectCorrectMeaning": "Select the correct meaning",
       "greatJob": "Great job!",
@@ -120,5 +126,10 @@
     "hearts": "Hearts",
     "mascot": "Mascot",
     "icon": "Icon"
+  },
+  "languages": {
+    "polish": "Polish",
+    "english": "English",
+    "japanese": "Japanese"
   }
 }

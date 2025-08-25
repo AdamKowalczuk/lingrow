@@ -33,14 +33,23 @@ export const Sidebar = ({ className, onItemClick }: Props) => {
   return (
     <div
       className={cn(
-        'flex h-full lg:w-[256px] lg:fixed left-0 top-0 px-4 border-r-2 flex-col',
+        'flex h-full lg:w-[256px] lg:fixed left-0 top-0 px-4 border-r-2 border-gray-200/50 flex-col bg-gradient-to-br from-indigo-50/30 via-white to-white shadow-lg',
         className,
       )}
     >
       <Link href={`/${locale}/learn`} onClick={onItemClick}>
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
-          <Image src="/logo.png" alt="mascot" width={40} height={40} />
-          <h1 className="text-2xl font-extrabold text-indigo-500 tracking-wide">
+          <div className="relative">
+            <div className="absolute inset-0 bg-indigo-500/20 rounded-xl blur-sm"></div>
+            <Image
+              src="/logo.png"
+              alt="mascot"
+              width={40}
+              height={40}
+              className="relative z-10 drop-shadow-sm"
+            />
+          </div>
+          <h1 className="text-2xl font-extrabold text-indigo-500 tracking-wide drop-shadow-sm">
             Lingrow
           </h1>
         </div>
@@ -75,7 +84,7 @@ export const Sidebar = ({ className, onItemClick }: Props) => {
       {/* Language Switcher */}
       <div className="px-4 pb-4">
         <div className="flex flex-col gap-y-2">
-          <div className="text-xs font-semibold text-neutral-500 uppercase tracking-wide">
+          <div className="text-xs font-semibold text-neutral-600 uppercase tracking-wide">
             {t('language')}
           </div>
           <Select
@@ -89,7 +98,7 @@ export const Sidebar = ({ className, onItemClick }: Props) => {
               }
             }}
           >
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full bg-white/80 backdrop-blur-sm border-gray-200 hover:bg-white transition-colors">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

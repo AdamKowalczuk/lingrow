@@ -24,6 +24,7 @@ export const UserProgress = ({
 }: Props) => {
   const locale = useLocale();
   const t = useTranslations('userProgress');
+  const tLanguages = useTranslations('languages');
   const { targetLanguage } = useTargetLanguage();
 
   const getImageSrcByTargetLanguage = () => {
@@ -42,73 +43,76 @@ export const UserProgress = ({
   const getTitleByTargetLanguage = () => {
     switch (targetLanguage) {
       case 'pl':
-        return locale === 'pl'
-          ? 'Polski'
-          : locale === 'en'
-            ? 'Polish'
-            : 'ポーランド語';
+        return tLanguages('polish');
       case 'en':
-        return locale === 'pl'
-          ? 'Angielski'
-          : locale === 'en'
-            ? 'English'
-            : '英語';
+        return tLanguages('english');
       case 'jp':
-        return locale === 'pl'
-          ? 'Japoński'
-          : locale === 'en'
-            ? 'Japanese'
-            : '日本語';
+        return tLanguages('japanese');
       default:
-        return locale === 'pl'
-          ? 'Polski'
-          : locale === 'en'
-            ? 'Polish'
-            : 'ポーランド語';
+        return tLanguages('polish');
     }
   };
 
   return (
-    <div className="flex items-center justify-between gap-x-2 w-full">
-      <Link href={`/${locale}/courses`}>
-        <Button variant="ghost">
-          <Image
-            src={getImageSrcByTargetLanguage()}
-            alt={getTitleByTargetLanguage()}
-            className="rounded-md border"
-            width={32}
-            height={32}
-          />
-        </Button>
-      </Link>
-      <Link href={`/${locale}/shop`}>
-        <Button variant="ghost" className="text-orange-500">
-          <Image
-            src="/points.svg"
-            alt={t('points')}
-            className="mr-2"
-            width={28}
-            height={28}
-          />
-          {points}
-        </Button>
-      </Link>
-      <Link href={`/${locale}/shop`}>
-        <Button variant="ghost" className="text-rose-500">
-          <Image
-            src="/heart.svg"
-            alt={t('hearts')}
-            className="mr-2"
-            width={22}
-            height={22}
-          />
-          {hasActiveSubscription ? (
-            <InfinityIcon className="h-4 w-4 stroke-[3]" />
-          ) : (
-            hearts
-          )}
-        </Button>
-      </Link>
+    <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-4 shadow-sm">
+      <div className="flex items-center justify-between gap-x-4 w-full">
+        <Link href={`/${locale}/courses`}>
+          <Button
+            variant="ghost"
+            className="p-2 hover:bg-gray-100 rounded-xl transition-colors"
+          >
+            <Image
+              src={getImageSrcByTargetLanguage()}
+              alt={getTitleByTargetLanguage()}
+              className="rounded-lg border-2 border-gray-200"
+              width={32}
+              height={32}
+            />
+          </Button>
+        </Link>
+
+        <Link href={`/${locale}/shop`}>
+          <Button
+            variant="ghost"
+            className="text-orange-600 hover:bg-orange-50 rounded-xl px-3 py-2 transition-colors"
+          >
+            <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mr-2">
+              <Image
+                src="/points.svg"
+                alt={t('points')}
+                width={20}
+                height={20}
+                className="text-orange-600"
+              />
+            </div>
+            <span className="font-semibold">{points}</span>
+          </Button>
+        </Link>
+
+        <Link href={`/${locale}/shop`}>
+          <Button
+            variant="ghost"
+            className="text-rose-600 hover:bg-rose-50 rounded-xl px-3 py-2 transition-colors"
+          >
+            <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center mr-2">
+              {hasActiveSubscription ? (
+                <InfinityIcon className="h-5 w-5 stroke-[2.5] text-rose-600" />
+              ) : (
+                <Image
+                  src="/heart.svg"
+                  alt={t('hearts')}
+                  width={20}
+                  height={20}
+                  className="text-rose-600"
+                />
+              )}
+            </div>
+            <span className="font-semibold">
+              {hasActiveSubscription ? '∞' : hearts}
+            </span>
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -43,15 +43,16 @@ const Card = ({
     <div
       onClick={handleClick}
       className={cn(
-        'h-full border-2 rounded-xl border-b-4 hover:bg-black/5 p-3 sm:p-4 lg:p-6 cursor-pointer active:border-b-2',
-        selected && 'border-indigo-300 bg-indigo-100 hover:bg-indigo-100',
+        'h-full border-2 rounded-xl border-b-4 hover:bg-gray-50 p-3 sm:p-4 lg:p-6 cursor-pointer active:border-b-2 transition-all duration-200 shadow-sm hover:shadow-md',
+        selected &&
+          'border-indigo-400 bg-indigo-50 hover:bg-indigo-50 shadow-md',
         selected &&
           status === 'correct' &&
-          'border-indigo-300 bg-indigo-100 hover:bg-indigo-100',
+          'border-green-400 bg-green-50 hover:bg-green-50 shadow-md',
         selected &&
           status === 'wrong' &&
-          'border-rose-300 bg-rose-100 hover:bg-rose-100',
-        disabled && 'pointer-events-none hover:bg-white',
+          'border-rose-400 bg-rose-50 hover:bg-rose-50 shadow-md',
+        disabled && 'pointer-events-none hover:bg-white opacity-60',
         type === 'ASSIST' && 'lg:p-3 w-full',
       )}
     >
@@ -72,22 +73,22 @@ const Card = ({
         {type === 'ASSIST' && <div />}
         <p
           className={cn(
-            'text-neutral-600 text-sm lg:text-base',
-            selected && 'text-indigo-500',
-            selected && status === 'correct' && 'text-indigo-500',
-            selected && status === 'wrong' && 'text-rose-500',
+            'text-gray-700 text-sm lg:text-base font-medium',
+            selected && 'text-indigo-600',
+            selected && status === 'correct' && 'text-green-600',
+            selected && status === 'wrong' && 'text-rose-600',
           )}
         >
           {text}
         </p>
         <div
           className={cn(
-            'lg:w-[30px] lg:h-[30px] w-[20px] h-[20px] border-2 flex items-center justify-center rounded-lg text-neutral-400 lg:text-[15px] text-xs font-semibold',
-            selected && 'border-indigo-300 text-indigo-500',
+            'lg:w-[30px] lg:h-[30px] w-[20px] h-[20px] border-2 flex items-center justify-center rounded-lg text-gray-500 lg:text-[15px] text-xs font-semibold transition-colors',
+            selected && 'border-indigo-400 text-indigo-600',
             selected &&
               status === 'correct' &&
-              'border-indigo-500 text-indigo-500',
-            selected && status === 'wrong' && 'border-rose-500 text-rose-500',
+              'border-green-400 text-green-600',
+            selected && status === 'wrong' && 'border-rose-400 text-rose-600',
           )}
         >
           {shortcut}

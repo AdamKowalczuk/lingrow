@@ -1,6 +1,7 @@
 'use client';
 import { Check, Crown, Star } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 
@@ -12,8 +13,8 @@ type Props = {
   id: number;
   index: number;
   totalCount: number;
-  locked?: boolean;
-  current?: boolean;
+  locked: boolean;
+  current: boolean;
   percentage: number;
 };
 
@@ -26,6 +27,7 @@ const LessonButton = ({
   percentage,
 }: Props) => {
   const locale = useLocale();
+  const t = useTranslations('lesson');
   const cycleLength = 8;
   const cycleIndex = index % cycleLength;
   let indentationLevel;
@@ -62,7 +64,7 @@ const LessonButton = ({
         {current ? (
           <div className="h-[102px] w-[102px] relative">
             <div className="absolute -top-6 left-2.5 px-3 py-2.5 border-2 font-bold uppercase text-indigo-500 bg-white rounded-xl animate-bounce tracking-wide z-10">
-              Start
+              {t('start')}
               <div className="absolute left-1/2 -bottom-2 w-0 h-0 border-x-8 border-x-transparent border-t-8 transform -translate-x-1/2" />
             </div>
             <CircularProgressbarWithChildren

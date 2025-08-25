@@ -15,7 +15,8 @@
     "polish": "ポーランド語"
   },
   "coursesPage": {
-    "title": "コースページ"
+    "title": "コースページ",
+    "description": "学びたい言語を選択してください"
   },
   "questsPage": {
     "title": "クエスト",
@@ -40,7 +41,11 @@
     "upgrade": "アップグレード",
     "settings": "設定",
     "heart": "ハート",
-    "unlimited": "無制限"
+    "unlimited": "無制限",
+    "points": "ポイント",
+    "refill": "補充",
+    "refillDescription": "完全な健康状態に戻る",
+    "unlimitedDescription": "ハートが尽きることはありません"
   },
   "sidebar": {
     "learn": "学習",
@@ -77,6 +82,7 @@
     }
   },
   "lesson": {
+    "start": "スタート",
     "quiz": {
       "selectCorrectMeaning": "正しい意味を選択してください",
       "greatJob": "素晴らしい！",
@@ -120,5 +126,10 @@
     "hearts": "ハート",
     "mascot": "マスコット",
     "icon": "アイコン"
+  },
+  "languages": {
+    "polish": "ポーランド語",
+    "english": "英語",
+    "japanese": "日本語"
   }
 }

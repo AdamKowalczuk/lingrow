@@ -15,7 +15,8 @@
     "polish": "Polski"
   },
   "coursesPage": {
-    "title": "Strona kursów"
+    "title": "Strona kursów",
+    "description": "Wybierz język, którego chcesz się uczyć"
   },
   "questsPage": {
     "title": "Zadania",
@@ -40,7 +41,11 @@
     "upgrade": "ulepsz",
     "settings": "ustawienia",
     "heart": "serce",
-    "unlimited": "nieograniczone"
+    "unlimited": "nieograniczone",
+    "points": "punkty",
+    "refill": "Uzupełnij",
+    "refillDescription": "Wróć do pełnego zdrowia",
+    "unlimitedDescription": "Nigdy nie zabraknie Ci serc"
   },
   "sidebar": {
     "learn": "Nauka",
@@ -77,6 +82,7 @@
     }
   },
   "lesson": {
+    "start": "Start",
     "quiz": {
       "selectCorrectMeaning": "Wybierz poprawne znaczenie",
       "greatJob": "Świetna robota!",
@@ -120,5 +126,10 @@
     "hearts": "Serca",
     "mascot": "Maskotka",
     "icon": "Ikona"
+  },
+  "languages": {
+    "polish": "Polski",
+    "english": "Angielski",
+    "japanese": "Japoński"
   }
 }
