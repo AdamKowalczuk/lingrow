@@ -22,9 +22,10 @@ import SidebarItem from './sidebar-item';
 
 type Props = {
   className?: string;
+  onItemClick?: () => void;
 };
 
-export const Sidebar = ({ className }: Props) => {
+export const Sidebar = ({ className, onItemClick }: Props) => {
   const t = useTranslations('sidebar');
   const locale = useLocale();
   const router = useRouter();
@@ -36,7 +37,7 @@ export const Sidebar = ({ className }: Props) => {
         className,
       )}
     >
-      <Link href={`/${locale}/learn`}>
+      <Link href={`/${locale}/learn`} onClick={onItemClick}>
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
           <Image src="/logo.png" alt="mascot" width={40} height={40} />
           <h1 className="text-2xl font-extrabold text-indigo-500 tracking-wide">
@@ -49,21 +50,25 @@ export const Sidebar = ({ className }: Props) => {
           label={t('learn')}
           href={`/${locale}/learn`}
           iconSrc="/learn.svg"
+          onClick={onItemClick}
         />
         <SidebarItem
           label={t('leaderboard')}
           href={`/${locale}/leaderboard`}
           iconSrc="/leaderboard.svg"
+          onClick={onItemClick}
         />
         <SidebarItem
           label={t('quests')}
           href={`/${locale}/quests`}
           iconSrc="/quests.svg"
+          onClick={onItemClick}
         />
         <SidebarItem
           label={t('shop')}
           href={`/${locale}/shop`}
           iconSrc="/shop.svg"
+          onClick={onItemClick}
         />
       </div>
 
@@ -78,6 +83,10 @@ export const Sidebar = ({ className }: Props) => {
             onValueChange={value => {
               const newPath = pathname.replace(/^\/[a-z]{2}/, `/${value}`);
               router.push(newPath);
+              // Zamknij sidebar po zmianie języka na mobile
+              if (onItemClick) {
+                onItemClick();
+              }
             }}
           >
             <SelectTrigger className="w-full">
