@@ -56,7 +56,7 @@ const LearnPage = async ({
     questProgressData,
   ]);
 
-  if (!userProgress || !userProgress.activeCourse) {
+  if (!userProgress) {
     redirect(`/${locale}/courses`);
   }
 
@@ -70,7 +70,6 @@ const LearnPage = async ({
     <div className="flex flex-row-reverse gap-[48px] px-6">
       <StickyWrapper>
         <UserProgress
-          activeCourse={userProgress.activeCourse}
           hearts={userProgress.hearts}
           points={userProgress.points}
           hasActiveSubscription={!!userSubscription}
@@ -79,13 +78,7 @@ const LearnPage = async ({
         <Quests points={userProgress.points} questProgress={questProgress} />
       </StickyWrapper>
       <FeedWrapper>
-        <Header
-          title={
-            locale === 'pl'
-              ? userProgress.activeCourse.titlePl
-              : userProgress.activeCourse.titleEn
-          }
-        />
+        <Header />
         {units.map(unit => (
           <div key={unit.id} className="mb-10">
             <Unit

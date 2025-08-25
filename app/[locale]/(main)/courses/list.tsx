@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { upsertUserProgress } from '@/actions/user-progress';
 import { courses, userProgress } from '@/db/schema';
 import { useLocale } from '@/hooks/use-locale';
+import { useTargetLanguage } from '@/store/use-target-language';
 
 import Card from './card';
 
@@ -21,22 +22,38 @@ const List = ({ courses, activeCourseId }: Props) => {
   const [pending, startTransition] = useTransition();
   const tCommon = useTranslations('common');
   const locale = useLocale();
+  const { targetLanguage, setTargetLanguage } = useTargetLanguage();
 
-  const onClick = (id: number) => {
+  const onClick = (course: (typeof courses)[0]) => {
     if (pending) return;
 
-    if (id === activeCourseId) {
+    setTargetLanguage(course.targetLanguage as 'pl' | 'en' | 'jp');
+
+    if (targetLanguage) {
       return router.push(`/${locale}/learn`);
     }
 
     startTransition(async () => {
       try {
-        await upsertUserProgress(id, locale);
+        await upsertUserProgress(1, locale);
         router.push(`/${locale}/learn`);
       } catch {
         toast.error(tCommon('somethingWentWrong'));
       }
     });
+  };
+
+  const getTitleByLocale = (course: (typeof courses)[0]) => {
+    switch (locale) {
+      case 'pl':
+        return course.titlePl;
+      case 'en':
+        return course.titleEn;
+      case 'jp':
+        return course.titleJp;
+      default:
+        return course.titleEn;
+    }
   };
 
   return (
@@ -45,11 +62,11 @@ const List = ({ courses, activeCourseId }: Props) => {
         <Card
           key={course.id}
           id={course.id}
-          title={locale === 'pl' ? course.titlePl : course.titleEn}
+          title={getTitleByLocale(course)}
           imageSrc={course.imageSrc}
-          onClick={onClick}
+          onClick={() => onClick(course)}
           disabled={pending}
-          active={activeCourseId === course.id}
+          active={targetLanguage === course.targetLanguage}
         />
       ))}
     </div>

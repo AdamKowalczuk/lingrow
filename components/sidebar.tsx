@@ -95,6 +95,7 @@ export const Sidebar = ({ className, onItemClick }: Props) => {
             <SelectContent>
               <SelectItem value="pl">🇵🇱 Polski</SelectItem>
               <SelectItem value="en">🇺🇸 English</SelectItem>
+              <SelectItem value="jp">🇯🇵 日本語</SelectItem>
             </SelectContent>
           </Select>
         </div>

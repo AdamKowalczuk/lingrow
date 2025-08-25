@@ -1,8 +1,10 @@
+'use client';
+
 import React from 'react';
 
 import { challengeOptions, challenges } from '@/db/schema';
-import { useLocale } from '@/hooks/use-locale';
 import { cn } from '@/lib/utils';
+import { useTargetLanguage } from '@/store/use-target-language';
 
 import Card from './card';
 
@@ -14,6 +16,7 @@ type Props = {
   disabled?: boolean;
   type: (typeof challenges.$inferSelect)['type'];
 };
+
 const Challenge = ({
   options,
   onSelect,
@@ -22,7 +25,37 @@ const Challenge = ({
   disabled,
   type,
 }: Props) => {
-  const locale = useLocale();
+  const { targetLanguage } = useTargetLanguage();
+
+  const getTextByTargetLanguage = (
+    option: typeof challengeOptions.$inferSelect,
+  ) => {
+    switch (targetLanguage) {
+      case 'pl':
+        return option.textPl;
+      case 'en':
+        return option.textEn;
+      case 'jp':
+        return option.textJp;
+      default:
+        return option.textEn;
+    }
+  };
+
+  const getAudioSrcByTargetLanguage = (
+    option: typeof challengeOptions.$inferSelect,
+  ) => {
+    switch (targetLanguage) {
+      case 'pl':
+        return option.audioSrcPl;
+      case 'en':
+        return option.audioSrcEn;
+      case 'jp':
+        return option.audioSrcJp;
+      default:
+        return option.audioSrcEn;
+    }
+  };
 
   return (
     <div
@@ -38,13 +71,13 @@ const Challenge = ({
           <Card
             key={option.id}
             id={option.id}
-            text={locale === 'pl' ? option.textPl : option.textEn}
+            text={getTextByTargetLanguage(option)}
             imageSrc={option.imageSrc}
             shortcut={`${i + 1}`}
             selected={selectedOption === option.id}
             onClick={() => onSelect(option.id)}
             status={status}
-            audioSrc={locale === 'pl' ? option.audioSrcPl : option.audioSrcEn}
+            audioSrc={getAudioSrcByTargetLanguage(option)}
             disabled={disabled}
             type={type}
           />

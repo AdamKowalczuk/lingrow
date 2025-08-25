@@ -1,0 +1,124 @@
+{
+  "marketing": {
+    "title": "Lingrowで新しい言語を発見し、練習し、習得しましょう。",
+    "button": "学習を続ける",
+    "getStarted": "始める",
+    "alreadyHaveAccount": "すでにアカウントを持っています"
+  },
+  "header": {
+    "login": "ログイン",
+    "signUp": "サインアップ"
+  },
+  "footer": {
+    "english": "英語",
+    "japanese": "日本語",
+    "polish": "ポーランド語"
+  },
+  "coursesPage": {
+    "title": "コースページ"
+  },
+  "questsPage": {
+    "title": "クエスト",
+    "description": "クエストを完了してハートと報酬を獲得しましょう",
+    "quests": "クエスト"
+  },
+  "leaderboardPage": {
+    "title": "リーダーボード",
+    "description": "コミュニティの他の学習者と比較して自分の位置を確認しましょう。",
+    "leaderboard": "リーダーボード",
+    "xp": "XP"
+  },
+  "shopPage": {
+    "title": "ショップ",
+    "description": "ポイントを使ってハートを補充するか、Proで無制限のハートをアンロックしましょう。",
+    "shop": "ショップ"
+  },
+  "shopItems": {
+    "refillHearts": "ハートを補充",
+    "unlimitedHearts": "無制限のハート",
+    "full": "満杯",
+    "upgrade": "アップグレード",
+    "settings": "設定",
+    "heart": "ハート",
+    "unlimited": "無制限"
+  },
+  "sidebar": {
+    "learn": "学習",
+    "leaderboard": "リーダーボード",
+    "quests": "クエスト",
+    "shop": "ショップ",
+    "language": "言語"
+  },
+  "promo": {
+    "title": "Proにアップグレード",
+    "description": "無制限のハートとその他を獲得しましょう！",
+    "upgradeToday": "今日アップグレード"
+  },
+  "common": {
+    "somethingWentWrong": "何か問題が発生しました"
+  },
+  "modals": {
+    "exitModal": {
+      "title": "待って！行かないで！",
+      "description": "レッスンを終了しようとしています。本当にいいですか？",
+      "keepLearning": "学習を続ける",
+      "endSession": "セッションを終了"
+    },
+    "heartsModal": {
+      "title": "ハートがなくなりました！",
+      "description": "Proで無制限のハートを獲得するか、ショップで購入しましょう。",
+      "getUnlimitedHearts": "無制限のハートを獲得",
+      "noThanks": "いえ、結構です"
+    },
+    "practiceModal": {
+      "title": "練習レッスン",
+      "description": "練習レッスンを使ってハートとポイントを回復しましょう。練習レッスンではハートやポイントを失うことはありません。",
+      "iUnderstand": "理解しました"
+    }
+  },
+  "lesson": {
+    "quiz": {
+      "selectCorrectMeaning": "正しい意味を選択してください",
+      "greatJob": "素晴らしい！",
+      "completedLesson": "レッスンを完了しました。",
+      "somethingWentWrong": "問題が発生しました。もう一度お試しください。"
+    },
+    "footer": {
+      "nicelyDone": "よくできました！",
+      "tryAgain": "もう一度試す。",
+      "practiceAgain": "もう一度練習",
+      "check": "チェック",
+      "next": "次へ",
+      "retry": "再試行",
+      "continue": "続ける"
+    },
+    "resultCard": {
+      "heartsLeft": "残りのハート",
+      "totalXp": "総XP"
+    }
+  },
+  "userProgress": {
+    "points": "ポイント",
+    "hearts": "ハート"
+  },
+  "quests": {
+    "title": "クエスト",
+    "viewAll": "すべて表示",
+    "claim": "受け取る",
+    "completed": "完了",
+    "reward": "報酬：",
+    "claimError": "報酬の受け取りに失敗しました"
+  },
+  "questTitles": {
+    "earn20Xp": "20 XPを獲得",
+    "earn50Xp": "50 XPを獲得",
+    "earn100Xp": "100 XPを獲得",
+    "earn200Xp": "200 XPを獲得"
+  },
+  "images": {
+    "points": "ポイント",
+    "hearts": "ハート",
+    "mascot": "マスコット",
+    "icon": "アイコン"
+  }
+}

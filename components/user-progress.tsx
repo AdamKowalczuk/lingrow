@@ -6,33 +6,75 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
-import { courses } from '@/db/schema';
 import { useLocale } from '@/hooks/use-locale';
+import { useTargetLanguage } from '@/store/use-target-language';
 
 import { Button } from './ui/button';
 
 type Props = {
-  activeCourse: typeof courses.$inferSelect;
   hearts: number;
   points: number;
   hasActiveSubscription: boolean;
 };
 
 export const UserProgress = ({
-  activeCourse,
   hearts,
   points,
   hasActiveSubscription,
 }: Props) => {
   const locale = useLocale();
   const t = useTranslations('userProgress');
+  const { targetLanguage } = useTargetLanguage();
+
+  const getImageSrcByTargetLanguage = () => {
+    switch (targetLanguage) {
+      case 'pl':
+        return '/pl.svg';
+      case 'en':
+        return '/en.svg';
+      case 'jp':
+        return '/jp.svg';
+      default:
+        return '/pl.svg';
+    }
+  };
+
+  const getTitleByTargetLanguage = () => {
+    switch (targetLanguage) {
+      case 'pl':
+        return locale === 'pl'
+          ? 'Polski'
+          : locale === 'en'
+            ? 'Polish'
+            : 'ポーランド語';
+      case 'en':
+        return locale === 'pl'
+          ? 'Angielski'
+          : locale === 'en'
+            ? 'English'
+            : '英語';
+      case 'jp':
+        return locale === 'pl'
+          ? 'Japoński'
+          : locale === 'en'
+            ? 'Japanese'
+            : '日本語';
+      default:
+        return locale === 'pl'
+          ? 'Polski'
+          : locale === 'en'
+            ? 'Polish'
+            : 'ポーランド語';
+    }
+  };
+
   return (
     <div className="flex items-center justify-between gap-x-2 w-full">
       <Link href={`/${locale}/courses`}>
         <Button variant="ghost">
           <Image
-            src={activeCourse.imageSrc}
-            alt={locale === 'pl' ? activeCourse.titlePl : activeCourse.titleEn}
+            src={getImageSrcByTargetLanguage()}
+            alt={getTitleByTargetLanguage()}
             className="rounded-md border"
             width={32}
             height={32}

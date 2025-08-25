@@ -13,7 +13,9 @@ export const courses = pgTable('courses', {
   id: serial('id').primaryKey(),
   titleEn: text('title_en').notNull(),
   titlePl: text('title_pl').notNull(),
+  titleJp: text('title_jp').notNull(),
   imageSrc: text('image_src').notNull(),
+  targetLanguage: text('target_language').notNull(),
 });
 
 export const coursesRelations = relations(courses, ({ many }) => ({
@@ -25,8 +27,10 @@ export const units = pgTable('units', {
   id: serial('id').primaryKey(),
   titleEn: text('title_en').notNull(),
   titlePl: text('title_pl').notNull(),
+  titleJp: text('title_jp').notNull(),
   descriptionEn: text('description_en').notNull(),
   descriptionPl: text('description_pl').notNull(),
+  descriptionJp: text('description_jp').notNull(),
   courseId: integer('course_id')
     .references(() => courses.id, {
       onDelete: 'cascade',
@@ -47,6 +51,7 @@ export const lessons = pgTable('lessons', {
   id: serial('id').primaryKey(),
   titleEn: text('title_en').notNull(),
   titlePl: text('title_pl').notNull(),
+  titleJp: text('title_jp').notNull(),
   unitId: integer('unit_id')
     .references(() => units.id, {
       onDelete: 'cascade',
@@ -75,6 +80,7 @@ export const challenges = pgTable('challenges', {
   type: challengesEnum('type').notNull(),
   questionEn: text('question_en').notNull(),
   questionPl: text('question_pl').notNull(),
+  questionJp: text('question_jp').notNull(),
   order: integer('order').notNull(),
 });
 
@@ -96,10 +102,12 @@ export const challengeOptions = pgTable('challenge_options', {
     .notNull(),
   textEn: text('text_en').notNull(),
   textPl: text('text_pl').notNull(),
+  textJp: text('text_jp').notNull(),
   correct: boolean('correct').notNull(),
 
   audioSrcEn: text('audio_src_en'),
   audioSrcPl: text('audio_src_pl'),
+  audioSrcJp: text('audio_src_jp'),
   imageSrc: text('image_src'),
 });
 

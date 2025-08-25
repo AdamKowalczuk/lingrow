@@ -21,24 +21,47 @@ const main = async () => {
     await db.delete(schema.userSubscription);
     await db.delete(schema.questProgress);
 
+    // Jeden kurs - Fantasy & Mythology
     await db.insert(schema.courses).values([
       {
         id: 1,
+        titleEn: 'English',
+        titlePl: 'Angielski',
+        titleJp: '英語',
+        imageSrc: '/en.svg',
+        targetLanguage: 'en',
+      },
+      {
+        id: 2,
         titleEn: 'Polish',
         titlePl: 'Polski',
+        titleJp: 'ポーランド語',
         imageSrc: '/pl.svg',
+        targetLanguage: 'pl',
+      },
+      {
+        id: 3,
+        titleEn: 'Japanese',
+        titlePl: 'Japoński',
+        titleJp: '日本語',
+        imageSrc: '/jp.svg',
+        targetLanguage: 'jp',
       },
     ]);
 
+    // Jednostki dla jednego kursu
     await db.insert(schema.units).values([
       {
         id: 1,
         courseId: 1,
         titleEn: 'Character Classes',
         titlePl: 'Klasy postaci',
+        titleJp: 'キャラクタークラス',
         descriptionEn:
           'Learn about different character classes in the fantasy world',
         descriptionPl: 'Poznaj różne klasy postaci w świecie fantasy',
+        descriptionJp:
+          'ファンタジー世界の様々なキャラクタークラスについて学びましょう',
         order: 1,
       },
       {
@@ -46,17 +69,22 @@ const main = async () => {
         courseId: 1,
         titleEn: 'Greek Mythology',
         titlePl: 'Mitologia grecka',
+        titleJp: 'ギリシャ神話',
         descriptionEn: 'Discover the world of Greek gods, heroes and monsters',
         descriptionPl: 'Odkryj świat greckich bogów, herosów i potworów',
+        descriptionJp: 'ギリシャの神々、英雄、怪物の世界を発見しましょう',
         order: 2,
       },
     ]);
+
+    // Lekcje dla jednego kursu
     await db.insert(schema.lessons).values([
       {
         id: 1,
         unitId: 1,
         titleEn: 'Character Classes',
         titlePl: 'Klasy postaci',
+        titleJp: 'キャラクタークラス',
         order: 1,
       },
       {
@@ -64,6 +92,7 @@ const main = async () => {
         unitId: 1,
         titleEn: 'Weapons and Combat',
         titlePl: 'Broń i walka',
+        titleJp: '武器と戦闘',
         order: 2,
       },
       {
@@ -71,6 +100,7 @@ const main = async () => {
         unitId: 1,
         titleEn: 'Magic and Healing',
         titlePl: 'Magia i uzdrowienie',
+        titleJp: '魔法と癒し',
         order: 3,
       },
       {
@@ -78,6 +108,7 @@ const main = async () => {
         unitId: 2,
         titleEn: 'Symbols and Places',
         titlePl: 'Symbole i miejsca',
+        titleJp: 'シンボルと場所',
         order: 1,
       },
       {
@@ -85,10 +116,12 @@ const main = async () => {
         unitId: 2,
         titleEn: 'Mythical Creatures',
         titlePl: 'Stworzenia mityczne',
+        titleJp: '神話の生き物',
         order: 2,
       },
     ]);
 
+    // Oryginalne wyzwania
     await db.insert(schema.challenges).values([
       {
         id: 1,
@@ -96,6 +129,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Who can resurrect dead allies?',
         questionPl: 'Kto potrafi wskrzeszać martwych sojuszników?',
+        questionJp: '死んだ味方を蘇生できるのは誰ですか？',
         order: 1,
       },
       {
@@ -104,6 +138,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Who attacks from a distance using a bow?',
         questionPl: 'Kto atakuje z dystansu przy użyciu łuku?',
+        questionJp: '弓を使って遠距離から攻撃するのは誰ですか？',
         order: 2,
       },
       {
@@ -112,6 +147,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Who specializes in poisons and silent eliminations?',
         questionPl: 'Kto specjalizuje się w truciznach i cichych eliminacjach?',
+        questionJp: '毒と静かな暗殺を専門とするのは誰ですか？',
         order: 3,
       },
       {
@@ -121,6 +157,7 @@ const main = async () => {
         questionEn: 'Who is the most famous Japanese stealth master?',
         questionPl:
           'Kto jest najsłynniejszym japońskim mistrzem skradania się?',
+        questionJp: '最も有名な日本の隠密の達人は誰ですか？',
         order: 1,
       },
       {
@@ -129,6 +166,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Who most often uses a crossbow?',
         questionPl: 'Kto najczęściej korzysta z kuszy?',
+        questionJp: '最も頻繁にクロスボウを使用するのは誰ですか？',
         order: 2,
       },
       {
@@ -139,6 +177,7 @@ const main = async () => {
           'Who stands on the front line, defending with a shield and heavy armor?',
         questionPl:
           'Kto stoi na pierwszej linii, broniąc tarczą i ciężką zbroją?',
+        questionJp: '盾と重い鎧で守りながら前線に立つのは誰ですか？',
         order: 3,
       },
       {
@@ -147,6 +186,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Who summons the forces of nature and heals with herbs?',
         questionPl: 'Kto przyzywa siły natury i leczy ziołami?',
+        questionJp: '自然の力を呼び出し、ハーブで癒すのは誰ですか？',
         order: 1,
       },
       {
@@ -155,6 +195,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Who casts offensive spells like fireball?',
         questionPl: 'Kto rzuca ofensywne czary, takie jak kula ognia?',
+        questionJp: '火の玉のような攻撃的な呪文を唱えるのは誰ですか？',
         order: 2,
       },
       {
@@ -163,14 +204,16 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Who fights with a katana, following the bushido code?',
         questionPl: 'Kto walczy kataną, kierując się kodeksem bushido?',
+        questionJp: '武士道の掟に従って刀で戦うのは誰ですか？',
         order: 3,
       },
       {
-        id: 20,
+        id: 10,
         lessonId: 3,
         type: 'SELECT',
         questionEn: 'Who quietly steals and opens locks without keys?',
         questionPl: 'Kto cicho kradnie i otwiera zamki bez klucza?',
+        questionJp: '静かに盗み、鍵なしで錠を開けるのは誰ですか？',
         order: 4,
       },
       {
@@ -179,6 +222,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Where do Greek gods live?',
         questionPl: 'Gdzie mieszkają greccy bogowie?',
+        questionJp: 'ギリシャの神々はどこに住んでいますか？',
         order: 1,
       },
       {
@@ -187,6 +231,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'What is the symbol of Zeus power?',
         questionPl: 'Co jest symbolem władzy Zeusa?',
+        questionJp: 'ゼウスの力の象徴は何ですか？',
         order: 2,
       },
       {
@@ -195,6 +240,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'What is Poseidons weapon?',
         questionPl: 'Co jest bronią Posejdona?',
+        questionJp: 'ポセイドンの武器は何ですか？',
         order: 3,
       },
       {
@@ -203,6 +249,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Who has snakes instead of hair?',
         questionPl: 'Kto ma węże zamiast włosów?',
+        questionJp: '髪の代わりに蛇を持っているのは誰ですか？',
         order: 1,
       },
       {
@@ -211,6 +258,7 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Who is the winged horse?',
         questionPl: 'Kto jest skrzydlatym koniem?',
+        questionJp: '翼のある馬は誰ですか？',
         order: 2,
       },
       {
@@ -219,488 +267,556 @@ const main = async () => {
         type: 'SELECT',
         questionEn: 'Who guards the entrance to the underworld?',
         questionPl: 'Kto strzeże wejścia do podziemi?',
+        questionJp: '冥界への入り口を守っているのは誰ですか？',
         order: 3,
       },
     ]);
 
+    // Oryginalne opcje dla wszystkich wyzwań
     await db.insert(schema.challengeOptions).values([
+      // Challenge 1 - Character Classes
       {
         challengeId: 1,
         imageSrc: '/fantasy/images/barbarian.png',
         textEn: 'Barbarian',
         textPl: 'Barbarzyńca',
+        textJp: 'バーバリアン',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/barbarian.mp3',
         audioSrcPl: '/fantasy/mp3/pl/barbarzynca.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/barbarian.mp3',
       },
       {
         challengeId: 1,
         imageSrc: '/fantasy/images/wizard.png',
         textEn: 'Wizard',
         textPl: 'Czarodziej',
+        textJp: 'ウィザード',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/wizard.mp3',
         audioSrcPl: '/fantasy/mp3/pl/czarodziej.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/wizard.mp3',
       },
       {
         challengeId: 1,
         imageSrc: '/fantasy/images/priest.png',
         textEn: 'Priest',
         textPl: 'Kapłan',
+        textJp: 'プリースト',
         correct: true,
         audioSrcEn: '/fantasy/mp3/en/priest.mp3',
         audioSrcPl: '/fantasy/mp3/pl/kaplan.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/priest.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 2 - Weapons and Combat
       {
         challengeId: 2,
         imageSrc: '/fantasy/images/swordsman.png',
         textEn: 'Swordsman',
         textPl: 'Szermierz',
+        textJp: 'ソードマン',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/swordsman.mp3',
         audioSrcPl: '/fantasy/mp3/pl/szermierz.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/swordsman.mp3',
       },
       {
         challengeId: 2,
         imageSrc: '/fantasy/images/archer.png',
         textEn: 'Archer',
         textPl: 'Łucznik',
+        textJp: 'アーチャー',
         correct: true,
         audioSrcEn: '/fantasy/mp3/en/archer.mp3',
         audioSrcPl: '/fantasy/mp3/pl/lucznik.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/archer.mp3',
       },
       {
         challengeId: 2,
         imageSrc: '/fantasy/images/monk.png',
         textEn: 'Monk',
         textPl: 'Mnich',
+        textJp: 'モンク',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/monk.mp3',
         audioSrcPl: '/fantasy/mp3/pl/mnich.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/monk.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 3 - Magic and Healing
       {
         challengeId: 3,
         imageSrc: '/fantasy/images/assassin.png',
         textEn: 'Assassin',
         textPl: 'Skrytobójca',
+        textJp: 'アサシン',
         correct: true,
         audioSrcEn: '/fantasy/mp3/en/assassin.mp3',
         audioSrcPl: '/fantasy/mp3/pl/skrytobojca.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/assassin.mp3',
       },
       {
         challengeId: 3,
         imageSrc: '/fantasy/images/barbarian.png',
         textEn: 'Barbarian',
         textPl: 'Barbarzyńca',
+        textJp: 'バーバリアン',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/barbarian.mp3',
         audioSrcPl: '/fantasy/mp3/pl/barbarzynca.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/barbarian.mp3',
       },
       {
         challengeId: 3,
         imageSrc: '/fantasy/images/knight.png',
         textEn: 'Knight',
         textPl: 'Rycerz',
+        textJp: 'ナイト',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/knight.mp3',
         audioSrcPl: '/fantasy/mp3/pl/rycerz.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/knight.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 4 - Stealth
       {
         challengeId: 4,
         imageSrc: '/fantasy/images/ninja.png',
         textEn: 'Ninja',
         textPl: 'Ninja',
+        textJp: '忍者',
         correct: true,
         audioSrcEn: '/fantasy/mp3/en/ninja.mp3',
         audioSrcPl: '/fantasy/mp3/pl/ninja.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/ninja.mp3',
       },
       {
         challengeId: 4,
         imageSrc: '/fantasy/images/thief.png',
         textEn: 'Thief',
         textPl: 'Złodziej',
+        textJp: 'シーフ',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/thief.mp3',
         audioSrcPl: '/fantasy/mp3/pl/zlodziej.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/thief.mp3',
       },
       {
         challengeId: 4,
         imageSrc: '/fantasy/images/assassin.png',
         textEn: 'Assassin',
         textPl: 'Skrytobójca',
+        textJp: 'アサシン',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/assassin.mp3',
         audioSrcPl: '/fantasy/mp3/pl/skrytobojca.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/assassin.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 5 - Crossbow
       {
         challengeId: 5,
         imageSrc: '/fantasy/images/crossbowman.png',
         textEn: 'Crossbowman',
         textPl: 'Kusznik',
+        textJp: 'クロスボウマン',
         correct: true,
         audioSrcEn: '/fantasy/mp3/en/crossbowman.mp3',
         audioSrcPl: '/fantasy/mp3/pl/kusznik.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/crossbowman.mp3',
       },
       {
         challengeId: 5,
         imageSrc: '/fantasy/images/archer.png',
         textEn: 'Archer',
         textPl: 'Łucznik',
+        textJp: 'アーチャー',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/archer.mp3',
         audioSrcPl: '/fantasy/mp3/pl/lucznik.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/archer.mp3',
       },
       {
         challengeId: 5,
         imageSrc: '/fantasy/images/gunner.png',
         textEn: 'Gunner',
         textPl: 'Strzelec',
+        textJp: 'ガンナー',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/gunner.mp3',
         audioSrcPl: '/fantasy/mp3/pl/strzelec.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/gunner.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 6 - Front Line Defense
       {
         challengeId: 6,
         imageSrc: '/fantasy/images/knight.png',
         textEn: 'Knight',
         textPl: 'Rycerz',
+        textJp: 'ナイト',
         correct: true,
         audioSrcEn: '/fantasy/mp3/en/knight.mp3',
         audioSrcPl: '/fantasy/mp3/pl/rycerz.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/knight.mp3',
       },
       {
         challengeId: 6,
         imageSrc: '/fantasy/images/swordsman.png',
         textEn: 'Swordsman',
         textPl: 'Szermierz',
+        textJp: 'ソードマン',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/swordsman.mp3',
         audioSrcPl: '/fantasy/mp3/pl/szermierz.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/swordsman.mp3',
       },
       {
         challengeId: 6,
         imageSrc: '/fantasy/images/barbarian.png',
         textEn: 'Barbarian',
         textPl: 'Barbarzyńca',
+        textJp: 'バーバリアン',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/barbarian.mp3',
         audioSrcPl: '/fantasy/mp3/pl/barbarzynca.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/barbarian.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 7 - Nature Magic
       {
         challengeId: 7,
         imageSrc: '/fantasy/images/wizard.png',
         textEn: 'Wizard',
         textPl: 'Czarodziej',
+        textJp: 'ウィザード',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/wizard.mp3',
         audioSrcPl: '/fantasy/mp3/pl/czarodziej.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/wizard.mp3',
       },
       {
         challengeId: 7,
         imageSrc: '/fantasy/images/druid.png',
         textEn: 'Druid',
         textPl: 'Druid',
+        textJp: 'ドルイド',
         correct: true,
         audioSrcEn: '/fantasy/mp3/en/druid.mp3',
         audioSrcPl: '/fantasy/mp3/pl/druid.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/druid.mp3',
       },
       {
         challengeId: 7,
         imageSrc: '/fantasy/images/priest.png',
         textEn: 'Priest',
         textPl: 'Kapłan',
+        textJp: 'プリースト',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/priest.mp3',
         audioSrcPl: '/fantasy/mp3/pl/kaplan.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/priest.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 8 - Offensive Magic
       {
         challengeId: 8,
         imageSrc: '/fantasy/images/priest.png',
         textEn: 'Priest',
         textPl: 'Kapłan',
+        textJp: 'プリースト',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/priest.mp3',
         audioSrcPl: '/fantasy/mp3/pl/kaplan.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/priest.mp3',
       },
       {
         challengeId: 8,
         imageSrc: '/fantasy/images/wizard.png',
         textEn: 'Wizard',
         textPl: 'Czarodziej',
+        textJp: 'ウィザード',
         correct: true,
         audioSrcEn: '/fantasy/mp3/en/wizard.mp3',
         audioSrcPl: '/fantasy/mp3/pl/czarodziej.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/wizard.mp3',
       },
       {
         challengeId: 8,
         imageSrc: '/fantasy/images/knight.png',
         textEn: 'Knight',
         textPl: 'Rycerz',
+        textJp: 'ナイト',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/knight.mp3',
         audioSrcPl: '/fantasy/mp3/pl/rycerz.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/knight.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 9 - Bushido Code
       {
         challengeId: 9,
         imageSrc: '/fantasy/images/ninja.png',
         textEn: 'Ninja',
         textPl: 'Ninja',
+        textJp: '忍者',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/ninja.mp3',
         audioSrcPl: '/fantasy/mp3/pl/ninja.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/ninja.mp3',
       },
       {
         challengeId: 9,
         imageSrc: '/fantasy/images/samurai.png',
         textEn: 'Samurai',
         textPl: 'Samuraj',
+        textJp: 'サムライ',
         correct: true,
         audioSrcEn: '/fantasy/mp3/en/samurai.mp3',
         audioSrcPl: '/fantasy/mp3/pl/samurai.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/samurai.mp3',
       },
       {
         challengeId: 9,
         imageSrc: '/fantasy/images/swordsman.png',
         textEn: 'Swordsman',
         textPl: 'Szermierz',
+        textJp: 'ソードマン',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/swordsman.mp3',
         audioSrcPl: '/fantasy/mp3/pl/szermierz.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/swordsman.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 10 - Thievery
       {
-        challengeId: 20,
+        challengeId: 10,
         imageSrc: '/fantasy/images/assassin.png',
         textEn: 'Assassin',
         textPl: 'Skrytobójca',
+        textJp: 'アサシン',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/assassin.mp3',
         audioSrcPl: '/fantasy/mp3/pl/skrytobojca.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/assassin.mp3',
       },
       {
-        challengeId: 20,
+        challengeId: 10,
         imageSrc: '/fantasy/images/thief.png',
         textEn: 'Thief',
         textPl: 'Złodziej',
+        textJp: 'シーフ',
         correct: true,
         audioSrcEn: '/fantasy/mp3/en/thief.mp3',
         audioSrcPl: '/fantasy/mp3/pl/zlodziej.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/thief.mp3',
       },
       {
-        challengeId: 20,
+        challengeId: 10,
         imageSrc: '/fantasy/images/adventurer.png',
         textEn: 'Adventurer',
         textPl: 'Poszukiwacz przygód',
+        textJp: '冒険者',
         correct: false,
         audioSrcEn: '/fantasy/mp3/en/adventurer.mp3',
         audioSrcPl: '/fantasy/mp3/pl/poszukiwacz_przygod.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/adventurer.mp3',
       },
-    ]);
-
-    // Opcje dla wyzwań mitologii greckiej
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 11 - Greek Gods Home
       {
         challengeId: 11,
         imageSrc: '/mythology/images/olympus.png',
         textEn: 'Olympus',
         textPl: 'Olimp',
+        textJp: 'オリンポス',
         correct: true,
         audioSrcEn: '/mythology/mp3/en/olympus.mp3',
         audioSrcPl: '/mythology/mp3/pl/olimp.mp3',
+        audioSrcJp: '/mythology/mp3/jp/olympus.mp3',
       },
       {
         challengeId: 11,
         imageSrc: '/mythology/images/ancient-pillar.png',
         textEn: 'Ancient Pillar',
         textPl: 'Starożytny filar',
+        textJp: '古代の柱',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/ancient-pillar.mp3',
         audioSrcPl: '/mythology/mp3/pl/starozytny-filar.mp3',
+        audioSrcJp: '/mythology/mp3/jp/ancient-pillar.mp3',
       },
       {
         challengeId: 11,
         imageSrc: '/mythology/images/pyre.png',
         textEn: 'Pyre',
         textPl: 'Stos pogrzebowy',
+        textJp: '火葬の薪',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/pyre.mp3',
         audioSrcPl: '/mythology/mp3/pl/stos-pogrzebowy.mp3',
+        audioSrcJp: '/mythology/mp3/jp/pyre.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 12 - Zeus Symbol
       {
         challengeId: 12,
         imageSrc: '/mythology/images/lightning.png',
         textEn: 'Lightning',
         textPl: 'Błyskawica',
+        textJp: '稲妻',
         correct: true,
         audioSrcEn: '/mythology/mp3/en/lightning.mp3',
         audioSrcPl: '/mythology/mp3/pl/blyskawica.mp3',
+        audioSrcJp: '/mythology/mp3/jp/lightning.mp3',
       },
       {
         challengeId: 12,
         imageSrc: '/mythology/images/trident.png',
         textEn: 'Trident',
         textPl: 'Trójząb',
+        textJp: '三叉の槍',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/trident.mp3',
         audioSrcPl: '/mythology/mp3/pl/trojzab.mp3',
+        audioSrcJp: '/mythology/mp3/jp/trident.mp3',
       },
       {
         challengeId: 12,
         imageSrc: '/mythology/images/horn.png',
         textEn: 'Horn',
         textPl: 'Róg',
+        textJp: '角',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/horn.mp3',
         audioSrcPl: '/mythology/mp3/pl/rog.mp3',
+        audioSrcJp: '/mythology/mp3/jp/horn.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 13 - Poseidon Weapon
       {
         challengeId: 13,
         imageSrc: '/mythology/images/trident.png',
         textEn: 'Trident',
         textPl: 'Trójząb',
+        textJp: '三叉の槍',
         correct: true,
         audioSrcEn: '/mythology/mp3/en/trident.mp3',
         audioSrcPl: '/mythology/mp3/pl/trojzab.mp3',
+        audioSrcJp: '/mythology/mp3/jp/trident.mp3',
       },
       {
         challengeId: 13,
         imageSrc: '/mythology/images/lightning.png',
         textEn: 'Lightning',
         textPl: 'Błyskawica',
+        textJp: '稲妻',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/lightning.mp3',
         audioSrcPl: '/mythology/mp3/pl/blyskawica.mp3',
+        audioSrcJp: '/mythology/mp3/jp/lightning.mp3',
       },
       {
         challengeId: 13,
         imageSrc: '/mythology/images/horn.png',
         textEn: 'Horn',
         textPl: 'Róg',
+        textJp: '角',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/horn.mp3',
         audioSrcPl: '/mythology/mp3/pl/rog.mp3',
+        audioSrcJp: '/mythology/mp3/jp/horn.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 14 - Medusa
       {
         challengeId: 14,
         imageSrc: '/mythology/images/medusa.png',
         textEn: 'Medusa',
         textPl: 'Meduza',
+        textJp: 'メデューサ',
         correct: true,
         audioSrcEn: '/mythology/mp3/en/medusa.mp3',
         audioSrcPl: '/mythology/mp3/pl/meduza.mp3',
+        audioSrcJp: '/mythology/mp3/jp/medusa.mp3',
       },
       {
         challengeId: 14,
         imageSrc: '/mythology/images/cerberus.png',
         textEn: 'Cerberus',
         textPl: 'Cerber',
+        textJp: 'ケルベロス',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/cerberus.mp3',
         audioSrcPl: '/mythology/mp3/pl/cerber.mp3',
+        audioSrcJp: '/mythology/mp3/jp/cerberus.mp3',
       },
       {
         challengeId: 14,
         imageSrc: '/mythology/images/cyclops.png',
         textEn: 'Cyclops',
         textPl: 'Cyklop',
+        textJp: 'サイクロプス',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/cyclops.mp3',
         audioSrcPl: '/mythology/mp3/pl/cyklop.mp3',
+        audioSrcJp: '/mythology/mp3/jp/cyclops.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 15 - Pegasus
       {
         challengeId: 15,
         imageSrc: '/mythology/images/pegasus.png',
         textEn: 'Pegasus',
         textPl: 'Pegaz',
+        textJp: 'ペガサス',
         correct: true,
         audioSrcEn: '/mythology/mp3/en/pegasus.mp3',
         audioSrcPl: '/mythology/mp3/pl/pegaz.mp3',
+        audioSrcJp: '/mythology/mp3/jp/pegasus.mp3',
       },
       {
         challengeId: 15,
         imageSrc: '/mythology/images/sphinx.png',
         textEn: 'Sphinx',
         textPl: 'Sfinks',
+        textJp: 'スフィンクス',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/sphinx.mp3',
         audioSrcPl: '/mythology/mp3/pl/sfinks.mp3',
+        audioSrcJp: '/mythology/mp3/jp/sphinx.mp3',
       },
       {
         challengeId: 15,
         imageSrc: '/mythology/images/cerberus.png',
         textEn: 'Cerberus',
         textPl: 'Cerber',
+        textJp: 'ケルベロス',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/cerberus.mp3',
         audioSrcPl: '/mythology/mp3/pl/cerber.mp3',
+        audioSrcJp: '/mythology/mp3/jp/cerberus.mp3',
       },
-    ]);
-
-    await db.insert(schema.challengeOptions).values([
+      // Challenge 16 - Underworld Guardian
       {
         challengeId: 16,
         imageSrc: '/mythology/images/cerberus.png',
         textEn: 'Cerberus',
         textPl: 'Cerber',
+        textJp: 'ケルベロス',
         correct: true,
         audioSrcEn: '/mythology/mp3/en/cerberus.mp3',
         audioSrcPl: '/mythology/mp3/pl/cerber.mp3',
+        audioSrcJp: '/mythology/mp3/jp/cerberus.mp3',
       },
       {
         challengeId: 16,
         imageSrc: '/mythology/images/cyclops.png',
         textEn: 'Cyclops',
         textPl: 'Cyklop',
+        textJp: 'サイクロプス',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/cyclops.mp3',
         audioSrcPl: '/mythology/mp3/pl/cyklop.mp3',
+        audioSrcJp: '/mythology/mp3/jp/cyclops.mp3',
       },
       {
         challengeId: 16,
         imageSrc: '/mythology/images/sphinx.png',
         textEn: 'Sphinx',
         textPl: 'Sfinks',
+        textJp: 'スフィンクス',
         correct: false,
         audioSrcEn: '/mythology/mp3/en/sphinx.mp3',
         audioSrcPl: '/mythology/mp3/pl/sfinks.mp3',
+        audioSrcJp: '/mythology/mp3/jp/sphinx.mp3',
       },
     ]);
 

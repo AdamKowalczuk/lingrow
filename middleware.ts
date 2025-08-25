@@ -33,5 +33,5 @@ export default clerkMiddleware(async (auth, req) => {
 });
 
 export const config = {
-  matcher: ['/', '/(pl|en)/:path*'],
+  matcher: ['/', '/(pl|en|jp)/:path*'],
 };
