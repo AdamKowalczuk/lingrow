@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import React, { useTransition } from 'react';
 import { toast } from 'sonner';
 
@@ -18,6 +18,7 @@ type Props = {
 
 const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
   const [pending, startTransition] = useTransition();
+  const locale = useLocale();
   const t = useTranslations('shopItems');
   const tCommon = useTranslations('common');
 
@@ -31,7 +32,7 @@ const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
 
   const onUpgrade = () => {
     startTransition(async () => {
-      createStripeUrl()
+      createStripeUrl(locale)
         .then(res => {
           if (res.data) {
             window.location.href = res.data;

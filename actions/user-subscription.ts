@@ -6,9 +6,8 @@ import { getUserSubscription } from '@/db/queries';
 import { stripe } from '@/lib/stripe';
 import { absoluteUrl } from '@/lib/utils';
 
-const returnUrl = absoluteUrl('/shop');
-
-export const createStripeUrl = async () => {
+export const createStripeUrl = async (locale: string = 'en') => {
+  const returnUrl = absoluteUrl(`/${locale}/shop`);
   const { userId } = await auth();
   const user = await currentUser();
   if (!userId || !user) {

@@ -34,7 +34,7 @@ const LessonIdPage = async ({ params }: Props) => {
   ]);
 
   if (!lesson || !userProgress) {
-    redirect('/learn');
+    redirect(`/${locale}/learn`);
   }
 
   const initialPercentage =

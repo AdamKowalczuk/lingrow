@@ -36,7 +36,7 @@ const Quests = ({ points, questProgress, onDataUpdate }: Props) => {
   const handleClaimReward = (questTitle: string) => {
     startTransition(async () => {
       try {
-        const result = await claimQuestReward(questTitle);
+        const result = await claimQuestReward(questTitle, locale);
         if (result.success) {
           if (onDataUpdate) {
             onDataUpdate();
