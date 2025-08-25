@@ -6,7 +6,7 @@ import React, { useTransition } from 'react';
 import { toast } from 'sonner';
 
 import { upsertUserProgress } from '@/actions/user-progress';
-import { courses, userProgress } from '@/db/schema';
+import { courses } from '@/db/schema';
 import { useLocale } from '@/hooks/use-locale';
 import { useTargetLanguage } from '@/store/use-target-language';
 
@@ -14,10 +14,9 @@ import Card from './card';
 
 type Props = {
   courses: (typeof courses.$inferSelect)[];
-  activeCourseId?: (typeof userProgress.$inferSelect)['activeCourseId'];
 };
 
-const List = ({ courses, activeCourseId }: Props) => {
+const List = ({ courses }: Props) => {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const tCommon = useTranslations('common');
