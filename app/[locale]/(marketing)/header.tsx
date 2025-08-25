@@ -21,11 +21,17 @@ const Header = () => {
   const t = useTranslations('header');
   const locale = useLocale();
   return (
-    <header className="h-20 w-full border-b-2 border-slate-200 px-4">
+    <header className="h-20 w-full border-b-2 border-slate-200 px-2 sm:px-4">
       <div className="lg:max-w-screen-lg mx-auto flex items-center justify-between h-full">
-        <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
-          <Image src="/logo.png" alt="mascot" width={40} height={40} />
-          <h1 className="text-2xl font-extrabold text-indigo-500 tracking-wide">
+        <div className="pt-8 pl-2 sm:pl-4 pb-7 flex items-center gap-x-2 sm:gap-x-3">
+          <Image
+            src="/logo.png"
+            alt="logo"
+            width={32}
+            height={32}
+            className="sm:w-10 sm:h-10"
+          />
+          <h1 className="text-lg sm:text-2xl font-extrabold text-indigo-500 tracking-wide">
             Lingrow
           </h1>
         </div>
@@ -37,12 +43,16 @@ const Header = () => {
             <UserButton />
           </SignedIn>
           <SignedOut>
-            <div className="flex gap-2">
+            <div className="flex gap-1 sm:gap-2">
               <SignInButton
                 mode="modal"
                 fallbackRedirectUrl={`/${locale}/learn`}
               >
-                <Button size="lg" variant="ghost">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="text-xs sm:text-sm px-2 sm:px-4"
+                >
                   {t('login')}
                 </Button>
               </SignInButton>
@@ -50,7 +60,11 @@ const Header = () => {
                 mode="modal"
                 fallbackRedirectUrl={`/${locale}/learn`}
               >
-                <Button size="lg" variant="primary">
+                <Button
+                  size="sm"
+                  variant="primary"
+                  className="text-xs sm:text-sm px-2 sm:px-4"
+                >
                   {t('signUp')}
                 </Button>
               </SignUpButton>
