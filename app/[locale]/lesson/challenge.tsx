@@ -27,10 +27,10 @@ const Challenge = ({
   return (
     <div
       className={cn(
-        'grid gap-2',
+        'grid gap-2 sm:gap-3 lg:gap-4',
         type === 'ASSIST' && 'grid-cols-1',
         type === 'SELECT' &&
-          'grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]',
+          'grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]',
       )}
     >
       {options.map((option, i) => {

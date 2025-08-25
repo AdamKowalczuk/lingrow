@@ -43,7 +43,7 @@ const Card = ({
     <div
       onClick={handleClick}
       className={cn(
-        'h-full border-2 rounded-xl border-b-4 hover:bg-black/5 p-4 lg:p-6  cursor-pointer active:border-b-2',
+        'h-full border-2 rounded-xl border-b-4 hover:bg-black/5 p-3 sm:p-4 lg:p-6 cursor-pointer active:border-b-2',
         selected && 'border-indigo-300 bg-indigo-100 hover:bg-indigo-100',
         selected &&
           status === 'correct' &&
@@ -57,8 +57,10 @@ const Card = ({
     >
       {audio}
       {imageSrc && (
-        <div className="relative aspect-square mb-4 max-h-[80px] lg:max-h-[150px] w-full">
-          <Image src={imageSrc} fill alt={text} />
+        <div className="flex justify-center mb-4">
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden">
+            <Image src={imageSrc} fill alt={text} className="object-cover" />
+          </div>
         </div>
       )}
       <div
