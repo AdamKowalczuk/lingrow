@@ -2,12 +2,12 @@
 
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 import { Button } from '@/components/ui/button';
 import { useLocale } from '@/hooks/use-locale';
 import { useTargetLanguage } from '@/store/use-target-language';
-import { useTranslations } from 'next-intl';
 
 export const Header = () => {
   const locale = useLocale();
