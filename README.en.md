@@ -216,6 +216,22 @@ The panel uses React Admin with automatic CRUD form generation.
 
 ## 📸 Screenshots
 
+### 🎓 Homepage and learning
+
+![Homepage](screenshots/homepage.png)
+![Learn page](screenshots/learn-page.png)
+![Lesson page](screenshots/lesson-page.png)
+
+### 🎮 Gamification elements
+
+![Leaderboard](screenshots/leaderboard-page.png)
+![Quests](screenshots/quests-page.png)
+![Shop](screenshots/shop-page.png)
+
+### 🔧 Admin panel
+
+![Admin panel](screenshots/admin-panel.png)
+
 ## 📝 License
 
 This project is available under the MIT license. See the `LICENSE` file for details.

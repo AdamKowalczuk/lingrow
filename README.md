@@ -210,6 +210,22 @@ Panel wykorzystuje React Admin z automatycznym generowaniem formularzy CRUD.
 
 ## 📸 Screenshots
 
+### 🎓 Strona główna i nauka
+
+![Strona główna](screenshots/homepage.png)
+![Strona nauki](screenshots/learn-page.png)
+![Lekcja](screenshots/lesson-page.png)
+
+### 🎮 Elementy grywalizacji
+
+![Ranking](screenshots/leaderboard-page.png)
+![Zadania](screenshots/quests-page.png)
+![Sklep](screenshots/shop-page.png)
+
+### 🔧 Panel administracyjny
+
+![Panel admin](screenshots/admin-panel.png)
+
 ## 📝 Licencja
 
 Ten projekt jest dostępny na licencji MIT. Zobacz plik `LICENSE` dla szczegółów.
