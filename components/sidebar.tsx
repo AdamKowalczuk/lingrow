@@ -27,6 +27,7 @@ type Props = {
 
 export const Sidebar = ({ className, onItemClick }: Props) => {
   const t = useTranslations('sidebar');
+  const tFooter = useTranslations('footer');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -83,31 +84,26 @@ export const Sidebar = ({ className, onItemClick }: Props) => {
 
       {/* Language Switcher */}
       <div className="px-4 pb-4">
-        <div className="flex flex-col gap-y-2">
-          <div className="text-xs font-semibold text-neutral-600 uppercase tracking-wide">
-            {t('language')}
-          </div>
-          <Select
-            value={locale}
-            onValueChange={value => {
-              const newPath = pathname.replace(/^\/[a-z]{2}/, `/${value}`);
-              router.push(newPath);
-              // Zamknij sidebar po zmianie języka na mobile
-              if (onItemClick) {
-                onItemClick();
-              }
-            }}
-          >
-            <SelectTrigger className="w-full bg-white/80 backdrop-blur-sm border-gray-200 hover:bg-white transition-colors">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="pl">🇵🇱 Polski</SelectItem>
-              <SelectItem value="en">🇺🇸 English</SelectItem>
-              <SelectItem value="jp">🇯🇵 日本語</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+        <Select
+          value={locale}
+          onValueChange={value => {
+            const newPath = pathname.replace(/^\/[a-z]{2}/, `/${value}`);
+            router.push(newPath);
+            // Zamknij sidebar po zmianie języka na mobile
+            if (onItemClick) {
+              onItemClick();
+            }
+          }}
+        >
+          <SelectTrigger className="w-full bg-white/80 backdrop-blur-sm border-gray-200 hover:bg-white transition-colors">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="pl">🇵🇱 {tFooter('polish')}</SelectItem>
+            <SelectItem value="en">🇬🇧 {tFooter('english')}</SelectItem>
+            <SelectItem value="jp">🇯🇵 {tFooter('japanese')}</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
       <div className="p-4">
