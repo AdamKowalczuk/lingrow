@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import React from 'react';
 
-import { getCourses } from '@/db/queries';
+import { getCourses, getUserProgress } from '@/db/queries';
 import { routing } from '@/i18n/routing';
 
 import List from './list';
@@ -16,6 +16,7 @@ const CoursesPage = async ({
   params: Promise<{ locale: string }>;
 }) => {
   const { locale } = await params;
+  const userProgress = await getUserProgress();
 
   setRequestLocale(locale);
 
@@ -61,7 +62,10 @@ const CoursesPage = async ({
         </div>
       </div>
 
-      <List courses={courses} />
+      <List
+        courses={courses}
+        activeCourseId={userProgress?.activeCourseId ?? null}
+      />
     </div>
   );
 };

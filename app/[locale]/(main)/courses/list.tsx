@@ -14,9 +14,10 @@ import Card from './card';
 
 type Props = {
   courses: (typeof courses.$inferSelect)[];
+  activeCourseId: number | null;
 };
 
-const List = ({ courses }: Props) => {
+const List = ({ courses, activeCourseId }: Props) => {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const tCommon = useTranslations('common');
@@ -27,8 +28,9 @@ const List = ({ courses }: Props) => {
     if (pending) return;
 
     setTargetLanguage(course.targetLanguage as 'pl' | 'en' | 'jp');
+    console.log(targetLanguage);
 
-    if (targetLanguage) {
+    if (targetLanguage && activeCourseId) {
       return router.push(`/${locale}/learn`);
     }
 
