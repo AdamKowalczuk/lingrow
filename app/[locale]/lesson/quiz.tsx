@@ -193,9 +193,11 @@ const Quiz = ({
   const title =
     challenge.type === 'ASSIST'
       ? t('quiz.selectCorrectMeaning')
-      : locale === 'pl'
-        ? challenge.questionPl
-        : challenge.questionEn;
+      : challenge.type === 'FILL_BLANK'
+        ? 'Wybierz słowo, które pasuje do luki w tekście'
+        : locale === 'pl'
+          ? challenge.questionPl
+          : challenge.questionEn;
   return (
     <>
       {incorrectAudio}
@@ -242,6 +244,7 @@ const Quiz = ({
                 selectedOption={selectedOption}
                 disabled={pending}
                 type={challenge.type}
+                challenge={challenge}
               />
             </div>
           </div>

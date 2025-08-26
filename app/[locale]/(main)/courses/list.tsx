@@ -58,7 +58,7 @@ const List = ({ courses, activeCourseId }: Props) => {
   };
 
   return (
-    <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6">
+    <div className="pt-3 sm:pt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-3 sm:gap-6">
       {courses.map(course => (
         <Card
           key={course.id}

@@ -46,6 +46,10 @@ const ChallengeEdit = () => {
               id: 'LISTEN',
               name: 'LISTEN',
             },
+            {
+              id: 'FILL_BLANK',
+              name: 'FILL_BLANK',
+            },
           ]}
           validate={[required()]}
         />

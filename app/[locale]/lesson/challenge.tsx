@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import AudioPlayer from '@/components/audio-player';
+import FillBlankGame from '@/components/fill-blank-game';
 import { challengeOptions, challenges } from '@/db/schema';
 import { cn } from '@/lib/utils';
 import { useTargetLanguage } from '@/store/use-target-language';
@@ -16,6 +16,7 @@ type Props = {
   selectedOption?: number;
   disabled?: boolean;
   type: (typeof challenges.$inferSelect)['type'];
+  challenge: typeof challenges.$inferSelect;
 };
 
 const Challenge = ({
@@ -25,6 +26,7 @@ const Challenge = ({
   selectedOption,
   disabled,
   type,
+  challenge,
 }: Props) => {
   const { targetLanguage } = useTargetLanguage();
 
@@ -57,6 +59,47 @@ const Challenge = ({
         return option.audioSrcEn;
     }
   };
+
+  // For FILL_BLANK type, we need to show text with a blank and options
+  if (type === 'FILL_BLANK') {
+    // Find the correct answer (the one marked as correct)
+    const correctOption = options.find(option => option.correct);
+    const correctAnswerId = correctOption?.id || options[0]?.id || 0;
+
+    // Get text with blank from database based on target language
+    const getFillBlankTextByTargetLanguage = () => {
+      switch (targetLanguage) {
+        case 'pl':
+          return challenge.questionPl;
+        case 'jp':
+          return challenge.questionJp;
+        default:
+          return challenge.questionEn;
+      }
+    };
+
+    const textWithBlank =
+      getFillBlankTextByTargetLanguage() ||
+      'The _____ is a powerful character in fantasy.';
+    const blankPosition = 1; // Position of the blank (0-based index)
+
+    return (
+      <FillBlankGame
+        text={textWithBlank}
+        blankPosition={blankPosition}
+        options={options.map(option => ({
+          id: option.id,
+          text: getTextByTargetLanguage(option),
+          imageSrc: option.imageSrc,
+          audioSrc: getAudioSrcByTargetLanguage(option),
+        }))}
+        correctAnswerId={correctAnswerId}
+        onSelect={onSelect}
+        status={status}
+        disabled={disabled}
+      />
+    );
+  }
 
   return (
     <div

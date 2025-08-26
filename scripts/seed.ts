@@ -133,6 +133,7 @@ const main = async () => {
         audioSrcEn: '/fantasy/questions/en/listen-question-1.mp3',
         audioSrcPl: '/fantasy/questions/pl/listen-question-1.mp3',
         audioSrcJp: '/fantasy/questions/jp/listen-question-1.mp3',
+
         order: 1,
       },
       {
@@ -146,6 +147,7 @@ const main = async () => {
         audioSrcEn: '/fantasy/questions/en/listen-question-2.mp3',
         audioSrcPl: '/fantasy/questions/pl/listen-question-2.mp3',
         audioSrcJp: '/fantasy/questions/jp/listen-question-2.mp3',
+
         order: 2,
       },
       {
@@ -160,45 +162,46 @@ const main = async () => {
         audioSrcEn: '/fantasy/questions/en/listen-question-3.mp3',
         audioSrcPl: '/fantasy/questions/pl/listen-question-3.mp3',
         audioSrcJp: '/fantasy/questions/jp/listen-question-3.mp3',
+
         order: 3,
       },
       {
         id: 4,
         lessonId: 2,
-        type: 'SELECT',
-        questionEn: 'Who is the most famous Japanese stealth master?',
-        questionPl:
-          'Kto jest najsłynniejszym japońskim mistrzem skradania się?',
-        questionJp: '最も有名な日本の隠密の達人は誰ですか？',
+        type: 'FILL_BLANK',
+        questionEn: 'The _____ is a Japanese warrior trained in martial arts.',
+        questionPl: '_____ to japoński wojownik wyszkolony w sztukach walki.',
+        questionJp: '_____ は武道を学んだ日本の戦士です。',
         audioSrcEn: null,
         audioSrcPl: null,
         audioSrcJp: null,
+
         order: 1,
       },
       {
         id: 5,
         lessonId: 2,
-        type: 'SELECT',
-        questionEn: 'Who most often uses a crossbow?',
-        questionPl: 'Kto najczęściej korzysta z kuszy?',
-        questionJp: '最も頻繁にクロスボウを使用するのは誰ですか？',
+        type: 'FILL_BLANK',
+        questionEn: 'The _____ uses a crossbow to attack from a distance.',
+        questionPl: '_____ używa kuszy do atakowania z dystansu.',
+        questionJp: '_____ はクロスボウを使って遠距離から攻撃します。',
         audioSrcEn: null,
         audioSrcPl: null,
         audioSrcJp: null,
+
         order: 2,
       },
       {
         id: 6,
         lessonId: 2,
-        type: 'SELECT',
-        questionEn:
-          'Who stands on the front line, defending with a shield and heavy armor?',
-        questionPl:
-          'Kto stoi na pierwszej linii, broniąc tarczą i ciężką zbroją?',
-        questionJp: '盾と重い鎧で守りながら前線に立つのは誰ですか？',
+        type: 'FILL_BLANK',
+        questionEn: 'The _____ stands on the front line with heavy armor.',
+        questionPl: '_____ stoi na pierwszej linii w ciężkiej zbroi.',
+        questionJp: '_____ は重い鎧を着て前線に立っています。',
         audioSrcEn: null,
         audioSrcPl: null,
         audioSrcJp: null,
+
         order: 3,
       },
       {
@@ -211,6 +214,7 @@ const main = async () => {
         audioSrcEn: null,
         audioSrcPl: null,
         audioSrcJp: null,
+
         order: 1,
       },
       {
@@ -259,6 +263,7 @@ const main = async () => {
         audioSrcEn: null,
         audioSrcPl: null,
         audioSrcJp: null,
+
         order: 1,
       },
       {
@@ -295,6 +300,7 @@ const main = async () => {
         audioSrcEn: null,
         audioSrcPl: null,
         audioSrcJp: null,
+
         order: 1,
       },
       {
@@ -452,14 +458,14 @@ const main = async () => {
       },
       {
         challengeId: 4,
-        imageSrc: '/fantasy/images/assassin.png',
-        textEn: 'Assassin',
-        textPl: 'Skrytobójca',
-        textJp: 'アサシン',
+        imageSrc: '/fantasy/images/gunner.png',
+        textEn: 'Gunner',
+        textPl: 'Strzelec',
+        textJp: 'ガンナー',
         correct: false,
-        audioSrcEn: '/fantasy/mp3/en/assassin.mp3',
-        audioSrcPl: '/fantasy/mp3/pl/skrytobojca.mp3',
-        audioSrcJp: '/fantasy/mp3/jp/assassin.mp3',
+        audioSrcEn: '/fantasy/mp3/en/gunner.mp3',
+        audioSrcPl: '/fantasy/mp3/pl/strzelec.mp3',
+        audioSrcJp: '/fantasy/mp3/jp/gunner.mp3',
       },
       // Challenge 5 - Crossbow
       {
