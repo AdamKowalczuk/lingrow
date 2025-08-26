@@ -1,3 +1,4 @@
+import { Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import React, { useCallback } from 'react';
 import { useAudio, useKey } from 'react-use';
@@ -54,9 +55,11 @@ const Card = ({
           'border-rose-400 bg-rose-50 hover:bg-rose-50 shadow-md',
         disabled && 'pointer-events-none hover:bg-white opacity-60',
         type === 'ASSIST' && 'lg:p-3 w-full',
+        type === 'LISTEN' && 'lg:p-4 w-full',
       )}
     >
       {audio}
+
       {imageSrc && (
         <div className="flex justify-center mb-4">
           <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-lg overflow-hidden">

@@ -89,6 +89,10 @@
       "completedLesson": "Ukończyłeś lekcję.",
       "somethingWentWrong": "Coś poszło nie tak. Spróbuj ponownie."
     },
+    "questionBubble": {
+      "listenInstruction": "Posłuchaj audio i wybierz poprawną odpowiedź",
+      "playAudio": "Odtwórz audio"
+    },
     "footer": {
       "nicelyDone": "Świetnie!",
       "tryAgain": "Spróbuj ponownie.",

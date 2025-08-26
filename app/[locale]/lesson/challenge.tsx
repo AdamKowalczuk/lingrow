@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import AudioPlayer from '@/components/audio-player';
 import { challengeOptions, challenges } from '@/db/schema';
 import { cn } from '@/lib/utils';
 import { useTargetLanguage } from '@/store/use-target-language';
@@ -63,6 +64,8 @@ const Challenge = ({
         'grid gap-2 sm:gap-3 lg:gap-4',
         type === 'ASSIST' && 'grid-cols-1',
         type === 'SELECT' &&
+          'grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]',
+        type === 'LISTEN' &&
           'grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]',
       )}
     >

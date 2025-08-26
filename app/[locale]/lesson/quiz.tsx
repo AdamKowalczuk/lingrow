@@ -14,6 +14,7 @@ import { challengeOptions, challenges, userSubscription } from '@/db/schema';
 import { useLocale } from '@/hooks/use-locale';
 import { useHeartsModal } from '@/store/use-hearts-modal';
 import { usePracticeModal } from '@/store/use-practice-modal';
+import { useTargetLanguage } from '@/store/use-target-language';
 
 import Challenge from './challenge';
 import Footer from './footer';
@@ -45,7 +46,8 @@ const Quiz = ({
 }: Props) => {
   const { open: openHeartsModal } = useHeartsModal();
   const { open: openPracticeModal } = usePracticeModal();
-  const t = useTranslations('lesson.quiz');
+  const { targetLanguage } = useTargetLanguage();
+  const t = useTranslations('lesson');
 
   useMount(() => {
     if (initialPercentage === 100) {
@@ -124,7 +126,7 @@ const Quiz = ({
             }
           })
           .catch(() => {
-            toast.error(t('somethingWentWrong'));
+            toast.error(t('quiz.somethingWentWrong'));
           });
       });
     } else {
@@ -142,7 +144,7 @@ const Quiz = ({
               setHearts(prev => Math.max(prev - 1, 0));
             }
           })
-          .catch(() => toast.error(t('somethingWentWrong')));
+          .catch(() => toast.error(t('quiz.somethingWentWrong')));
       });
     }
   };
@@ -172,7 +174,7 @@ const Quiz = ({
             width={200}
           />
           <h1 className="tex-xl lg:text-3xl font-bold text-neutral-700">
-            {t('greatJob')} <br /> {t('completedLesson')}
+            {t('quiz.greatJob')} <br /> {t('quiz.completedLesson')}
           </h1>
           <div className="flex items-stretch gap-x-4 w-full">
             <ResultCard variant="points" value={challenges.length * 10} />
@@ -190,7 +192,7 @@ const Quiz = ({
 
   const title =
     challenge.type === 'ASSIST'
-      ? t('selectCorrectMeaning')
+      ? t('quiz.selectCorrectMeaning')
       : locale === 'pl'
         ? challenge.questionPl
         : challenge.questionEn;
@@ -206,9 +208,11 @@ const Quiz = ({
       <div className="flex-1">
         <div className="h-full flex items-center justify-center">
           <div className="lg:min-h-[350px] lg:w-[600px] w-full px-6 lg:px-0 flex flex-col gap-y-12">
-            <h1 className="text-lg lg:text-3xl text-center font-bold text-gray-800 leading-tight">
-              {title}
-            </h1>
+            {challenge.type !== 'LISTEN' && (
+              <h1 className="text-lg lg:text-3xl text-center font-bold text-gray-800 leading-tight">
+                {title}
+              </h1>
+            )}
             <div>
               {challenge.type === 'ASSIST' && (
                 <QuestionBubble
@@ -216,6 +220,18 @@ const Quiz = ({
                     locale === 'pl'
                       ? challenge.questionPl
                       : challenge.questionEn
+                  }
+                />
+              )}
+              {challenge.type === 'LISTEN' && (
+                <QuestionBubble
+                  question={t('questionBubble.listenInstruction')}
+                  audioSrc={
+                    targetLanguage === 'pl'
+                      ? challenge.audioSrcPl
+                      : targetLanguage === 'jp'
+                        ? challenge.audioSrcJp
+                        : challenge.audioSrcEn
                   }
                 />
               )}

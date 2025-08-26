@@ -27,6 +27,10 @@ const ChallengeList = () => {
               id: 'ASSIST',
               name: 'ASSIST',
             },
+            {
+              id: 'LISTEN',
+              name: 'LISTEN',
+            },
           ]}
         />
         <ReferenceField source="lessonId" reference="lessons" label="Lesson" />

@@ -89,6 +89,10 @@
       "completedLesson": "レッスンを完了しました。",
       "somethingWentWrong": "問題が発生しました。もう一度お試しください。"
     },
+    "questionBubble": {
+      "listenInstruction": "音声を聞いて正しい答えを選んでください",
+      "playAudio": "音声を再生"
+    },
     "footer": {
       "nicelyDone": "よくできました！",
       "tryAgain": "もう一度試す。",

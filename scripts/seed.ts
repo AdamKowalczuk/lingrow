@@ -126,28 +126,40 @@ const main = async () => {
       {
         id: 1,
         lessonId: 1,
-        type: 'SELECT',
-        questionEn: 'Who can resurrect dead allies?',
-        questionPl: 'Kto potrafi wskrzeszać martwych sojuszników?',
-        questionJp: '死んだ味方を蘇生できるのは誰ですか？',
+        type: 'LISTEN',
+        questionEn: 'I can heal wounds and resurrect the dead. Who am I?',
+        questionPl: 'Potrafię leczyć rany i wskrzeszać zmarłych. Kim jestem?',
+        questionJp: '傷を癒し、死者を蘇生することができます。私は誰ですか？',
+        audioSrcEn: '/fantasy/questions/en/listen-question-1.mp3',
+        audioSrcPl: '/fantasy/questions/pl/listen-question-1.mp3',
+        audioSrcJp: '/fantasy/questions/jp/listen-question-1.mp3',
         order: 1,
       },
       {
         id: 2,
         lessonId: 1,
-        type: 'SELECT',
-        questionEn: 'Who attacks from a distance using a bow?',
-        questionPl: 'Kto atakuje z dystansu przy użyciu łuku?',
-        questionJp: '弓を使って遠距離から攻撃するのは誰ですか？',
+        type: 'LISTEN',
+        questionEn:
+          'I attack from a distance using a bow and arrows. Who am I?',
+        questionPl: 'Atakuję z dystansu przy użyciu łuku i strzał. Kim jestem?',
+        questionJp: '弓と矢を使って遠距離から攻撃します。私は誰ですか？',
+        audioSrcEn: '/fantasy/questions/en/listen-question-2.mp3',
+        audioSrcPl: '/fantasy/questions/pl/listen-question-2.mp3',
+        audioSrcJp: '/fantasy/questions/jp/listen-question-2.mp3',
         order: 2,
       },
       {
         id: 3,
         lessonId: 1,
-        type: 'SELECT',
-        questionEn: 'Who specializes in poisons and silent eliminations?',
-        questionPl: 'Kto specjalizuje się w truciznach i cichych eliminacjach?',
-        questionJp: '毒と静かな暗殺を専門とするのは誰ですか？',
+        type: 'LISTEN',
+        questionEn:
+          'I specialize in poisons and silent eliminations. Who am I?',
+        questionPl:
+          'Specjalizuję się w truciznach i cichych eliminacjach. Kim jestem?',
+        questionJp: '毒と静かな暗殺を専門としています。私は誰ですか？',
+        audioSrcEn: '/fantasy/questions/en/listen-question-3.mp3',
+        audioSrcPl: '/fantasy/questions/pl/listen-question-3.mp3',
+        audioSrcJp: '/fantasy/questions/jp/listen-question-3.mp3',
         order: 3,
       },
       {
@@ -158,6 +170,9 @@ const main = async () => {
         questionPl:
           'Kto jest najsłynniejszym japońskim mistrzem skradania się?',
         questionJp: '最も有名な日本の隠密の達人は誰ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 1,
       },
       {
@@ -167,6 +182,9 @@ const main = async () => {
         questionEn: 'Who most often uses a crossbow?',
         questionPl: 'Kto najczęściej korzysta z kuszy?',
         questionJp: '最も頻繁にクロスボウを使用するのは誰ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 2,
       },
       {
@@ -178,6 +196,9 @@ const main = async () => {
         questionPl:
           'Kto stoi na pierwszej linii, broniąc tarczą i ciężką zbroją?',
         questionJp: '盾と重い鎧で守りながら前線に立つのは誰ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 3,
       },
       {
@@ -187,6 +208,9 @@ const main = async () => {
         questionEn: 'Who summons the forces of nature and heals with herbs?',
         questionPl: 'Kto przyzywa siły natury i leczy ziołami?',
         questionJp: '自然の力を呼び出し、ハーブで癒すのは誰ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 1,
       },
       {
@@ -196,6 +220,9 @@ const main = async () => {
         questionEn: 'Who casts offensive spells like fireball?',
         questionPl: 'Kto rzuca ofensywne czary, takie jak kula ognia?',
         questionJp: '火の玉のような攻撃的な呪文を唱えるのは誰ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 2,
       },
       {
@@ -205,6 +232,9 @@ const main = async () => {
         questionEn: 'Who fights with a katana, following the bushido code?',
         questionPl: 'Kto walczy kataną, kierując się kodeksem bushido?',
         questionJp: '武士道の掟に従って刀で戦うのは誰ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 3,
       },
       {
@@ -214,6 +244,9 @@ const main = async () => {
         questionEn: 'Who quietly steals and opens locks without keys?',
         questionPl: 'Kto cicho kradnie i otwiera zamki bez klucza?',
         questionJp: '静かに盗み、鍵なしで錠を開けるのは誰ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 4,
       },
       {
@@ -223,6 +256,9 @@ const main = async () => {
         questionEn: 'Where do Greek gods live?',
         questionPl: 'Gdzie mieszkają greccy bogowie?',
         questionJp: 'ギリシャの神々はどこに住んでいますか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 1,
       },
       {
@@ -232,6 +268,9 @@ const main = async () => {
         questionEn: 'What is the symbol of Zeus power?',
         questionPl: 'Co jest symbolem władzy Zeusa?',
         questionJp: 'ゼウスの力の象徴は何ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 2,
       },
       {
@@ -241,6 +280,9 @@ const main = async () => {
         questionEn: 'What is Poseidons weapon?',
         questionPl: 'Co jest bronią Posejdona?',
         questionJp: 'ポセイドンの武器は何ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 3,
       },
       {
@@ -250,6 +292,9 @@ const main = async () => {
         questionEn: 'Who has snakes instead of hair?',
         questionPl: 'Kto ma węże zamiast włosów?',
         questionJp: '髪の代わりに蛇を持っているのは誰ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 1,
       },
       {
@@ -259,6 +304,9 @@ const main = async () => {
         questionEn: 'Who is the winged horse?',
         questionPl: 'Kto jest skrzydlatym koniem?',
         questionJp: '翼のある馬は誰ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 2,
       },
       {
@@ -268,6 +316,9 @@ const main = async () => {
         questionEn: 'Who guards the entrance to the underworld?',
         questionPl: 'Kto strzeże wejścia do podziemi?',
         questionJp: '冥界への入り口を守っているのは誰ですか？',
+        audioSrcEn: null,
+        audioSrcPl: null,
+        audioSrcJp: null,
         order: 3,
       },
     ]);
