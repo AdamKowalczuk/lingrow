@@ -12,9 +12,13 @@ const UnitList = () => {
     <List>
       <Datagrid rowClick="edit">
         <TextField source="id" />
-        <TextField source="title" />
-        <TextField source="description" />
-        <ReferenceField source="courseId" reference="courses" />
+        <TextField source="titleEn" label="Title (EN)" />
+        <TextField source="titlePl" label="Title (PL)" />
+        <TextField source="titleJp" label="Title (JP)" />
+        <TextField source="descriptionEn" label="Description (EN)" />
+        <TextField source="descriptionPl" label="Description (PL)" />
+        <TextField source="descriptionJp" label="Description (JP)" />
+        <ReferenceField source="courseId" reference="courses" label="Course" />
         <NumberField source="order" />
       </Datagrid>
     </List>

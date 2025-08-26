@@ -12,8 +12,10 @@ const LessonList = () => {
     <List>
       <Datagrid rowClick="edit">
         <TextField source="id" />
-        <TextField source="title" />
-        <ReferenceField source="unitId" reference="units" />
+        <TextField source="titleEn" label="Title (EN)" />
+        <TextField source="titlePl" label="Title (PL)" />
+        <TextField source="titleJp" label="Title (JP)" />
+        <ReferenceField source="unitId" reference="units" label="Unit" />
         <NumberField source="order" />
       </Datagrid>
     </List>

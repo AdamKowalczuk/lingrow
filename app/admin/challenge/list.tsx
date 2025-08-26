@@ -13,7 +13,9 @@ const ChallengeList = () => {
     <List>
       <Datagrid rowClick="edit">
         <TextField source="id" />
-        <TextField source="question" />
+        <TextField source="questionEn" label="Question (EN)" />
+        <TextField source="questionPl" label="Question (PL)" />
+        <TextField source="questionJp" label="Question (JP)" />
         <SelectField
           source="type"
           choices={[
@@ -27,7 +29,7 @@ const ChallengeList = () => {
             },
           ]}
         />
-        <ReferenceField source="lessonId" reference="lessons" />
+        <ReferenceField source="lessonId" reference="lessons" label="Lesson" />
         <NumberField source="order" />
       </Datagrid>
     </List>
