@@ -10,12 +10,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 type Props = {
-  hearts: number;
-  points: number;
   hasActiveSubscription: boolean;
 };
 
-const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
+const Items = ({ hasActiveSubscription }: Props) => {
   const locale = useLocale();
   const t = useTranslations('shopItems');
   const tCommon = useTranslations('common');

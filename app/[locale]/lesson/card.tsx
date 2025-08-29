@@ -1,4 +1,3 @@
-import { Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import React, { useCallback } from 'react';
 import { useAudio, useKey } from 'react-use';

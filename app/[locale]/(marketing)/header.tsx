@@ -27,7 +27,6 @@ import { useLocale } from '@/hooks/use-locale';
 
 const Header = () => {
   const t = useTranslations('header');
-  const tFooter = useTranslations('footer');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();

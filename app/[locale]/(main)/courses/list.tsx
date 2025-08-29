@@ -28,7 +28,6 @@ const List = ({ courses, activeCourseId }: Props) => {
     if (pending) return;
 
     setTargetLanguage(course.targetLanguage as 'pl' | 'en' | 'jp');
-    console.log(targetLanguage);
 
     if (targetLanguage && activeCourseId) {
       return router.push(`/${locale}/learn`);
