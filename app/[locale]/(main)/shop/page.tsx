@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -19,6 +20,31 @@ import Items from './items';
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations('shopPage');
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    keywords: [
+      'sklep językowy',
+      'punkty doświadczenia',
+      'serca',
+      'nieograniczone serca',
+      'pro',
+      'premium',
+      'nagrody',
+    ],
+  };
 }
 
 const ShopPage = async ({

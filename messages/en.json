@@ -60,7 +60,10 @@
     "upgradeToday": "Upgrade today"
   },
   "common": {
-    "somethingWentWrong": "Something went wrong"
+    "somethingWentWrong": "Something went wrong",
+    "appName": "Lingrow",
+    "appTitle": "Lingrow - Language Learning Platform",
+    "appDescription": "Discover, practice, and conquer new languages with Lingrow. Interactive lessons, progress system and attractive user interface."
   },
   "modals": {
     "exitModal": {

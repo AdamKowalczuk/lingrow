@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import React from 'react';
@@ -9,6 +10,36 @@ import Quiz from '../quiz';
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; lessonId: number }>;
+}): Promise<Metadata> {
+  const { locale, lessonId } = await params;
+  setRequestLocale(locale);
+
+  const lesson = await getLesson(lessonId, locale);
+
+  if (!lesson) {
+    return {
+      title: 'Lekcja nie znaleziona',
+      description: 'Nie można znaleźć lekcji o podanym ID.',
+    };
+  }
+
+  return {
+    title: `Lekcja ${lesson.title}`,
+    description: `Rozpocznij lekcję: ${lesson.title}. Interaktywne ćwiczenia i nauka języka.`,
+    keywords: [
+      'lekcja językowa',
+      'ćwiczenia interaktywne',
+      'nauka języka',
+      lesson.title,
+      'platforma edukacyjna',
+    ],
+  };
 }
 
 type Props = {

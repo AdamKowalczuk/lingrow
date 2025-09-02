@@ -60,7 +60,10 @@
     "upgradeToday": "Ulepsz dzisiaj"
   },
   "common": {
-    "somethingWentWrong": "Coś poszło nie tak"
+    "somethingWentWrong": "Coś poszło nie tak",
+    "appName": "Lingrow",
+    "appTitle": "Lingrow - Platforma do Nauki Języków",
+    "appDescription": "Odkryj, ćwicz i opanuj nowe języki z Lingrow. Interaktywne lekcje, system postępów i atrakcyjny interfejs użytkownika."
   },
   "modals": {
     "exitModal": {

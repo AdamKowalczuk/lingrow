@@ -60,7 +60,10 @@
     "upgradeToday": "今日アップグレード"
   },
   "common": {
-    "somethingWentWrong": "何か問題が発生しました"
+    "somethingWentWrong": "何か問題が発生しました",
+    "appName": "Lingrow",
+    "appTitle": "Lingrow - 言語学習プラットフォーム",
+    "appDescription": "Lingrowで新しい言語を発見し、練習し、習得しましょう。インタラクティブなレッスン、進捗システム、魅力的なユーザーインターフェース。"
   },
   "modals": {
     "exitModal": {

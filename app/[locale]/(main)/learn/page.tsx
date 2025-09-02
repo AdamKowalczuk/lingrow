@@ -1,5 +1,7 @@
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
 import { FeedWrapper } from '@/components/feed-wrapper';
@@ -22,6 +24,30 @@ import Unit from './unit';
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations('sidebar');
+
+  return {
+    title: t('learn'),
+    description:
+      'Rozpocznij swoją podróż językową z interaktywnymi lekcjami i ćwiczeniami.',
+    keywords: [
+      'nauka języków',
+      'lekcje interaktywne',
+      'ćwiczenia językowe',
+      'postęp w nauce',
+      'jednostki lekcyjne',
+    ],
+  };
 }
 
 const LearnPage = async ({

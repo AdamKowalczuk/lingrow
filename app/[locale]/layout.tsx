@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import './globals.css';
 
@@ -17,11 +17,35 @@ const font = Nunito({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: 'Lingrow - Platforma do Nauki Języków',
-  description:
-    'Odkryj, ćwicz i opanuj nowe języki z Lingrow. Interaktywne lekcje, system postępów i atrakcyjny interfejs użytkownika.',
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations('common');
+
+  return {
+    title: {
+      template: `%s | ${t('appName')}`,
+      default: t('appTitle'),
+    },
+    description: t('appDescription'),
+    keywords: [
+      'nauka języków',
+      'lingrow',
+      'język angielski',
+      'język japoński',
+      'język polski',
+      'interaktywne lekcje',
+      'platforma edukacyjna',
+      'gry językowe',
+      'ćwiczenia językowe',
+    ],
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));

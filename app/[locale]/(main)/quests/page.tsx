@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -19,6 +20,30 @@ import QuestsList from './quests-list';
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations('questsPage');
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    keywords: [
+      'zadania językowe',
+      'questy',
+      'nagrody',
+      'punkty doświadczenia',
+      'gry edukacyjne',
+      'motywacja do nauki',
+    ],
+  };
 }
 
 const QuestsPage = async ({

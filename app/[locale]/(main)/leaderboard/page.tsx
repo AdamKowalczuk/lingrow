@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -20,6 +21,30 @@ import { routing } from '@/i18n/routing';
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations('leaderboardPage');
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    keywords: [
+      'ranking językowy',
+      'porównanie wyników',
+      'społeczność uczących się',
+      'punkty doświadczenia',
+      'konkurencja',
+      'motywacja',
+    ],
+  };
 }
 
 const LeaderboardPage = async ({
