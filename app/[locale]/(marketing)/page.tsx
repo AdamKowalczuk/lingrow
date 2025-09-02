@@ -52,7 +52,12 @@ export default async function Home({
                 mode="modal"
                 fallbackRedirectUrl={`/${locale}/learn`}
               >
-                <Button size="lg" variant="secondary" className="w-full">
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="w-full"
+                  data-testid="sign-up-button"
+                >
                   {t('getStarted')}
                 </Button>
               </SignUpButton>
@@ -60,7 +65,12 @@ export default async function Home({
                 mode="modal"
                 fallbackRedirectUrl={`/${locale}/learn`}
               >
-                <Button size="lg" variant="primaryOutline" className="w-full">
+                <Button
+                  size="lg"
+                  variant="primaryOutline"
+                  className="w-full"
+                  data-testid="sign-in-button"
+                >
                   {t('alreadyHaveAccount')}
                 </Button>
               </SignInButton>

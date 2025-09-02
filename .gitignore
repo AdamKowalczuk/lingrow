@@ -43,3 +43,12 @@ next-env.d.ts
 .vs
 
 .env
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/tests/storage-state.json
+/tests/state.json
