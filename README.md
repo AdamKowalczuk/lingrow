@@ -62,6 +62,8 @@
 - **Next.js API Routes** - Backend API
 - **Drizzle Kit** - Migracje i zarządzanie bazą danych
 
+- 
+
 ### Autoryzacja & Płatności
 
 - **Clerk 6.30.0** - System autoryzacji użytkowników
