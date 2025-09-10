@@ -96,6 +96,8 @@
 - **Konto Clerk** - System autoryzacji
 - **Konto Stripe** - Obsługa płatności
 
+-
+
 ### Kroki instalacji
 
 1. **Klonowanie repozytorium**
