@@ -83,7 +83,6 @@
 
 - **Prettier 3.6.2** - Formatowanie kodu
 - **ESLint 9** - Linting kodu
-- **TSX** - Uruchamianie TypeScript w Node.js
 - **Turbopack** - Szybki bundler Next.js
 
 ## 🚀 Instalacja i uruchomienie
