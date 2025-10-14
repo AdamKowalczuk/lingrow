@@ -21,7 +21,6 @@ const main = async () => {
     await db.delete(schema.userSubscription);
     await db.delete(schema.questProgress);
 
-    // Jeden kurs - Fantasy & Mythology
     await db.insert(schema.courses).values([
       {
         id: 1,

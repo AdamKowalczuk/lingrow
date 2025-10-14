@@ -15,26 +15,19 @@ const eslintConfig = [
   ...compat.extends('prettier'),
   {
     rules: {
-      // Podstawowe zasady jakości kodu
       'no-console': 'warn',
       'no-debugger': 'error',
 
-      // Zasady dla React
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'react/no-unescaped-entities': 'warn',
 
-      // Zasady dla TypeScript
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
 
-      // Zasady formatowania - usuwam te które kolidują z Prettier
-      // indent, quotes, semi, comma-dangle są teraz zarządzane przez Prettier
-
-      // Zasady dla importów
       'import/order': [
         'error',
         {
@@ -54,7 +47,6 @@ const eslintConfig = [
         },
       ],
 
-      // Zasady dla Next.js
       '@next/next/no-img-element': 'warn',
       '@next/next/no-html-link-for-pages': 'warn',
     },

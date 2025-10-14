@@ -53,12 +53,9 @@ setup('Setup Auth', async ({ page }) => {
         const element = page.locator(selector);
         if (await element.isVisible({ timeout: 1000 })) {
           googleButton = element;
-
           break;
         }
-      } catch (error) {
-        console.log(`❌ Selector ${selector} not found`);
-      }
+      } catch (error) {}
     }
 
     if (!googleButton) {
@@ -116,19 +113,10 @@ setup('Setup Auth', async ({ page }) => {
             );
             await nextButton.waitFor({ state: 'visible', timeout: 3000 });
             await nextButton.click();
-          } catch (buttonError) {
-            console.log(
-              '🔍 No next button found - may already be authenticated',
-            );
-          }
+          } catch (buttonError) {}
         }
       }
-    } catch (error) {
-      console.log(
-        '🔍 Error during password/redirect check:',
-        (error as Error).message,
-      );
-    }
+    } catch (error) {}
 
     await page.waitForURL('**/localhost:3000/**', { timeout: 30000 });
 

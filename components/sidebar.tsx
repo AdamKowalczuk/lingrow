@@ -82,14 +82,12 @@ export const Sidebar = ({ className, onItemClick }: Props) => {
         />
       </div>
 
-      {/* Language Switcher */}
       <div className="px-4 pb-4">
         <Select
           value={locale}
           onValueChange={value => {
             const newPath = pathname.replace(/^\/[a-z]{2}/, `/${value}`);
             router.push(newPath);
-            // Zamknij sidebar po zmianie języka na mobile
             if (onItemClick) {
               onItemClick();
             }

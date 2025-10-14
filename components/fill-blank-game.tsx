@@ -112,7 +112,6 @@ const FillBlankGame: React.FC<FillBlankGameProps> = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
-  // Reset state when text changes (new question)
   useEffect(() => {
     setSelectedOption(null);
   }, [text]);
@@ -127,14 +126,12 @@ const FillBlankGame: React.FC<FillBlankGameProps> = ({
     [disabled, status, onSelect],
   );
 
-  // Split text into parts around the blank
   const textParts = text.split(' ');
   const beforeBlank = textParts.slice(0, blankPosition).join(' ');
   const afterBlank = textParts.slice(blankPosition + 1).join(' ');
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      {/* Text with blank */}
       <div className="mb-8 p-6 bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="text-lg leading-relaxed text-gray-800">
           {beforeBlank && <span>{beforeBlank} </span>}
@@ -161,7 +158,6 @@ const FillBlankGame: React.FC<FillBlankGameProps> = ({
         </div>
       </div>
 
-      {/* Options */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {options.map(option => {
           const isSelected = selectedOption === option.id;

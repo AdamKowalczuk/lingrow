@@ -1,7 +1,5 @@
 'use server';
 
-import { error } from 'console';
-
 import { auth, currentUser } from '@clerk/nextjs/server';
 import { and, eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';

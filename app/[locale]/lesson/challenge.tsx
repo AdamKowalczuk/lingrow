@@ -60,13 +60,10 @@ const Challenge = ({
     }
   };
 
-  // For FILL_BLANK type, we need to show text with a blank and options
   if (type === 'FILL_BLANK') {
-    // Find the correct answer (the one marked as correct)
     const correctOption = options.find(option => option.correct);
     const correctAnswerId = correctOption?.id || options[0]?.id || 0;
 
-    // Get text with blank from database based on target language
     const getFillBlankTextByTargetLanguage = () => {
       switch (targetLanguage) {
         case 'pl':
@@ -81,7 +78,7 @@ const Challenge = ({
     const textWithBlank =
       getFillBlankTextByTargetLanguage() ||
       'The _____ is a powerful character in fantasy.';
-    const blankPosition = 1; // Position of the blank (0-based index)
+    const blankPosition = 1;
 
     return (
       <FillBlankGame
